@@ -66,8 +66,12 @@ export default function GoalCard({
 
           {!isActive && (
             <span
-              className="text-[12px] font-medium font-['DM_Sans'] mt-0.5"
+              className="text-[11px] font-medium font-['DM_Sans'] px-2 py-0.5 rounded-full capitalize mt-0.5 self-start"
               style={{
+                backgroundColor:
+                  goal.status === "achieved"
+                    ? config.subtle
+                    : "var(--color-bg-elevated)",
                 color:
                   goal.status === "achieved"
                     ? config.text

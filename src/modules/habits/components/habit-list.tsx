@@ -23,6 +23,9 @@ export default function HabitList({ initialData }: HabitListProps) {
   const todayStr = today();
 
   const enriched = useMemo(() => habits.map(enrichHabit), [habits]);
+  const completedToday = enriched.filter((h) =>
+    h.logs.some((l) => l.date === todayStr),
+  ).length;
   const byArea = useMemo(
     () =>
       AREAS.reduce<Record<Area, HabitWithStats[]>>(
@@ -43,13 +46,23 @@ export default function HabitList({ initialData }: HabitListProps) {
   return (
     <>
       <div className="flex flex-col gap-6">
-        <div className="flex items-center justify-between">
-          <span
-            className="text-[13px] font-['DM_Sans']"
-            style={{ color: "var(--color-text-secondary)" }}
-          >
-            {enriched.length} {enriched.length === 1 ? "habit" : "habits"}
-          </span>
+        <div className="flex items-start justify-between">
+          <div className="flex flex-col gap-0.5">
+            <span
+              className="text-[13px] font-['DM_Sans']"
+              style={{ color: "var(--color-text-secondary)" }}
+            >
+              {enriched.length} {enriched.length === 1 ? "habit" : "habits"}
+            </span>
+            {enriched.length > 0 && (
+              <span
+                className="text-[11px] font-['DM_Mono']"
+                style={{ color: "var(--color-text-tertiary)" }}
+              >
+                {completedToday} of {enriched.length} done today
+              </span>
+            )}
+          </div>
           <button
             type="button"
             onClick={() => setSheetOpen(true)}
@@ -108,7 +121,7 @@ export default function HabitList({ initialData }: HabitListProps) {
                     key={habit.id}
                     style={{
                       opacity: isLoggedToday ? 0.5 : 1,
-                      transition: "opacity 0.2s ease",
+                      transition: "opacity 0.25s cubic-bezier(0.25, 0, 0, 1)",
                     }}
                   >
                     <HabitCard

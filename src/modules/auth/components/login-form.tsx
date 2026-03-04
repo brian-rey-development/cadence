@@ -1,5 +1,6 @@
 "use client";
 
+import { Mail } from "lucide-react";
 import { useState } from "react";
 import { sendMagicLink } from "@/modules/auth/mutations/send-magic-link";
 import Button from "@/shared/components/ui/button";
@@ -29,14 +30,31 @@ export default function LoginForm() {
 
   if (state === "sent") {
     return (
-      <div className="flex flex-col items-center gap-2 text-center">
-        <p className="text-[15px] font-['DM_Sans'] text-[var(--color-text-primary)]">
-          Check your email
-        </p>
-        <p className="text-[13px] font-['DM_Sans'] text-[var(--color-text-secondary)] max-w-[240px]">
-          We sent a magic link to{" "}
-          <span className="text-[var(--color-text-primary)]">{email}</span>
-        </p>
+      <div className="flex flex-col items-center gap-4 text-center">
+        <div className="relative flex items-center justify-center w-16 h-16">
+          <div
+            className="absolute inset-0 rounded-full"
+            style={{
+              backgroundColor: "var(--color-bg-elevated)",
+              opacity: 0.12,
+            }}
+            aria-hidden="true"
+          />
+          <Mail
+            size={40}
+            strokeWidth={1.5}
+            style={{ color: "var(--color-text-primary)" }}
+          />
+        </div>
+        <div className="flex flex-col gap-1">
+          <p className="text-[15px] font-['DM_Sans'] text-[var(--color-text-primary)]">
+            Check your email
+          </p>
+          <p className="text-[13px] font-['DM_Sans'] text-[var(--color-text-secondary)] max-w-[240px]">
+            We sent a magic link to{" "}
+            <span className="text-[var(--color-text-primary)]">{email}</span>
+          </p>
+        </div>
       </div>
     );
   }

@@ -13,7 +13,7 @@ export default function WeekIntentionsBanner({
     <div
       className="flex gap-3 rounded-xl px-4 py-4"
       style={{
-        backgroundColor: "var(--color-bg-subtle)",
+        backgroundColor: "var(--color-bg-elevated)",
         border: "1px solid var(--color-border-subtle)",
       }}
     >

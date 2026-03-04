@@ -4,13 +4,13 @@ import { useQueryClient } from "@tanstack/react-query";
 import { useEffect } from "react";
 import type { AiTaskScore } from "@/modules/ai-engine/ai-engine.types";
 import { useTaskScoreMap } from "@/modules/ai-engine/hooks/use-task-scores";
+import EmptyState from "@/shared/components/common/empty-state";
 import { AREA_CONFIG } from "@/shared/config/areas";
 import { AREAS } from "@/shared/config/constants";
 import { useArchiveTask } from "../hooks/use-archive-task";
 import { useCompleteTask } from "../hooks/use-complete-task";
 import { useTasksForDay } from "../hooks/use-tasks-for-day";
 import type { TaskWithGoal } from "../queries/get-tasks-for-day";
-import DailyLimitBanner from "./daily-limit-banner";
 import TaskCard from "./task-card";
 
 type TaskListProps = {
@@ -50,10 +50,6 @@ export default function TaskList({
 
   return (
     <div className="flex flex-col gap-6">
-      <div className="flex justify-end">
-        <DailyLimitBanner tasks={tasks} />
-      </div>
-
       {grouped.map(({ area, tasks: areaTasks }) => (
         <section key={area} className="flex flex-col gap-2">
           <h2
@@ -75,12 +71,10 @@ export default function TaskList({
       ))}
 
       {grouped.length === 0 && (
-        <p
-          className="text-sm font-['DM_Sans'] text-center py-12"
-          style={{ color: "var(--color-text-secondary)" }}
-        >
-          No tasks for today.
-        </p>
+        <EmptyState
+          title="Nothing planned"
+          description="Add your first task for today to get started."
+        />
       )}
     </div>
   );
