@@ -4,8 +4,8 @@ import { getActiveCount, getLimitState } from "../utils/limit";
 
 const STATE_COLORS: Record<string, string> = {
   low: "var(--color-text-secondary)",
-  warning: "#CAAA6A",
-  full: "#B57575",
+  warning: "var(--color-warning-text)",
+  full: "var(--color-destructive-text)",
 };
 
 type DailyLimitBannerProps = {

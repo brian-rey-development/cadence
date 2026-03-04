@@ -54,6 +54,7 @@ export default function CreateGoalSheet({
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           autoFocus
+          disabled={isPending}
         />
 
         <textarea
@@ -61,6 +62,7 @@ export default function CreateGoalSheet({
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           rows={2}
+          disabled={isPending}
           className="w-full resize-none rounded-[10px] px-4 py-3 text-[14px] font-['DM_Sans'] outline-none transition-colors duration-150"
           style={{
             backgroundColor: "var(--color-bg-base)",

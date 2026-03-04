@@ -25,12 +25,11 @@ export default function GoalCard({
 
   return (
     <div
-      className="flex items-start gap-3 rounded-[12px] px-4 py-3"
+      className="flex items-start gap-3 rounded-[12px] px-4 py-3 transition-opacity duration-[200ms] ease-[var(--ease-default)]"
       style={{
         backgroundColor: "var(--color-bg-surface)",
         borderLeft: `3px solid ${config.accent}`,
         opacity: isActive ? 1 : 0.6,
-        transition: "opacity 0.2s ease",
       }}
     >
       <div className="flex-1 min-w-0 flex flex-col gap-1">

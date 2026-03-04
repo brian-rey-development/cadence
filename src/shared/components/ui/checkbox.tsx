@@ -22,8 +22,7 @@ export default function Checkbox({
       disabled={disabled}
       aria-label={checked ? "Mark incomplete" : "Mark complete"}
       aria-pressed={checked}
-      className="flex items-center justify-center shrink-0"
-      style={{ width: 44, height: 44 }}
+      className="flex items-center justify-center shrink-0 w-11 h-11"
     >
       <motion.svg
         width={20}

@@ -53,7 +53,7 @@ export default function TaskIntentInput({
       />
 
       {error && (
-        <p className="text-[13px] font-['DM_Sans'] text-[#B57575]">{error}</p>
+        <p className="text-[13px] font-['DM_Sans'] text-[var(--color-destructive-text)]">{error}</p>
       )}
 
       <Button

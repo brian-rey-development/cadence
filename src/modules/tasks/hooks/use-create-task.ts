@@ -43,6 +43,6 @@ export function useCreateTask(date: string) {
     onError: (_err, _vars, ctx) => {
       if (ctx?.previous) queryClient.setQueryData(key, ctx.previous);
     },
-    onSettled: () => router.refresh(),
+    onSuccess: () => router.refresh(),
   });
 }

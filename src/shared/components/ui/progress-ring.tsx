@@ -3,6 +3,7 @@ type ProgressRingProps = {
   size?: number;
   strokeWidth?: number;
   color?: string;
+  label?: string;
 };
 
 export default function ProgressRing({
@@ -10,6 +11,7 @@ export default function ProgressRing({
   size = 44,
   strokeWidth = 3,
   color = "var(--color-text-primary)",
+  label,
 }: ProgressRingProps) {
   const clamped = Math.min(1, Math.max(0, progress));
   const radius = (size - strokeWidth) / 2;
@@ -21,7 +23,9 @@ export default function ProgressRing({
     <svg
       width={size}
       height={size}
-      aria-hidden="true"
+      role={label ? "img" : undefined}
+      aria-label={label}
+      aria-hidden={label ? undefined : "true"}
       style={{ transform: "rotate(-90deg)", transformOrigin: "50% 50%" }}
     >
       <circle

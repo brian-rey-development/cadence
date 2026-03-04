@@ -25,6 +25,6 @@ export function useArchiveTask(date: string) {
     onError: (_err, _id, ctx) => {
       if (ctx?.previous) queryClient.setQueryData(key, ctx.previous);
     },
-    onSettled: () => router.refresh(),
+    onSuccess: () => router.refresh(),
   });
 }

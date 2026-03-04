@@ -1,7 +1,7 @@
 "use client";
 
 import { Plus } from "lucide-react";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { AREA_CONFIG } from "@/shared/config/areas";
 import { AREAS, type Area } from "@/shared/config/constants";
 import type { GoalWithTasks } from "../goals.types";
@@ -24,17 +24,24 @@ export default function GoalList({
   const { mutate: updateStatus, isPending: isUpdating } = useUpdateGoalStatus();
   const [sheetOpen, setSheetOpen] = useState(false);
 
-  const enriched = goals.map((g) => ({ ...g, progress: calculateProgress(g) }));
-  const byArea = groupGoalsByArea(enriched);
+  const enriched = useMemo(
+    () => goals.map((g) => ({ ...g, progress: calculateProgress(g) })),
+    [goals],
+  );
+  const byArea = useMemo(() => groupGoalsByArea(enriched), [enriched]);
 
-  const activeCountByArea = AREAS.reduce<Record<Area, number>>(
-    (acc, area) => {
-      acc[area] = goals.filter(
-        (g) => g.area === area && g.status === "active",
-      ).length;
-      return acc;
-    },
-    { work: 0, personal: 0, identity: 0 },
+  const activeCountByArea = useMemo(
+    () =>
+      AREAS.reduce<Record<Area, number>>(
+        (acc, area) => {
+          acc[area] = goals.filter(
+            (g) => g.area === area && g.status === "active",
+          ).length;
+          return acc;
+        },
+        { work: 0, personal: 0, identity: 0 },
+      ),
+    [goals],
   );
 
   const hasAny = goals.length > 0;

@@ -30,12 +30,12 @@ export default function LoginForm() {
   if (state === "sent") {
     return (
       <div className="flex flex-col items-center gap-2 text-center">
-        <p className="text-[15px] font-['DM_Sans'] text-[#F0EDE8]">
+        <p className="text-[15px] font-['DM_Sans'] text-[var(--color-text-primary)]">
           Check your email
         </p>
-        <p className="text-[13px] font-['DM_Sans'] text-[#8A8A95] max-w-[240px]">
+        <p className="text-[13px] font-['DM_Sans'] text-[var(--color-text-secondary)] max-w-[240px]">
           We sent a magic link to{" "}
-          <span className="text-[#F0EDE8]">{email}</span>
+          <span className="text-[var(--color-text-primary)]">{email}</span>
         </p>
       </div>
     );

@@ -62,7 +62,7 @@ export default function CreateTaskSheet({
   }) {
     createTask(
       {
-        userId: "",
+        userId: "optimistic",
         title: data.title,
         area: data.area,
         date: data.date,

@@ -1,15 +1,14 @@
 "use client";
 
 import { Plus } from "lucide-react";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { AREA_CONFIG } from "@/shared/config/areas";
 import { AREAS, type Area } from "@/shared/config/constants";
 import { today } from "@/shared/utils/date";
 import type { HabitWithLogs, HabitWithStats } from "../habits.types";
 import { useHabits } from "../hooks/use-habits";
 import { useLogHabit } from "../hooks/use-log-habit";
-import { buildHeatmapData } from "../utils/heatmap";
-import { currentStreak, longestStreak } from "../utils/streak";
+import { enrichHabit, sortByLogStatus } from "../utils/enrich";
 import CreateHabitSheet from "./create-habit-sheet";
 import HabitCard from "./habit-card";
 
@@ -17,44 +16,26 @@ type HabitListProps = {
   initialData: HabitWithLogs[];
 };
 
-function enrichHabit(habit: HabitWithLogs): HabitWithStats {
-  return {
-    ...habit,
-    streak: {
-      current: currentStreak(habit.logs),
-      longest: longestStreak(habit.logs),
-    },
-    heatmap: buildHeatmapData(habit.logs),
-  };
-}
-
-function sortByLogStatus(
-  habits: HabitWithStats[],
-  todayStr: string,
-): HabitWithStats[] {
-  return [...habits].sort((a, b) => {
-    const aLogged = a.logs.some((l) => l.date === todayStr) ? 1 : 0;
-    const bLogged = b.logs.some((l) => l.date === todayStr) ? 1 : 0;
-    return aLogged - bLogged;
-  });
-}
-
 export default function HabitList({ initialData }: HabitListProps) {
   const { data: habits } = useHabits(initialData);
   const { mutate: toggleLog, isPending } = useLogHabit();
   const [sheetOpen, setSheetOpen] = useState(false);
   const todayStr = today();
 
-  const enriched = habits.map(enrichHabit);
-  const byArea = AREAS.reduce<Record<Area, HabitWithStats[]>>(
-    (acc, area) => {
-      acc[area] = sortByLogStatus(
-        enriched.filter((h) => h.area === area),
-        todayStr,
-      );
-      return acc;
-    },
-    { work: [], personal: [], identity: [] },
+  const enriched = useMemo(() => habits.map(enrichHabit), [habits]);
+  const byArea = useMemo(
+    () =>
+      AREAS.reduce<Record<Area, HabitWithStats[]>>(
+        (acc, area) => {
+          acc[area] = sortByLogStatus(
+            enriched.filter((h) => h.area === area),
+            todayStr,
+          );
+          return acc;
+        },
+        { work: [], personal: [], identity: [] },
+      ),
+    [enriched, todayStr],
   );
 
   const hasAny = enriched.length > 0;
