@@ -5,6 +5,7 @@ import DailyLimitBanner from "@/modules/tasks/components/daily-limit-banner";
 import TaskList from "@/modules/tasks/components/task-list";
 import { getTasksForDay } from "@/modules/tasks/queries/get-tasks-for-day";
 import { today } from "@/shared/utils/date";
+import TodayClient from "./today-client";
 
 export default async function TodayPage() {
   const session = await requireAuth();
@@ -17,23 +18,25 @@ export default async function TodayPage() {
   ]);
 
   return (
-    <div className="flex flex-col gap-6 px-4 py-6 max-w-lg mx-auto">
-      <header className="flex items-baseline justify-between">
-        <h1
-          className="font-['Fraunces'] text-xl"
-          style={{ color: "var(--color-text-primary)" }}
-        >
-          today
-        </h1>
-        <DailyLimitBanner tasks={tasks} />
-      </header>
+    <TodayClient tasks={tasks} date={date}>
+      <div className="flex flex-col gap-6 px-4 py-6 max-w-lg mx-auto">
+        <header className="flex items-baseline justify-between">
+          <h1
+            className="font-['Fraunces'] text-xl"
+            style={{ color: "var(--color-text-primary)" }}
+          >
+            today
+          </h1>
+          <DailyLimitBanner tasks={tasks} />
+        </header>
 
-      <TaskList initialTasks={tasks} date={date} />
+        <TaskList initialTasks={tasks} date={date} />
 
-      <HabitSummaryBar
-        total={habitSummary.total}
-        completed={habitSummary.completed}
-      />
-    </div>
+        <HabitSummaryBar
+          total={habitSummary.total}
+          completed={habitSummary.completed}
+        />
+      </div>
+    </TodayClient>
   );
 }
