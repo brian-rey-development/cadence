@@ -1,5 +1,6 @@
 import { requireAuth } from "@/modules/auth/utils";
 import AppShell from "@/shared/components/layout/app-shell";
+import QueryProvider from "@/shared/components/providers/query-provider";
 
 export default async function AppLayout({
   children,
@@ -7,5 +8,9 @@ export default async function AppLayout({
   children: React.ReactNode;
 }) {
   await requireAuth();
-  return <AppShell>{children}</AppShell>;
+  return (
+    <QueryProvider>
+      <AppShell>{children}</AppShell>
+    </QueryProvider>
+  );
 }
