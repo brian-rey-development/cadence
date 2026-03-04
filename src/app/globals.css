@@ -64,6 +64,7 @@
   --color-primary-hover: #e0ddd8;
   --color-ghost-hover: #ffffff08;
   --color-ghost-active: #ffffff12;
+  --color-backdrop: rgba(0, 0, 0, 0.6);
 
   /* Radii */
   --radius-sm: 6px;

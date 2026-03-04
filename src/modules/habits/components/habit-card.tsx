@@ -43,10 +43,8 @@ export default function HabitCard({
           type="button"
           onClick={() => onToggle(habit.id, isLoggedToday)}
           disabled={isPending}
-          className="flex items-center justify-center rounded-full transition-colors duration-150 disabled:opacity-50"
+          className="flex items-center justify-center h-11 w-11 rounded-full transition-colors duration-150 disabled:opacity-50"
           style={{
-            width: 44,
-            height: 44,
             backgroundColor: isLoggedToday ? config.accent : "transparent",
             border: `1.5px solid ${isLoggedToday ? config.accent : config.border}`,
           }}
