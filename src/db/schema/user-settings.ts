@@ -7,6 +7,9 @@ export const userSettings = pgTable("user_settings", {
   timezone: text("timezone").notNull().default("UTC"),
   morningEnabled: boolean("morning_enabled").notNull().default(false),
   eveningEnabled: boolean("evening_enabled").notNull().default(false),
+  pushSubscription: text("push_subscription"), // JSON-stringified PushSubscriptionJSON
+  lastMorningSentDate: text("last_morning_sent_date"), // "YYYY-MM-DD"
+  lastEveningSentDate: text("last_evening_sent_date"), // "YYYY-MM-DD"
   createdAt: timestamp("created_at", { withTimezone: true })
     .notNull()
     .defaultNow(),

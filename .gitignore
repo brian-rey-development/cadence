@@ -29,6 +29,13 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
+firebase-debug.log
+
+# supabase
+supabase/.temp/
+
+# claude worktrees
+.claude/worktrees/
 
 # env files (can opt-in for committing if needed)
 .env*
