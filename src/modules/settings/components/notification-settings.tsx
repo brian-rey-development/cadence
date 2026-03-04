@@ -73,8 +73,8 @@ export default function NotificationSettings({
               }
               className={`relative h-6 w-11 rounded-full transition-colors duration-200 ${
                 snapshot.morningEnabled
-                  ? "bg-[var(--color-primary-bg)]"
-                  : "bg-[var(--color-border-subtle)]"
+                  ? "bg-[var(--color-work-accent)]"
+                  : "bg-[var(--color-border-default)]"
               }`}
             >
               <span
@@ -112,8 +112,8 @@ export default function NotificationSettings({
               }
               className={`relative h-6 w-11 rounded-full transition-colors duration-200 ${
                 snapshot.eveningEnabled
-                  ? "bg-[var(--color-primary-bg)]"
-                  : "bg-[var(--color-border-subtle)]"
+                  ? "bg-[var(--color-work-accent)]"
+                  : "bg-[var(--color-border-default)]"
               }`}
             >
               <span

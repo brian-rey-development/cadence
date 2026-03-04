@@ -6,6 +6,8 @@ import DailyLimitBanner from "@/modules/tasks/components/daily-limit-banner";
 import TaskList from "@/modules/tasks/components/task-list";
 import { getTasksForDay } from "@/modules/tasks/queries/get-tasks-for-day";
 import { today } from "@/shared/utils/date";
+import { Settings } from "lucide-react";
+import Link from "next/link";
 import TodayClient from "./today-client";
 
 export default async function TodayPage() {
@@ -45,7 +47,17 @@ export default async function TodayPage() {
               })}
             </p>
           </div>
-          <DailyLimitBanner tasks={tasks} />
+          <div className="flex items-center gap-1">
+            <DailyLimitBanner tasks={tasks} />
+            <Link
+              href="/settings"
+              aria-label="Settings"
+              className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-full transition-colors duration-[150ms] active:bg-[var(--color-ghost-active)]"
+              style={{ color: "var(--color-text-tertiary)" }}
+            >
+              <Settings size={20} strokeWidth={1.5} />
+            </Link>
+          </div>
         </header>
 
         <TaskList initialTasks={tasks} initialScores={scores} date={date} />
