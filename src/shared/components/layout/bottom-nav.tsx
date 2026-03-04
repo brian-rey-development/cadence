@@ -70,16 +70,18 @@ export default function BottomNav({ onPlusClick }: BottomNavProps) {
       aria-label="Main navigation"
       className="fixed bottom-0 left-0 right-0 z-50 h-[64px] border-t border-[var(--color-border-subtle)] bg-[var(--color-bg-base)]/90 backdrop-blur-[12px]"
     >
-      <div className="flex h-full items-center px-5">
-        {LEFT_TABS.map((tab) => (
-          <TabItem
-            key={tab.href}
-            tab={tab}
-            isActive={pathname.startsWith(tab.href)}
-          />
-        ))}
+      <div className="grid h-full grid-cols-[1fr_auto_1fr]">
+        <div className="flex items-center">
+          {LEFT_TABS.map((tab) => (
+            <TabItem
+              key={tab.href}
+              tab={tab}
+              isActive={pathname.startsWith(tab.href)}
+            />
+          ))}
+        </div>
 
-        <div className="flex flex-1 items-center justify-center">
+        <div className="flex items-center px-3">
           <button
             type="button"
             aria-label="Add task"
@@ -90,13 +92,15 @@ export default function BottomNav({ onPlusClick }: BottomNavProps) {
           </button>
         </div>
 
-        {RIGHT_TABS.map((tab) => (
-          <TabItem
-            key={tab.href}
-            tab={tab}
-            isActive={pathname.startsWith(tab.href)}
-          />
-        ))}
+        <div className="flex items-center">
+          {RIGHT_TABS.map((tab) => (
+            <TabItem
+              key={tab.href}
+              tab={tab}
+              isActive={pathname.startsWith(tab.href)}
+            />
+          ))}
+        </div>
       </div>
     </nav>
   );

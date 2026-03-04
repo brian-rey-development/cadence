@@ -26,21 +26,21 @@ export default function ZombieResolutionCard({
 }: ZombieResolutionCardProps) {
   const zombie = isZombie(task);
   const age = getZombieAge(task);
-  const areaAccent = AREA_CONFIG[task.area].accent;
+  const config = AREA_CONFIG[task.area];
 
   return (
     <div
       className="relative rounded-xl px-4 py-3 flex flex-col gap-3"
       style={{
-        backgroundColor: "var(--color-surface)",
+        backgroundColor: "var(--color-bg-surface)",
         border: zombie
-          ? "1px solid var(--color-status-zombie-default, #9E5A5A)"
+          ? "1px solid var(--color-zombie)"
           : "1px solid var(--color-border-subtle)",
       }}
     >
       <div
         className="absolute left-0 inset-y-2 w-[3px] rounded-full"
-        style={{ backgroundColor: areaAccent }}
+        style={{ backgroundColor: config.accent }}
       />
 
       <div className="ml-2 flex items-center gap-2 flex-wrap">
@@ -65,9 +65,9 @@ export default function ZombieResolutionCard({
           <span
             className="font-['DM_Mono'] text-xs px-1.5 py-0.5 rounded"
             style={{
-              color: "var(--color-status-zombie-text)",
+              color: "var(--color-zombie-text)",
               backgroundColor: "var(--color-status-zombie-subtle)",
-              border: "1px solid var(--color-status-zombie-default)",
+              border: "1px solid var(--color-zombie)",
             }}
           >
             {age}d stale
@@ -76,6 +76,19 @@ export default function ZombieResolutionCard({
       </div>
 
       <div className="ml-2 flex gap-2">
+        {zombie && (
+          <button
+            type="button"
+            onClick={onReformulate}
+            className="flex-1 min-h-[36px] rounded-lg font-['DM_Sans'] text-xs font-medium transition-opacity active:opacity-70"
+            style={{
+              backgroundColor: config.subtle,
+              color: config.text,
+            }}
+          >
+            Reformulate
+          </button>
+        )}
         <button
           type="button"
           onClick={() => onPostpone(tomorrow())}
@@ -98,19 +111,6 @@ export default function ZombieResolutionCard({
         >
           Archive
         </button>
-        {zombie && (
-          <button
-            type="button"
-            onClick={onReformulate}
-            className="flex-1 min-h-[36px] rounded-lg font-['DM_Sans'] text-xs font-medium transition-opacity active:opacity-70"
-            style={{
-              backgroundColor: "var(--color-bg-elevated)",
-              color: "var(--color-text-accent)",
-            }}
-          >
-            Reformulate
-          </button>
-        )}
       </div>
     </div>
   );

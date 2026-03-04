@@ -89,18 +89,28 @@ export default function TaskCard({
           />
         </div>
 
-        <div className="flex-1 min-w-0 flex items-center gap-2">
-          <span
-            className="font-['DM_Sans'] text-sm leading-snug truncate"
-            style={{
-              color: "var(--color-text-primary)",
-              textDecoration: isDone ? "line-through" : "none",
-              opacity: isDone ? 0.5 : 1,
-            }}
-          >
-            {task.title}
-          </span>
-          {zombieAge !== null && <ZombieBadge daysOld={zombieAge} />}
+        <div className="flex-1 min-w-0 flex flex-col gap-0.5">
+          <div className="flex items-center gap-2">
+            <span
+              className="font-['DM_Sans'] text-sm leading-snug truncate"
+              style={{
+                color: "var(--color-text-primary)",
+                textDecoration: isDone ? "line-through" : "none",
+                opacity: isDone ? 0.5 : 1,
+              }}
+            >
+              {task.title}
+            </span>
+            {zombieAge !== null && <ZombieBadge daysOld={zombieAge} />}
+          </div>
+          {task.goal && (
+            <span
+              className="font-['DM_Sans'] text-[11px] truncate"
+              style={{ color: areaColor, opacity: 0.7 }}
+            >
+              {task.goal.title}
+            </span>
+          )}
         </div>
       </motion.div>
     </div>

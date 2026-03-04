@@ -1,6 +1,5 @@
 "use client";
 
-import { Check, X } from "lucide-react";
 import ProgressRing from "@/shared/components/ui/progress-ring";
 import { AREA_CONFIG } from "@/shared/config/areas";
 import type { GoalWithProgress } from "../goals.types";
@@ -64,51 +63,44 @@ export default function GoalCard({
         )}
       </div>
 
-      <div className="flex flex-col items-center gap-2 shrink-0">
-        <div className="flex flex-col items-center gap-0.5">
-          <ProgressRing
-            progress={goal.progress}
-            size={32}
-            strokeWidth={2.5}
-            color={config.accent}
-          />
-          <span
-            className="text-[10px] font-['DM_Mono']"
-            style={{ color: "var(--color-text-tertiary)" }}
-          >
-            {completedCount}/{totalCount}
-          </span>
-        </div>
+      <div className="flex flex-col items-end gap-1.5 shrink-0">
+        <ProgressRing
+          progress={goal.progress}
+          size={40}
+          strokeWidth={3}
+          color={config.accent}
+        />
+        <span
+          className="font-['DM_Mono'] text-[10px]"
+          style={{ color: "var(--color-text-tertiary)" }}
+        >
+          {completedCount}/{totalCount}
+        </span>
 
         {isActive && (
-          <div className="flex gap-1">
+          <div className="flex gap-1 mt-1">
             <button
               type="button"
               onClick={() => onStatusChange(goal.id, "achieved")}
               disabled={isUpdating}
-              className="flex items-center justify-center h-11 w-9 rounded-[8px] transition-colors duration-150"
-              style={{ backgroundColor: "var(--color-bg-base)" }}
+              className="px-2.5 py-1 rounded-full font-['DM_Sans'] text-[11px] font-medium transition-opacity active:opacity-70 disabled:opacity-50"
+              style={{ backgroundColor: config.subtle, color: config.text }}
               aria-label="Mark as achieved"
             >
-              <Check
-                size={14}
-                strokeWidth={1.5}
-                style={{ color: config.text }}
-              />
+              Done
             </button>
             <button
               type="button"
               onClick={() => onStatusChange(goal.id, "abandoned")}
               disabled={isUpdating}
-              className="flex items-center justify-center h-11 w-9 rounded-[8px] transition-colors duration-150"
-              style={{ backgroundColor: "var(--color-bg-base)" }}
+              className="px-2.5 py-1 rounded-full font-['DM_Sans'] text-[11px] font-medium transition-opacity active:opacity-70 disabled:opacity-50"
+              style={{
+                backgroundColor: "var(--color-bg-elevated)",
+                color: "var(--color-text-tertiary)",
+              }}
               aria-label="Mark as abandoned"
             >
-              <X
-                size={14}
-                strokeWidth={1.5}
-                style={{ color: "var(--color-text-tertiary)" }}
-              />
+              Drop
             </button>
           </div>
         )}

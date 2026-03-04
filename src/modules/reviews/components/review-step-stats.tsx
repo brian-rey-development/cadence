@@ -18,7 +18,7 @@ export default function ReviewStepStats({
           This week at a glance
         </h3>
 
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-4">
           {AREAS.map((area) => {
             const areaStats = stats.tasksByArea[area] ?? {
               completed: 0,
@@ -31,17 +31,28 @@ export default function ReviewStepStats({
             const config = AREA_CONFIG[area];
 
             return (
-              <div key={area} className="flex flex-col gap-1">
+              <div key={area} className="flex flex-col gap-1.5">
                 <div className="flex items-center justify-between">
-                  <span className="text-sm text-[var(--color-text-secondary)]">
-                    {config.label}
-                  </span>
-                  <span className="font-['DM_Mono'] text-sm text-[var(--color-text-secondary)]">
-                    {areaStats.completed}/{areaStats.total}
-                  </span>
+                  <div className="flex items-center gap-1.5">
+                    <div
+                      className="w-2 h-2 rounded-full"
+                      style={{ backgroundColor: config.accent }}
+                    />
+                    <span className="text-[13px] font-['DM_Sans'] text-[var(--color-text-secondary)]">
+                      {config.label}
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="font-['DM_Mono'] text-[13px] text-[var(--color-text-secondary)]">
+                      {areaStats.completed}/{areaStats.total}
+                    </span>
+                    <span className="font-['DM_Mono'] text-[13px] text-[var(--color-text-primary)]">
+                      {pct}%
+                    </span>
+                  </div>
                 </div>
                 <div
-                  className="h-1.5 w-full rounded-full"
+                  className="h-2 w-full rounded-full"
                   style={{ backgroundColor: "var(--color-border-subtle)" }}
                 >
                   <div
@@ -72,10 +83,22 @@ export default function ReviewStepStats({
 
       {stats.zombieCount > 0 && (
         <div
-          className="rounded-lg px-4 py-3"
-          style={{ backgroundColor: "var(--color-bg-subtle)" }}
+          className="flex items-center gap-2 rounded-lg px-4 py-3"
+          style={{
+            backgroundColor: "var(--color-status-zombie-subtle)",
+            border: "1px solid var(--color-zombie)",
+          }}
         >
-          <span className="text-sm text-[var(--color-text-secondary)]">
+          <span
+            className="font-['DM_Mono'] text-xs"
+            style={{ color: "var(--color-zombie-text)" }}
+          >
+            ☠
+          </span>
+          <span
+            className="text-sm"
+            style={{ color: "var(--color-zombie-text)" }}
+          >
             {stats.zombieCount} task{stats.zombieCount > 1 ? "s" : ""} postponed
             2+ times
           </span>

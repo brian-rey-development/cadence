@@ -18,6 +18,14 @@ export default async function HabitsPage() {
 
   return (
     <main className="flex flex-col gap-6 px-4 py-6 max-w-lg mx-auto">
+      <header>
+        <h1
+          className="font-['Fraunces'] text-xl"
+          style={{ color: "var(--color-text-primary)" }}
+        >
+          habits
+        </h1>
+      </header>
       <HabitSummaryHeader consistency={consistency} />
       <HabitList initialData={habits} />
     </main>

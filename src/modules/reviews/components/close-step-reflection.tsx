@@ -52,14 +52,21 @@ export default function CloseStepReflection({
         How did today feel?
       </p>
 
+      <p
+        className="font-['DM_Sans'] text-[13px] -mt-4"
+        style={{ color: "var(--color-text-secondary)" }}
+      >
+        A few sentences is enough.
+      </p>
+
       <textarea
         value={reflection}
         onChange={(e) => setReflection(e.target.value)}
-        placeholder="What made today move?"
+        placeholder="What went well? What got in the way?"
         rows={5}
         className="w-full resize-none rounded-xl px-4 py-3 font-['DM_Sans'] text-sm outline-none"
         style={{
-          backgroundColor: "var(--color-surface)",
+          backgroundColor: "var(--color-bg-surface)",
           border: "1px solid var(--color-border-subtle)",
           color: "var(--color-text-primary)",
         }}

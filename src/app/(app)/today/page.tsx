@@ -26,6 +26,16 @@ export default async function TodayPage() {
           >
             today
           </h1>
+          <p
+            className="text-[13px] font-['DM_Sans']"
+            style={{ color: "var(--color-text-tertiary)" }}
+          >
+            {new Date().toLocaleDateString("en-US", {
+              weekday: "long",
+              month: "long",
+              day: "numeric",
+            })}
+          </p>
         </header>
 
         <TaskList initialTasks={tasks} date={date} />

@@ -1,5 +1,6 @@
 "use client";
 
+import { MoonStar } from "lucide-react";
 import { AREA_CONFIG } from "@/shared/config/areas";
 import { AREAS, CLOSE_DAY_AFTER_HOUR } from "@/shared/config/constants";
 import type { TaskWithGoal } from "../tasks.types";
@@ -41,14 +42,15 @@ export default function CloseDayButton({
     <button
       type="button"
       onClick={onClick}
-      className="min-h-[44px] px-4 rounded-xl font-['DM_Sans'] text-sm font-medium transition-all active:opacity-80"
+      className="flex items-center gap-2 min-h-[44px] px-6 rounded-full font-['DM_Sans'] text-sm font-medium transition-all active:opacity-80"
       style={{
-        backgroundColor: "var(--color-surface)",
+        backgroundColor: "var(--color-bg-surface)",
         color: "var(--color-text-primary)",
         border: "1px solid var(--color-border-subtle)",
         boxShadow: `0 0 12px 0 ${accentColor}4D`,
       }}
     >
+      <MoonStar size={14} strokeWidth={1.5} />
       Close Day
     </button>
   );

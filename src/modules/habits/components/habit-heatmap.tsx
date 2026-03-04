@@ -11,7 +11,7 @@ export default function HabitHeatmap({ days, accent }: HabitHeatmapProps) {
 
   return (
     <div
-      className="grid grid-cols-10 gap-[3px]"
+      className="grid grid-cols-7 gap-[3px]"
       style={{ gridAutoRows: "12px" }}
     >
       {days.map(({ date, logged }) => {

@@ -21,7 +21,7 @@ export default function TodayClient({
   return (
     <>
       {children}
-      <div className="fixed bottom-[80px] right-4 z-30">
+      <div className="fixed bottom-[76px] left-1/2 -translate-x-1/2 z-30">
         <CloseDayButton tasks={tasks} onClick={() => setIsCloseOpen(true)} />
       </div>
       <DailyCloseSheet
