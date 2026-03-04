@@ -15,7 +15,10 @@ export async function buildRagContext(
 
     return matches.map((m) => `[${m.entityType}] ${m.content}`).join("\n\n");
   } catch (err) {
-    console.warn("[rag-context] embedding unavailable, skipping context:", err instanceof Error ? err.message : err);
+    console.warn(
+      "[rag-context] embedding unavailable, skipping context:",
+      err instanceof Error ? err.message : err,
+    );
     return "";
   }
 }

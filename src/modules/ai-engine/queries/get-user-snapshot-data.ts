@@ -19,7 +19,7 @@ export type UserSnapshotData = {
     title: string;
     status: string;
     area: string;
-    date: string;
+    date: string | null;
   }>;
   habitSummary: Array<{ name: string; logCount: number }>;
   recentDailyReviews: Array<{ date: string; reflection: string | null }>;

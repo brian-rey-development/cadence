@@ -7,7 +7,7 @@ export type TaskForScoring = {
   id: string;
   title: string;
   area: string;
-  date: string;
+  date: string | null;
   postponeCount: number;
   goalId: string | null;
   goalTitle: string | null;

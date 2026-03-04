@@ -19,6 +19,7 @@ Written: March 2026.
 | [08-pwa-offline.md](./08-pwa-offline.md) | PWA & Offline |
 | [09-auth-onboarding.md](./09-auth-onboarding.md) | Authentication & Onboarding |
 | [10-cross-cutting.md](./10-cross-cutting.md) | Cross-Cutting Opportunities |
+| [11-ai-intelligence-layer.md](./11-ai-intelligence-layer.md) | AI Intelligence Layer |
 
 ---
 

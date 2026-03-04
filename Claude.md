@@ -3,6 +3,8 @@
 See full architecture: [README.md](./README.md)
 See design tokens: [design-system.json](./design-system.json)
 
+Don't use worktrees unless I say so.
+
 ## Stack
 Next.js 16, Supabase, Drizzle ORM, TanStack Query v5, Tailwind CSS, shadcn/ui, Framer Motion, Anthropic SDK, Serwist (PWA). TypeScript strict mode everywhere.
 

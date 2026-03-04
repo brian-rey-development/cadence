@@ -2,11 +2,11 @@ import { generateObject } from "ai";
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import { getModel } from "@/modules/ai/client";
-import { buildUserContext } from "@/modules/ai/utils/build-user-context";
 import {
   buildPrompt,
   dailyReviewSchema,
 } from "@/modules/ai/prompts/daily-review";
+import { buildUserContext } from "@/modules/ai/utils/build-user-context";
 import { getUserSettings } from "@/modules/settings/queries/get-user-settings";
 import { createClient } from "@/shared/lib/supabase/server";
 

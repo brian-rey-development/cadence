@@ -1,16 +1,16 @@
 import { generateObject } from "ai";
+import { eq } from "drizzle-orm";
 import { NextResponse } from "next/server";
 import { z } from "zod";
-import { eq } from "drizzle-orm";
 import { db } from "@/db";
 import { aiGoalBreakdowns } from "@/db/schema/ai-engine";
-import type { Milestone } from "@/modules/ai-engine/ai-engine.types";
 import { getModel } from "@/modules/ai/client";
-import { buildUserContext } from "@/modules/ai/utils/build-user-context";
 import {
   buildPrompt,
   createTaskSchema,
 } from "@/modules/ai/prompts/create-task";
+import { buildUserContext } from "@/modules/ai/utils/build-user-context";
+import type { Milestone } from "@/modules/ai-engine/ai-engine.types";
 import { getUserSettings } from "@/modules/settings/queries/get-user-settings";
 import { getActiveGoals } from "@/modules/tasks/queries/get-active-goals";
 import { getTaskCountsForRange } from "@/modules/tasks/queries/get-task-counts-for-range";

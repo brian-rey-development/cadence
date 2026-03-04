@@ -1,11 +1,11 @@
 import { generateObject } from "ai";
 import { NextResponse } from "next/server";
 import { getModel } from "@/modules/ai/client";
-import { buildUserContext } from "@/modules/ai/utils/build-user-context";
 import {
   buildPrompt,
   weeklyReviewSchema,
 } from "@/modules/ai/prompts/weekly-review";
+import { buildUserContext } from "@/modules/ai/utils/build-user-context";
 import { requireAuth } from "@/modules/auth/utils";
 import { getUserSettings } from "@/modules/settings/queries/get-user-settings";
 

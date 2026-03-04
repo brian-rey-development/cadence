@@ -34,7 +34,13 @@ Deno.serve(async (_req: Request) => {
     const vapidPrivateKey = Deno.env.get("VAPID_PRIVATE_KEY") ?? "";
     const vapidSubject = Deno.env.get("VAPID_SUBJECT") ?? "";
 
-    if (!supabaseUrl || !serviceKey || !vapidPublicKey || !vapidPrivateKey || !vapidSubject) {
+    if (
+      !supabaseUrl ||
+      !serviceKey ||
+      !vapidPublicKey ||
+      !vapidPrivateKey ||
+      !vapidSubject
+    ) {
       throw new Error("Missing required environment variables");
     }
 

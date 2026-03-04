@@ -5,11 +5,11 @@ import { db } from "@/db";
 import { aiDailyQuotes } from "@/db/schema/ai-engine";
 import { dailyReviews } from "@/db/schema/reviews";
 import { getQuoteModel } from "@/modules/ai/client";
-import { buildUserContext } from "@/modules/ai/utils/build-user-context";
 import {
   buildPrompt,
   dailyQuoteSchema,
 } from "@/modules/ai/prompts/daily-quote";
+import { buildUserContext } from "@/modules/ai/utils/build-user-context";
 import { getUserSettings } from "@/modules/settings/queries/get-user-settings";
 import { getActiveGoals } from "@/modules/tasks/queries/get-active-goals";
 import { createClient } from "@/shared/lib/supabase/server";

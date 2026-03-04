@@ -2,11 +2,11 @@ import { generateObject } from "ai";
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import { getModel } from "@/modules/ai/client";
-import { buildUserContext } from "@/modules/ai/utils/build-user-context";
 import {
   buildPrompt,
   goalRefineSchema,
 } from "@/modules/ai/prompts/goal-refine";
+import { buildUserContext } from "@/modules/ai/utils/build-user-context";
 import { currentQuarter } from "@/modules/goals/utils/goal-utils";
 import { getUserSettings } from "@/modules/settings/queries/get-user-settings";
 import { AREAS } from "@/shared/config/constants";
