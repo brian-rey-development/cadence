@@ -21,7 +21,11 @@ export default async function QuarterPage() {
           goals
         </h1>
       </header>
-      <GoalList initialData={goals} currentQuarterLabel={quarterLabel} />
+      <GoalList
+        initialData={goals}
+        currentQuarterLabel={quarterLabel}
+        userId={session.id}
+      />
     </main>
   );
 }

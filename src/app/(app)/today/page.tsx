@@ -1,3 +1,4 @@
+import { getTaskScores } from "@/modules/ai-engine/queries/get-task-scores";
 import { requireAuth } from "@/modules/auth/utils";
 import HabitSummaryBar from "@/modules/habits/components/habit-summary-bar";
 import { getHabitSummaryToday } from "@/modules/habits/queries/get-habit-summary-today";
@@ -15,6 +16,11 @@ export default async function TodayPage() {
     getTasksForDay(userId, date),
     getHabitSummaryToday(userId, date),
   ]);
+
+  const scores = await getTaskScores(
+    userId,
+    tasks.map((t) => t.id),
+  );
 
   return (
     <TodayClient tasks={tasks} date={date}>
@@ -38,7 +44,7 @@ export default async function TodayPage() {
           </p>
         </header>
 
-        <TaskList initialTasks={tasks} date={date} />
+        <TaskList initialTasks={tasks} initialScores={scores} date={date} />
 
         <HabitSummaryBar
           total={habitSummary.total}

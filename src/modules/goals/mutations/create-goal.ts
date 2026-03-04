@@ -2,10 +2,12 @@
 
 import { and, count, eq } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
+import { after } from "next/server";
 import { db } from "@/db";
 import { goals } from "@/db/schema/goals";
 import { requireAuth } from "@/modules/auth/utils";
 import { MAX_GOALS_PER_AREA } from "@/shared/config/constants";
+import { env } from "@/shared/config/env";
 import type { NewGoal } from "../goals.types";
 import { currentQuarter } from "../utils/goal-utils";
 
@@ -34,13 +36,45 @@ export async function createGoal(data: CreateGoalInput): Promise<void> {
     );
   }
 
-  await db.insert(goals).values({
-    title: data.title,
-    area: data.area,
-    description: data.description,
-    userId,
-    quarter,
-    status: "active",
+  const [inserted] = await db
+    .insert(goals)
+    .values({
+      title: data.title,
+      area: data.area,
+      description: data.description,
+      userId,
+      quarter,
+      status: "active",
+    })
+    .returning();
+
+  const headers = {
+    Authorization: `Bearer ${env.cronSecret}`,
+    "Content-Type": "application/json",
+  };
+  after(async () => {
+    await Promise.allSettled([
+      fetch(`${env.appUrl}/api/ai/engine/embed`, {
+        method: "POST",
+        headers,
+        body: JSON.stringify({
+          userId,
+          entityType: "goal",
+          entityId: inserted.id,
+          content: inserted.title,
+        }),
+      }),
+      fetch(`${env.appUrl}/api/ai/engine/goal-breakdown`, {
+        method: "POST",
+        headers,
+        body: JSON.stringify({ userId, goalId: inserted.id }),
+      }),
+      fetch(`${env.appUrl}/api/ai/engine/score-tasks`, {
+        method: "POST",
+        headers,
+        body: JSON.stringify({ userId }),
+      }),
+    ]);
   });
 
   revalidatePath("/quarter");

@@ -22,4 +22,6 @@ export const env = {
   aiProvider: AI_PROVIDER,
   aiModel: resolveModel(AI_PROVIDER, process.env.AI_MODEL),
   aiApiKey: required(AI_KEY_MAP[AI_PROVIDER]),
+  cronSecret: required("CRON_SECRET"),
+  googleAiApiKey: process.env.GOOGLE_AI_API_KEY,
 } as const;
