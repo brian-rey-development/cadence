@@ -1,6 +1,6 @@
 "use client";
 
-import { CalendarDays, Flame, Plus, Sun, Target } from "lucide-react";
+import { CalendarDays, Flame, Plus, Settings, Sun, Target } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/shared/utils/cn";
@@ -19,6 +19,7 @@ const LEFT_TABS: NavTab[] = [
 const RIGHT_TABS: NavTab[] = [
   { href: "/habits", label: "Habits", Icon: Flame },
   { href: "/quarter", label: "Quarter", Icon: Target },
+  { href: "/settings", label: "Settings", Icon: Settings },
 ];
 
 type TabItemProps = {
