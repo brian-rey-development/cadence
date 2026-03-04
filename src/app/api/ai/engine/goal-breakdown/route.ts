@@ -35,6 +35,28 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
     return NextResponse.json({ error: "Missing goalId" }, { status: 400 });
   }
 
+  const existing = await getGoalBreakdown(user.id, goalId);
+  if (existing && !isStale(existing.computedAt, 72)) {
+    return NextResponse.json(existing);
+  }
+
+  const goal = await getGoalForBreakdown(user.id, goalId);
+  if (!goal) {
+    return NextResponse.json({ error: "Goal not found" }, { status: 404 });
+  }
+
+  console.log(`[goal-breakdown] generating on-demand for goal "${goal.title}" (${goalId})`);
+  const ragContext = await buildRagContext(user.id, goal.title);
+
+  const { object } = await generateObject({
+    model: getModel(),
+    schema: goalBreakdownSchema,
+    prompt: buildPrompt({ goal, ragContext, today: today() }),
+  });
+
+  console.log(`[goal-breakdown] generated ${object.milestones.length} milestones for goal ${goalId}`);
+  await upsertGoalBreakdown(user.id, goalId, object.milestones);
+
   const breakdown = await getGoalBreakdown(user.id, goalId);
   return NextResponse.json(breakdown ?? null);
 }

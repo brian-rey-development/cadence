@@ -13,8 +13,7 @@ export function useGoalBreakdown(_userId: string, goalId: string) {
   return useQuery<AiGoalBreakdown | null>({
     queryKey: ["ai-engine", "breakdown", goalId],
     queryFn: () => fetchBreakdown(goalId),
-    staleTime: Number.POSITIVE_INFINITY,
-    refetchInterval: (query) => (query.state.data ? false : 8000),
+    staleTime: 1000 * 60 * 60 * 24, // 24h - backend regenerates after 72h anyway
     refetchOnWindowFocus: false,
   });
 }

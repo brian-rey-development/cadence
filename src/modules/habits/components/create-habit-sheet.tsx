@@ -1,33 +1,63 @@
 "use client";
 
 import { useState } from "react";
-import Button from "@/shared/components/ui/button";
-import Input from "@/shared/components/ui/input";
+import type { HabitFeedback } from "@/modules/ai/prompts/refine-habit";
 import Sheet from "@/shared/components/ui/sheet";
-import { AREA_CONFIG } from "@/shared/config/areas";
-import { AREAS, type Area } from "@/shared/config/constants";
+import StepIndicator from "@/shared/components/ui/step-indicator";
+import type { Area } from "@/shared/config/constants";
 import { useCreateHabit } from "../hooks/use-create-habit";
+import HabitAiFeedback from "./habit-ai-feedback";
+import HabitForm from "./habit-form";
 
 type CreateHabitSheetProps = {
   open: boolean;
   onClose: () => void;
 };
 
-const FREQUENCIES = [1, 2, 3, 4, 5, 6, 7] as const;
+type Step = "form" | "feedback";
 
-export default function CreateHabitSheet({
-  open,
-  onClose,
-}: CreateHabitSheetProps) {
+async function fetchHabitFeedback(
+  name: string,
+  area: Area,
+  weeklyFrequency: number,
+): Promise<HabitFeedback> {
+  const res = await fetch("/api/ai/refine-habit", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ name, area, weeklyFrequency }),
+  });
+  if (!res.ok) throw new Error("AI feedback failed");
+  return res.json();
+}
+
+export default function CreateHabitSheet({ open, onClose }: CreateHabitSheetProps) {
   const [name, setName] = useState("");
   const [area, setArea] = useState<Area>("work");
   const [frequency, setFrequency] = useState(7);
+  const [step, setStep] = useState<Step>("form");
+  const [feedback, setFeedback] = useState<HabitFeedback | null>(null);
+  const [isFetching, setIsFetching] = useState(false);
+
   const { mutate, isPending } = useCreateHabit();
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleContinue(e: React.FormEvent) {
     e.preventDefault();
     if (!name.trim()) return;
 
+    setIsFetching(true);
+    try {
+      const result = await fetchHabitFeedback(name.trim(), area, frequency);
+      setFeedback(result);
+      setStep("feedback");
+    } catch (err) {
+      console.warn("[create-habit] AI feedback unavailable, saving directly:", err);
+      handleSave();
+    } finally {
+      setIsFetching(false);
+    }
+  }
+
+  function handleSave() {
     mutate(
       { name: name.trim(), area, weeklyFrequency: frequency },
       {
@@ -35,91 +65,44 @@ export default function CreateHabitSheet({
           setName("");
           setArea("work");
           setFrequency(7);
+          setStep("form");
+          setFeedback(null);
           onClose();
         },
       },
     );
   }
 
+  const title = step === "form" ? "New habit" : "Coach says";
+
   return (
-    <Sheet open={open} onClose={onClose} title="New habit">
-      <form onSubmit={handleSubmit} className="flex flex-col gap-5">
-        <Input
-          placeholder="Habit name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          autoFocus
-        />
+    <Sheet open={open} onClose={onClose} title={title}>
+      <div className="flex flex-col gap-5">
+        <StepIndicator currentStep={step === "form" ? 1 : 2} totalSteps={2} />
 
-        <div className="flex flex-col gap-2">
-          <span
-            className="text-[12px] font-['DM_Sans'] uppercase tracking-wide"
-            style={{ color: "var(--color-text-secondary)" }}
-          >
-            Area
-          </span>
-          <div className="flex gap-2">
-            {AREAS.map((a) => {
-              const config = AREA_CONFIG[a];
-              const isSelected = area === a;
-              return (
-                <button
-                  key={a}
-                  type="button"
-                  onClick={() => setArea(a)}
-                  className="flex-1 h-11 rounded-[10px] text-[13px] font-medium font-['DM_Sans'] transition-colors duration-150"
-                  style={{
-                    backgroundColor: isSelected ? config.subtle : "transparent",
-                    color: isSelected
-                      ? config.text
-                      : "var(--color-text-secondary)",
-                    border: `1.5px solid ${isSelected ? config.border : "var(--color-border-subtle)"}`,
-                  }}
-                >
-                  {config.label}
-                </button>
-              );
-            })}
-          </div>
-        </div>
+        {step === "form" && (
+          <HabitForm
+            name={name}
+            area={area}
+            frequency={frequency}
+            isLoading={isFetching || isPending}
+            onNameChange={setName}
+            onAreaChange={setArea}
+            onFrequencyChange={setFrequency}
+            onSubmit={handleContinue}
+          />
+        )}
 
-        <div className="flex flex-col gap-2">
-          <span
-            className="text-[12px] font-['DM_Sans'] uppercase tracking-wide"
-            style={{ color: "var(--color-text-secondary)" }}
-          >
-            Times per week
-          </span>
-          <div className="flex gap-2">
-            {FREQUENCIES.map((f) => {
-              const isSelected = frequency === f;
-              return (
-                <button
-                  key={f}
-                  type="button"
-                  onClick={() => setFrequency(f)}
-                  className="flex-1 h-11 rounded-full text-[14px] font-['DM_Mono'] transition-colors duration-150"
-                  style={{
-                    backgroundColor: isSelected
-                      ? "var(--color-text-primary)"
-                      : "transparent",
-                    color: isSelected
-                      ? "var(--color-bg-base)"
-                      : "var(--color-text-secondary)",
-                    border: `1.5px solid ${isSelected ? "var(--color-text-primary)" : "var(--color-border-subtle)"}`,
-                  }}
-                >
-                  {f}
-                </button>
-              );
-            })}
-          </div>
-        </div>
-
-        <Button type="submit" disabled={!name.trim()} isLoading={isPending}>
-          Add habit
-        </Button>
-      </form>
+        {step === "feedback" && feedback && (
+          <HabitAiFeedback
+            feedback={feedback}
+            area={area}
+            onSave={handleSave}
+            onBack={() => setStep("form")}
+            isSaving={isPending}
+          />
+        )}
+      </div>
     </Sheet>
   );
 }
