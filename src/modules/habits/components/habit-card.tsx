@@ -20,30 +20,28 @@ export default function HabitCard({
   const isLoggedToday = habit.logs.some((l) => l.date === todayStr);
 
   return (
-    <div
-      className="relative flex flex-col gap-3 rounded-[12px] overflow-hidden p-4"
-      style={{ backgroundColor: "var(--color-bg-surface)" }}
-    >
-      <div
-        className="absolute left-0 top-0 bottom-0 w-[3px]"
-        style={{ backgroundColor: config.accent }}
-      />
-      <div className="flex items-center justify-between pl-1">
-        <div className="flex flex-col gap-1">
-          <span
-            className="text-[15px] font-medium font-['DM_Sans']"
-            style={{ color: "var(--color-text-primary)" }}
-          >
+    <div className="flex flex-col gap-2.5 py-3">
+      <div className="flex items-center justify-between">
+        <div className="flex flex-col gap-0.5">
+          <span className="text-sm font-medium font-body text-text-primary">
             {habit.name}
           </span>
-          <AreaBadge area={habit.area} />
+          <div className="flex items-center gap-2">
+            <AreaBadge area={habit.area} />
+            <span className="text-xs font-mono text-text-tertiary">
+              🔥 {habit.streak.current}
+              <span className="ml-1.5 opacity-60">
+                / {habit.streak.longest} best
+              </span>
+            </span>
+          </div>
         </div>
 
         <button
           type="button"
           onClick={() => onToggle(habit.id, isLoggedToday)}
           disabled={isPending}
-          className="flex items-center justify-center h-11 w-11 rounded-full transition-colors duration-150 disabled:opacity-50"
+          className="flex items-center justify-center h-10 w-10 rounded-full transition-colors duration-150 disabled:opacity-50"
           style={{
             backgroundColor: isLoggedToday ? config.accent : "transparent",
             border: `1.5px solid ${isLoggedToday ? config.accent : config.border}`,
@@ -52,8 +50,8 @@ export default function HabitCard({
         >
           {isLoggedToday && (
             <svg
-              width="16"
-              height="16"
+              width="14"
+              height="14"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -61,7 +59,7 @@ export default function HabitCard({
               strokeLinecap="round"
               strokeLinejoin="round"
               aria-hidden="true"
-              style={{ color: "var(--color-bg-base)" }}
+              className="text-bg-base"
             >
               <polyline points="20 6 9 17 4 12" />
             </svg>
@@ -69,24 +67,7 @@ export default function HabitCard({
         </button>
       </div>
 
-      <div className="flex items-center gap-3 pl-1">
-        <span
-          className="text-[13px] font-['DM_Mono']"
-          style={{ color: "var(--color-text-primary)" }}
-        >
-          🔥 {habit.streak.current}
-        </span>
-        <span
-          className="text-[11px] font-['DM_Sans']"
-          style={{ color: "var(--color-text-secondary)" }}
-        >
-          best {habit.streak.longest}
-        </span>
-      </div>
-
-      <div className="pl-1">
-        <HabitHeatmap days={habit.heatmap} accent={config.accent} />
-      </div>
+      <HabitHeatmap days={habit.heatmap} accent={config.accent} />
     </div>
   );
 }

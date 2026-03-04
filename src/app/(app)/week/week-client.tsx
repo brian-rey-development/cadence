@@ -60,14 +60,12 @@ export default function WeekClient({
     <div className="flex flex-col gap-5 px-5 py-6">
       <header>
         <h1
-          className="font-display text-2xl"
-          style={{ color: "var(--color-text-primary)" }}
+          className="font-display text-2xl text-text-primary"
         >
           Week
         </h1>
         <p
-          className="text-sm font-body"
-          style={{ color: "var(--color-text-tertiary)" }}
+          className="text-sm font-body text-text-tertiary"
         >
           {formatWeekRange(weekStart)}
         </p>
@@ -76,19 +74,16 @@ export default function WeekClient({
       <WeekIntentionsBanner intentions={intentions?.intentions ?? null} />
 
       <div
-        className="flex items-center rounded-xl px-4 py-4"
-        style={{ backgroundColor: "var(--color-bg-elevated)" }}
+        className="flex items-center rounded-xl px-4 py-4 bg-bg-elevated"
       >
         <div className="flex flex-col gap-0.5 flex-1">
           <span
-            className="text-xs font-body"
-            style={{ color: "var(--color-text-tertiary)" }}
+            className="text-xs font-body text-text-tertiary"
           >
             Tasks this week
           </span>
           <span
-            className="font-mono text-2xl"
-            style={{ color: "var(--color-text-primary)" }}
+            className="font-mono text-2xl text-text-primary"
           >
             {totalCompleted}/{totalTasks}
           </span>
@@ -101,14 +96,12 @@ export default function WeekClient({
 
         <div className="flex flex-col gap-0.5 flex-1 text-right">
           <span
-            className="text-xs font-body"
-            style={{ color: "var(--color-text-tertiary)" }}
+            className="text-xs font-body text-text-tertiary"
           >
             Habit consistency
           </span>
           <span
-            className="font-mono text-2xl"
-            style={{ color: "var(--color-text-primary)" }}
+            className="font-mono text-2xl text-text-primary"
           >
             {stats.habitConsistency}%
           </span>

@@ -1,8 +1,8 @@
 "use client";
 
 import { CheckCircle, Circle } from "lucide-react";
-import type { TaskWithGoal } from "../tasks.types";
 import { AREA_CONFIG } from "@/shared/config/areas";
+import type { TaskWithGoal } from "../tasks.types";
 
 type WeeklyTaskItemProps = {
   task: TaskWithGoal;
@@ -33,22 +33,13 @@ export default function WeeklyTaskItem({
       </button>
 
       <span
-        className="flex-1 text-sm font-body leading-snug"
-        style={{
-          color: isDone
-            ? "var(--color-text-tertiary)"
-            : "var(--color-text-primary)",
-          textDecoration: isDone ? "line-through" : "none",
-        }}
+        className={`flex-1 text-sm font-body leading-snug ${isDone ? "text-text-tertiary line-through" : "text-text-primary"}`}
       >
         {task.title}
       </span>
 
       {task.goal && (
-        <span
-          className="text-xs font-body shrink-0"
-          style={{ color: "var(--color-text-tertiary)" }}
-        >
+        <span className="text-xs font-body shrink-0 text-text-tertiary">
           {task.goal.title.slice(0, 20)}
         </span>
       )}

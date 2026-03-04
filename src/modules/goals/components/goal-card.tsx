@@ -34,39 +34,28 @@ export default function GoalCard({
     userId,
     goal.id,
   );
-
   const milestones = (breakdown?.milestones ?? []) as Milestone[];
 
   return (
     <div
-      className="flex flex-col rounded-[12px] px-4 py-3 transition-opacity duration-[200ms] ease-[var(--ease-default)]"
-      style={{
-        backgroundColor: "var(--color-bg-surface)",
-        borderLeft: `3px solid ${config.accent}`,
-        opacity: isActive ? 1 : 0.6,
-      }}
+      className={`flex flex-col pl-4 py-3 transition-opacity duration-200 ease-default ${isActive ? "opacity-100" : "opacity-50"}`}
+      style={{ borderLeft: `2px solid ${config.accent}` }}
     >
       <div className="flex items-start gap-3">
         <div className="flex-1 min-w-0 flex flex-col gap-1">
-          <span
-            className="text-[15px] font-['DM_Sans'] leading-snug"
-            style={{ color: "var(--color-text-primary)" }}
-          >
+          <span className="text-sm font-body leading-snug text-text-primary">
             {goal.title}
           </span>
 
           {goal.description && (
-            <span
-              className="text-[13px] font-['DM_Sans'] line-clamp-2"
-              style={{ color: "var(--color-text-secondary)" }}
-            >
+            <span className="text-sm font-body line-clamp-2 text-text-secondary">
               {goal.description}
             </span>
           )}
 
           {!isActive && (
             <span
-              className="text-[11px] font-medium font-['DM_Sans'] px-2 py-0.5 rounded-full capitalize mt-0.5 self-start"
+              className="text-xs font-medium font-body px-2 py-0.5 rounded-full capitalize mt-0.5 self-start"
               style={{
                 backgroundColor:
                   goal.status === "achieved"
@@ -92,7 +81,7 @@ export default function GoalCard({
               }
             >
               <span
-                className="font-['DM_Sans'] text-[11px]"
+                className="font-body text-xs"
                 style={{ color: config.text }}
               >
                 Milestones
@@ -100,11 +89,8 @@ export default function GoalCard({
               <ChevronDown
                 size={12}
                 strokeWidth={1.5}
-                style={{
-                  color: config.text,
-                  transform: showMilestones ? "rotate(180deg)" : "rotate(0deg)",
-                  transition: "transform 0.2s ease",
-                }}
+                className={`transition-transform duration-200 ${showMilestones ? "rotate-180" : "rotate-0"}`}
+                style={{ color: config.text }}
               />
             </button>
           )}
@@ -117,10 +103,7 @@ export default function GoalCard({
             strokeWidth={3}
             color={config.accent}
           />
-          <span
-            className="font-['DM_Mono'] text-[10px]"
-            style={{ color: "var(--color-text-tertiary)" }}
-          >
+          <span className="font-mono text-2xs text-text-tertiary">
             {completedCount}/{totalCount}
           </span>
 
@@ -130,7 +113,7 @@ export default function GoalCard({
                 type="button"
                 onClick={() => onStatusChange(goal.id, "achieved")}
                 disabled={isUpdating}
-                className="px-2.5 py-1 rounded-full font-['DM_Sans'] text-[11px] font-medium transition-opacity active:opacity-70 disabled:opacity-50"
+                className="px-2.5 py-1 rounded-full font-body text-xs font-medium transition-opacity active:opacity-70 disabled:opacity-50"
                 style={{ backgroundColor: config.subtle, color: config.text }}
                 aria-label="Mark as achieved"
               >
@@ -140,11 +123,7 @@ export default function GoalCard({
                 type="button"
                 onClick={() => onStatusChange(goal.id, "abandoned")}
                 disabled={isUpdating}
-                className="px-2.5 py-1 rounded-full font-['DM_Sans'] text-[11px] font-medium transition-opacity active:opacity-70 disabled:opacity-50"
-                style={{
-                  backgroundColor: "var(--color-bg-elevated)",
-                  color: "var(--color-text-tertiary)",
-                }}
+                className="px-2.5 py-1 rounded-full font-body text-xs font-medium transition-opacity active:opacity-70 disabled:opacity-50 bg-bg-elevated text-text-tertiary"
                 aria-label="Mark as abandoned"
               >
                 Drop
@@ -155,20 +134,14 @@ export default function GoalCard({
       </div>
 
       {isActive && showMilestones && (
-        <div
-          className="mt-3 pt-3"
-          style={{ borderTop: "1px solid var(--color-border-subtle)" }}
-        >
+        <div className="mt-3 pt-3 border-t border-border-subtle">
           {isBreakdownLoading && (
             <div className="flex flex-col gap-2">
               {[1, 2, 3].map((i) => (
                 <div
                   key={i}
-                  className="h-3 rounded-full animate-pulse"
-                  style={{
-                    backgroundColor: "var(--color-bg-elevated)",
-                    width: `${60 + i * 10}%`,
-                  }}
+                  className="h-3 rounded-full animate-pulse bg-bg-elevated"
+                  style={{ width: `${60 + i * 10}%` }}
                 />
               ))}
             </div>
@@ -182,10 +155,7 @@ export default function GoalCard({
             />
           )}
           {!isBreakdownLoading && milestones.length === 0 && (
-            <p
-              className="font-['DM_Sans'] text-[12px] text-center py-2"
-              style={{ color: "var(--color-text-tertiary)" }}
-            >
+            <p className="font-body text-xs text-center py-2 text-text-tertiary">
               Planning milestones...
             </p>
           )}

@@ -9,7 +9,7 @@ export default function OfflineBanner() {
 
   return (
     <div
-      className="fixed top-0 right-0 left-0 z-50 py-1.5 text-center font-['DM_Sans'] text-xs"
+      className="fixed top-0 right-0 left-0 z-50 py-1.5 text-center font-body text-xs"
       style={{
         backgroundColor: "var(--color-warning)",
         color: "var(--color-warning-text)",

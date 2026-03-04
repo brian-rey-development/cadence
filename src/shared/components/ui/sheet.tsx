@@ -26,8 +26,7 @@ export default function Sheet({ open, onClose, title, children }: SheetProps) {
             onClick={onClose}
           />
           <motion.div
-            className="fixed bottom-0 left-0 right-0 z-[60] rounded-t-[20px] px-4 pb-8 pt-5"
-            style={{ backgroundColor: "var(--color-bg-surface)" }}
+            className="fixed bottom-0 left-0 right-0 z-[60] rounded-t-[20px] px-4 pb-8 pt-5 bg-bg-surface"
             initial={{ y: "100%" }}
             animate={{ y: 0 }}
             exit={{ y: "100%" }}
@@ -39,8 +38,7 @@ export default function Sheet({ open, onClose, title, children }: SheetProps) {
             />
             {title && (
               <h2
-                className="mb-5 text-base font-medium font-['DM_Sans']"
-                style={{ color: "var(--color-text-primary)" }}
+                className="mb-5 text-base font-medium font-body text-text-primary"
               >
                 {title}
               </h2>

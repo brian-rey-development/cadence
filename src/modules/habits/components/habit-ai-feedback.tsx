@@ -1,10 +1,10 @@
 "use client";
 
-import { Lightbulb, Zap, User } from "lucide-react";
+import { Lightbulb, User, Zap } from "lucide-react";
+import type { HabitFeedback } from "@/modules/ai/prompts/refine-habit";
 import Button from "@/shared/components/ui/button";
 import { AREA_CONFIG } from "@/shared/config/areas";
 import type { Area } from "@/shared/config/constants";
-import type { HabitFeedback } from "@/modules/ai/prompts/refine-habit";
 
 type HabitAiFeedbackProps = {
   feedback: HabitFeedback;
@@ -24,21 +24,19 @@ type FeedbackCardProps = {
 function FeedbackCard({ icon, label, text, accentColor }: FeedbackCardProps) {
   return (
     <div
-      className="flex flex-col gap-1.5 rounded-[10px] px-3.5 py-3"
-      style={{ backgroundColor: "var(--color-bg-elevated)" }}
+      className="flex flex-col gap-1.5 rounded-md px-3.5 py-3 bg-bg-elevated"
     >
       <div className="flex items-center gap-1.5">
         <span style={{ color: accentColor }}>{icon}</span>
         <span
-          className="text-[11px] font-medium font-['DM_Sans'] uppercase tracking-wide"
+          className="text-xs font-medium font-body uppercase tracking-wide"
           style={{ color: accentColor }}
         >
           {label}
         </span>
       </div>
       <p
-        className="text-[13px] font-['DM_Sans'] leading-relaxed"
-        style={{ color: "var(--color-text-primary)" }}
+        className="text-sm font-body leading-relaxed text-text-primary"
       >
         {text}
       </p>
@@ -86,8 +84,7 @@ export default function HabitAiFeedback({
           type="button"
           onClick={onBack}
           disabled={isSaving}
-          className="h-11 rounded-[10px] text-[14px] font-['DM_Sans'] transition-opacity active:opacity-70 disabled:opacity-40"
-          style={{ color: "var(--color-text-secondary)" }}
+          className="h-11 rounded-md text-sm font-body transition-opacity active:opacity-70 disabled:opacity-40 text-text-secondary"
         >
           Back
         </button>

@@ -43,16 +43,16 @@ export default function LoginForm() {
           <Mail
             size={40}
             strokeWidth={1.5}
-            style={{ color: "var(--color-text-primary)" }}
+            className="text-text-primary"
           />
         </div>
         <div className="flex flex-col gap-1">
-          <p className="text-[15px] font-['DM_Sans'] text-[var(--color-text-primary)]">
+          <p className="text-sm font-body text-text-primary">
             Check your email
           </p>
-          <p className="text-[13px] font-['DM_Sans'] text-[var(--color-text-secondary)] max-w-[240px]">
+          <p className="text-sm font-body text-text-secondary max-w-60">
             We sent a magic link to{" "}
-            <span className="text-[var(--color-text-primary)]">{email}</span>
+            <span className="text-text-primary">{email}</span>
           </p>
         </div>
       </div>

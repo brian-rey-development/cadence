@@ -146,8 +146,7 @@ export default function CreateGoalSheet({
 
             {refineError && (
               <span
-                className="text-[13px] font-['DM_Sans']"
-                style={{ color: "var(--color-text-secondary)" }}
+                className="text-sm font-body text-text-secondary"
               >
                 {refineError}
               </span>
@@ -165,7 +164,7 @@ export default function CreateGoalSheet({
           <form onSubmit={handleSaveRefined} className="flex flex-col gap-5">
             {refinement?.feedback && (
               <div
-                className="rounded-[10px] px-4 py-3 text-[13px] font-['DM_Sans'] leading-relaxed"
+                className="rounded-md px-4 py-3 text-sm font-body leading-relaxed"
                 style={{
                   backgroundColor: "var(--color-bg-elevated)",
                   color: "var(--color-text-secondary)",
@@ -178,8 +177,7 @@ export default function CreateGoalSheet({
             {refinement?.questions && refinement.questions.length > 0 && (
               <div className="flex flex-col gap-1.5">
                 <span
-                  className="text-[11px] font-['DM_Sans'] uppercase tracking-wide"
-                  style={{ color: "var(--color-text-tertiary)" }}
+                  className="text-xs font-body uppercase tracking-wide text-text-tertiary"
                 >
                   Clarifying questions
                 </span>
@@ -187,8 +185,7 @@ export default function CreateGoalSheet({
                   {refinement.questions.map((q) => (
                     <li
                       key={q}
-                      className="text-[13px] font-['DM_Sans'] leading-snug"
-                      style={{ color: "var(--color-text-secondary)" }}
+                      className="text-sm font-body leading-snug text-text-secondary"
                     >
                       · {q}
                     </li>
@@ -199,8 +196,7 @@ export default function CreateGoalSheet({
 
             <div className="flex flex-col gap-2">
               <span
-                className="text-[11px] font-['DM_Sans'] uppercase tracking-wide"
-                style={{ color: "var(--color-text-tertiary)" }}
+                className="text-xs font-body uppercase tracking-wide text-text-tertiary"
               >
                 Refined goal
               </span>
@@ -222,7 +218,7 @@ export default function CreateGoalSheet({
 
             {saveError && (
               <span
-                className="text-[13px] font-['DM_Sans']"
+                className="text-sm font-body"
                 style={{ color: "var(--color-destructive-text)" }}
               >
                 {saveError.message}
@@ -234,7 +230,7 @@ export default function CreateGoalSheet({
                 type="button"
                 onClick={() => setStep("input")}
                 disabled={isPending}
-                className="h-11 px-4 rounded-[10px] text-[14px] font-medium font-['DM_Sans'] transition-colors duration-150"
+                className="h-11 px-4 rounded-md text-sm font-medium font-body transition-colors duration-150"
                 style={{
                   color: "var(--color-text-secondary)",
                   border: "1.5px solid var(--color-border-subtle)",
@@ -280,7 +276,7 @@ function Textarea({
       onChange={(e) => onChange(e.target.value)}
       rows={rows}
       disabled={disabled}
-      className="w-full resize-none rounded-[10px] px-4 py-3 text-[14px] font-['DM_Sans'] outline-none transition-colors duration-150"
+      className="w-full resize-none rounded-md px-4 py-3 text-sm font-body outline-none transition-colors duration-150"
       style={TEXTAREA_STYLE}
       onFocus={(e) => {
         e.currentTarget.style.borderColor = "var(--color-border-default)";
@@ -308,8 +304,7 @@ function AreaSelector({
   return (
     <div className="flex flex-col gap-2">
       <span
-        className="text-[12px] font-['DM_Sans'] uppercase tracking-wide"
-        style={{ color: "var(--color-text-secondary)" }}
+        className="text-xs font-body uppercase tracking-wide text-text-secondary"
       >
         Area
       </span>
@@ -325,7 +320,7 @@ function AreaSelector({
               type="button"
               onClick={() => !isDisabled && setArea(a)}
               disabled={isDisabled}
-              className="flex-1 h-11 rounded-[10px] text-[13px] font-medium font-['DM_Sans'] transition-colors duration-150 disabled:cursor-not-allowed"
+              className="flex-1 h-11 rounded-md text-sm font-medium font-body transition-colors duration-150 disabled:cursor-not-allowed"
               style={{
                 backgroundColor: isSelected ? config.subtle : "transparent",
                 color: isDisabled

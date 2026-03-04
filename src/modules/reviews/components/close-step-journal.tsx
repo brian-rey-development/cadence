@@ -57,8 +57,7 @@ export default function CloseStepJournal({
         <div key={key} className="flex flex-col gap-1.5">
           <label
             htmlFor={key}
-            className="text-xs font-medium font-body uppercase tracking-widest"
-            style={{ color: "var(--color-text-tertiary)" }}
+            className="text-xs font-medium font-body uppercase tracking-widest text-text-tertiary"
           >
             {label}
           </label>

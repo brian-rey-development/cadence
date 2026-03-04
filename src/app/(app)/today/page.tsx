@@ -1,5 +1,7 @@
-import { getTaskScores } from "@/modules/ai-engine/queries/get-task-scores";
+import { Settings } from "lucide-react";
+import Link from "next/link";
 import DailyQuote from "@/modules/ai/components/daily-quote";
+import { getTaskScores } from "@/modules/ai-engine/queries/get-task-scores";
 import { requireAuth } from "@/modules/auth/utils";
 import HabitSummaryBar from "@/modules/habits/components/habit-summary-bar";
 import { getHabitSummaryToday } from "@/modules/habits/queries/get-habit-summary-today";
@@ -7,8 +9,6 @@ import DailyLimitBanner from "@/modules/tasks/components/daily-limit-banner";
 import TaskList from "@/modules/tasks/components/task-list";
 import { getTasksForDay } from "@/modules/tasks/queries/get-tasks-for-day";
 import { today } from "@/shared/utils/date";
-import { Settings } from "lucide-react";
-import Link from "next/link";
 import TodayClient from "./today-client";
 
 export default async function TodayPage() {
@@ -32,14 +32,12 @@ export default async function TodayPage() {
         <header className="flex items-start justify-between">
           <div>
             <h1
-              className="font-display text-2xl"
-              style={{ color: "var(--color-text-primary)" }}
+              className="font-display text-2xl text-text-primary"
             >
               Today
             </h1>
             <p
-              className="text-sm font-body"
-              style={{ color: "var(--color-text-tertiary)" }}
+              className="text-sm font-body text-text-tertiary"
             >
               {new Date().toLocaleDateString("en-US", {
                 weekday: "long",
@@ -53,8 +51,7 @@ export default async function TodayPage() {
             <Link
               href="/settings"
               aria-label="Settings"
-              className="flex min-h-11 min-w-11 items-center justify-center rounded-full transition-colors duration-150 active:bg-[var(--color-ghost-active)]"
-              style={{ color: "var(--color-text-tertiary)" }}
+              className="flex min-h-11 min-w-11 items-center justify-center rounded-full transition-colors duration-150 active:bg-[var(--color-ghost-active)] text-text-tertiary"
             >
               <Settings size={20} strokeWidth={1.5} />
             </Link>

@@ -40,13 +40,11 @@ export default function DailyJournalHistory({
           {journals.map((journal) => (
             <div
               key={journal.id}
-              className="flex flex-col gap-3 px-4 py-4 rounded-2xl"
-              style={{ backgroundColor: "var(--color-bg-elevated)" }}
+              className="flex flex-col gap-3 px-4 py-4 rounded-2xl bg-bg-elevated"
             >
               <div className="flex items-center justify-between">
                 <span
-                  className="text-sm font-medium font-body"
-                  style={{ color: "var(--color-text-primary)" }}
+                  className="text-sm font-medium font-body text-text-primary"
                 >
                   {formatDateLabel(journal.date)}
                 </span>
@@ -65,8 +63,7 @@ export default function DailyJournalHistory({
 
               {journal.aiFeedback && (
                 <p
-                  className="text-sm font-body leading-relaxed"
-                  style={{ color: "var(--color-text-secondary)" }}
+                  className="text-sm font-body leading-relaxed text-text-secondary"
                 >
                   {journal.aiFeedback.split("\n\n")[0]}
                 </p>
@@ -74,8 +71,7 @@ export default function DailyJournalHistory({
 
               {journal.aiNextDayFocus && (
                 <p
-                  className="text-xs font-body italic"
-                  style={{ color: "var(--color-text-tertiary)" }}
+                  className="text-xs font-body italic text-text-tertiary"
                 >
                   Tomorrow: {journal.aiNextDayFocus}
                 </p>

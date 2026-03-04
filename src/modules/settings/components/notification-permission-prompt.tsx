@@ -32,14 +32,14 @@ export default function NotificationPermissionPrompt({
     >
       <div className="flex flex-col gap-3 rounded-2xl bg-[var(--color-bg-elevated)] p-5">
         <div className="flex items-start justify-between gap-3">
-          <p className="font-[family-name:var(--font-body)] text-sm text-[var(--color-text-secondary)]">
+          <p className="font-[family-name:var(--font-body)] text-sm text-text-secondary">
             Get reminded to close your day and start fresh
           </p>
           <button
             type="button"
             aria-label="Dismiss"
             onClick={onDismiss}
-            className="flex h-[44px] w-[44px] shrink-0 items-center justify-center rounded-full text-[var(--color-text-tertiary)] transition-colors hover:bg-white/5"
+            className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-text-tertiary transition-colors hover:bg-white/5"
           >
             <X size={18} strokeWidth={1.5} />
           </button>
@@ -47,7 +47,7 @@ export default function NotificationPermissionPrompt({
         <button
           type="button"
           onClick={handleEnable}
-          className="flex h-[44px] items-center justify-center rounded-xl bg-[var(--color-primary-bg)] font-[family-name:var(--font-body)] text-sm font-medium text-[var(--color-primary-text)] transition-opacity active:opacity-80"
+          className="flex h-11 items-center justify-center rounded-xl bg-[var(--color-primary-bg)] font-[family-name:var(--font-body)] text-sm font-medium text-primary-text transition-opacity active:opacity-80"
         >
           Enable Notifications
         </button>

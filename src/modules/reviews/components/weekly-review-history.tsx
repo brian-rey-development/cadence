@@ -29,12 +29,10 @@ export default function WeeklyReviewHistory({
           {reviews.map((review) => (
             <div
               key={review.id}
-              className="flex flex-col gap-3 px-4 py-4 rounded-2xl"
-              style={{ backgroundColor: "var(--color-bg-elevated)" }}
+              className="flex flex-col gap-3 px-4 py-4 rounded-2xl bg-bg-elevated"
             >
               <span
-                className="text-sm font-medium font-body"
-                style={{ color: "var(--color-text-primary)" }}
+                className="text-sm font-medium font-body text-text-primary"
               >
                 {formatWeekLabel(review.weekStart)}
               </span>
@@ -70,8 +68,7 @@ function ReviewField({
   return (
     <div className="flex flex-col gap-1">
       <span
-        className="text-xs font-medium font-body uppercase tracking-widest"
-        style={{ color: "var(--color-text-tertiary)" }}
+        className="text-xs font-medium font-body uppercase tracking-widest text-text-tertiary"
       >
         {label}
       </span>

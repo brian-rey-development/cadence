@@ -77,8 +77,7 @@ export default function TaskSuggestionReview({
       <div className="flex flex-col gap-1.5">
         <label
           htmlFor="task-title"
-          className="text-xs font-body font-medium uppercase tracking-widest"
-          style={{ color: "var(--color-text-tertiary)" }}
+          className="text-xs font-body font-medium uppercase tracking-widest text-text-tertiary"
         >
           Task
         </label>
@@ -104,8 +103,7 @@ export default function TaskSuggestionReview({
 
       <div className="flex flex-col gap-1.5">
         <span
-          className="text-xs font-body font-medium uppercase tracking-widest"
-          style={{ color: "var(--color-text-tertiary)" }}
+          className="text-xs font-body font-medium uppercase tracking-widest text-text-tertiary"
         >
           Type
         </span>
@@ -142,8 +140,7 @@ export default function TaskSuggestionReview({
           />
           {suggestion.schedulingReason && (
             <p
-              className="text-xs font-body leading-relaxed"
-              style={{ color: "var(--color-text-tertiary)" }}
+              className="text-xs font-body leading-relaxed text-text-tertiary"
             >
               {suggestion.schedulingReason}
             </p>
@@ -155,8 +152,7 @@ export default function TaskSuggestionReview({
         <div className="flex flex-col gap-1.5">
           <label
             htmlFor="task-goal"
-            className="text-xs font-body font-medium uppercase tracking-widest"
-            style={{ color: "var(--color-text-tertiary)" }}
+            className="text-xs font-body font-medium uppercase tracking-widest text-text-tertiary"
           >
             Goal (optional)
           </label>
@@ -183,11 +179,10 @@ export default function TaskSuggestionReview({
               <Link
                 size={12}
                 strokeWidth={1.5}
-                style={{ color: "var(--color-text-tertiary)" }}
+                className="text-text-tertiary"
               />
               <span
-                className="text-xs font-body"
-                style={{ color: "var(--color-text-tertiary)" }}
+                className="text-xs font-body text-text-tertiary"
               >
                 No quarter goal linked
               </span>

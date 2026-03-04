@@ -19,7 +19,7 @@ export default function HabitHeatmap({ days, accent }: HabitHeatmapProps) {
         return (
           <div
             key={date}
-            className="rounded-[2px] h-3"
+            className="rounded-xs h-3"
             style={{
               backgroundColor: logged
                 ? isToday

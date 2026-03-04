@@ -39,8 +39,7 @@ export default function HabitForm({
 
       <div className="flex flex-col gap-2">
         <span
-          className="text-[12px] font-['DM_Sans'] uppercase tracking-wide"
-          style={{ color: "var(--color-text-secondary)" }}
+          className="text-xs font-body uppercase tracking-wide text-text-secondary"
         >
           Area
         </span>
@@ -53,10 +52,12 @@ export default function HabitForm({
                 key={a}
                 type="button"
                 onClick={() => onAreaChange(a)}
-                className="flex-1 h-11 rounded-[10px] text-[13px] font-medium font-['DM_Sans'] transition-colors duration-150"
+                className="flex-1 h-11 rounded-md text-sm font-medium font-body transition-colors duration-150"
                 style={{
                   backgroundColor: isSelected ? config.subtle : "transparent",
-                  color: isSelected ? config.text : "var(--color-text-secondary)",
+                  color: isSelected
+                    ? config.text
+                    : "var(--color-text-secondary)",
                   border: `1.5px solid ${isSelected ? config.border : "var(--color-border-subtle)"}`,
                 }}
               >
@@ -69,8 +70,7 @@ export default function HabitForm({
 
       <div className="flex flex-col gap-2">
         <span
-          className="text-[12px] font-['DM_Sans'] uppercase tracking-wide"
-          style={{ color: "var(--color-text-secondary)" }}
+          className="text-xs font-body uppercase tracking-wide text-text-secondary"
         >
           Times per week
         </span>
@@ -82,10 +82,14 @@ export default function HabitForm({
                 key={f}
                 type="button"
                 onClick={() => onFrequencyChange(f)}
-                className="flex-1 h-11 rounded-full text-[14px] font-['DM_Mono'] transition-colors duration-150"
+                className="flex-1 h-11 rounded-full text-sm font-mono transition-colors duration-150"
                 style={{
-                  backgroundColor: isSelected ? "var(--color-text-primary)" : "transparent",
-                  color: isSelected ? "var(--color-bg-base)" : "var(--color-text-secondary)",
+                  backgroundColor: isSelected
+                    ? "var(--color-text-primary)"
+                    : "transparent",
+                  color: isSelected
+                    ? "var(--color-bg-base)"
+                    : "var(--color-text-secondary)",
                   border: `1.5px solid ${isSelected ? "var(--color-text-primary)" : "var(--color-border-subtle)"}`,
                 }}
               >

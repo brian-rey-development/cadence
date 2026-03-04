@@ -12,19 +12,14 @@ export default function HabitSummaryBar({
   if (total === 0) return null;
 
   return (
-    <div
-      className="flex items-center justify-between px-4 py-3 rounded-[10px]"
-      style={{ backgroundColor: "var(--color-surface)" }}
-    >
+    <div className="flex items-center justify-between py-2">
       <span
-        className="text-sm font-['DM_Sans']"
-        style={{ color: "var(--color-text-secondary)" }}
+        className="text-xs font-body uppercase tracking-sm text-text-tertiary"
       >
         habits today
       </span>
       <span
-        className="font-['DM_Mono'] text-sm"
-        style={{ color: "var(--color-text-primary)" }}
+        className="font-mono text-xs text-text-secondary"
       >
         {completed}/{total}
       </span>

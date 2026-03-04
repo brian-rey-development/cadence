@@ -69,30 +69,25 @@ export default function TaskCard({
 
   return (
     <div className="relative overflow-hidden">
-      {/* Archive reveal layer */}
       <motion.div
-        className="absolute inset-0 flex items-center justify-end pr-4"
-        style={{
-          opacity: archiveOpacity,
-          backgroundColor: "var(--color-destructive-subtle)",
-        }}
+        className="absolute inset-0 flex items-center justify-end pr-4 bg-destructive-subtle"
+        style={{ opacity: archiveOpacity }}
       >
         <Trash2
           size={18}
           strokeWidth={1.5}
           aria-label="Archive task"
-          style={{ color: "var(--color-destructive)" }}
+          className="text-destructive"
         />
       </motion.div>
 
-      {/* Row */}
       <motion.div
         drag="x"
         dragConstraints={{ left: -120, right: 0 }}
         dragElastic={0.1}
-        style={{ x, opacity: isDone ? 0.45 : 1 }}
+        style={{ x }}
         onDragEnd={handleDragEnd}
-        className="relative flex items-center gap-3 min-h-11 py-2.5"
+        className={`relative flex items-center gap-3 min-h-11 py-2.5 transition-opacity ${isDone ? "opacity-50" : "opacity-100"}`}
       >
         <Checkbox
           checked={isDone}
@@ -103,14 +98,7 @@ export default function TaskCard({
         <div className="flex-1 min-w-0 flex flex-col gap-0.5">
           <div className="flex items-center gap-2">
             <span
-              className="font-body text-sm leading-snug truncate"
-              style={{
-                color:
-                  zombieAge !== null
-                    ? "var(--color-zombie-text)"
-                    : "var(--color-text-primary)",
-                textDecoration: isDone ? "line-through" : "none",
-              }}
+              className={`font-body text-sm leading-snug truncate ${zombieAge !== null ? "text-zombie-text" : "text-text-primary"} ${isDone ? "line-through" : ""}`}
             >
               {task.title}
             </span>
@@ -126,10 +114,7 @@ export default function TaskCard({
 
           <div className="flex items-center gap-2">
             {task.goal && (
-              <span
-                className="font-body text-xs truncate"
-                style={{ color: "var(--color-text-tertiary)" }}
-              >
+              <span className="font-body text-xs truncate text-text-tertiary">
                 {task.goal.title}
               </span>
             )}

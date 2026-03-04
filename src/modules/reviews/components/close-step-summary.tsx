@@ -50,8 +50,7 @@ export default function CloseStepSummary({
     <div className="flex flex-col gap-5">
       <div className="flex flex-col gap-2">
         <span
-          className="text-xs font-medium font-body uppercase tracking-widest"
-          style={{ color: "var(--color-text-tertiary)" }}
+          className="text-xs font-medium font-body uppercase tracking-widest text-text-tertiary"
         >
           How did today feel?
         </span>
@@ -82,8 +81,7 @@ export default function CloseStepSummary({
       {completed.length > 0 && (
         <div className="flex flex-col gap-2">
           <span
-            className="text-xs font-medium font-body uppercase tracking-widest"
-            style={{ color: "var(--color-text-tertiary)" }}
+            className="text-xs font-medium font-body uppercase tracking-widest text-text-tertiary"
           >
             Completed ({completed.length})
           </span>
@@ -91,16 +89,14 @@ export default function CloseStepSummary({
             {completed.map((task) => (
               <li
                 key={task.id}
-                className="relative flex items-center gap-3 rounded-xl px-4 py-3 min-h-11"
-                style={{ backgroundColor: "var(--color-bg-elevated)" }}
+                className="relative flex items-center gap-3 rounded-xl px-4 py-3 min-h-11 bg-bg-elevated"
               >
                 <div
                   className="absolute left-0 inset-y-2 w-[3px] rounded-full"
                   style={{ backgroundColor: AREA_CONFIG[task.area].accent }}
                 />
                 <span
-                  className="font-body text-sm ml-2"
-                  style={{ color: "var(--color-text-secondary)" }}
+                  className="font-body text-sm ml-2 text-text-secondary"
                 >
                   {task.title}
                 </span>
@@ -113,8 +109,7 @@ export default function CloseStepSummary({
       {incomplete.length > 0 && (
         <div className="flex flex-col gap-2">
           <span
-            className="text-xs font-medium font-body uppercase tracking-widest"
-            style={{ color: "var(--color-text-tertiary)" }}
+            className="text-xs font-medium font-body uppercase tracking-widest text-text-tertiary"
           >
             To handle ({incomplete.length})
           </span>
@@ -122,12 +117,10 @@ export default function CloseStepSummary({
             {incomplete.map((task) => (
               <li
                 key={task.id}
-                className="flex flex-col gap-2 rounded-xl px-4 py-3"
-                style={{ backgroundColor: "var(--color-bg-elevated)" }}
+                className="flex flex-col gap-2 rounded-xl px-4 py-3 bg-bg-elevated"
               >
                 <span
-                  className="font-body text-sm"
-                  style={{ color: "var(--color-text-primary)" }}
+                  className="font-body text-sm text-text-primary"
                 >
                   {task.title}
                 </span>

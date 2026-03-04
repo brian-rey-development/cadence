@@ -22,8 +22,7 @@ export default function DailyQuote() {
   return (
     <div className="flex items-start gap-2.5">
       <p
-        className="flex-1 font-display text-sm italic leading-relaxed"
-        style={{ color: "var(--color-text-tertiary)" }}
+        className="flex-1 font-display text-sm italic leading-relaxed text-text-tertiary"
       >
         {data.quote}
       </p>

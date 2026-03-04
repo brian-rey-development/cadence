@@ -37,28 +37,17 @@ export default function ZombieResolutionCard({
     >
       <div className="flex items-center gap-2 flex-wrap">
         <span
-          className="font-body text-sm flex-1"
-          style={{
-            color: zombie
-              ? "var(--color-zombie-text)"
-              : "var(--color-text-primary)",
-          }}
+          className={`font-body text-sm flex-1 ${zombie ? "text-zombie-text" : "text-text-primary"}`}
         >
           {task.title}
         </span>
         {task.postponeCount > 0 && (
-          <span
-            className="font-mono text-xs"
-            style={{ color: "var(--color-text-tertiary)" }}
-          >
+          <span className="font-mono text-xs text-text-tertiary">
             ×{task.postponeCount}
           </span>
         )}
         {zombie && (
-          <span
-            className="font-mono text-xs"
-            style={{ color: "var(--color-zombie-text)", opacity: 0.8 }}
-          >
+          <span className="font-mono text-xs text-zombie-text opacity-80">
             {age}d stale
           </span>
         )}
@@ -78,16 +67,14 @@ export default function ZombieResolutionCard({
         <button
           type="button"
           onClick={() => onPostpone(tomorrow())}
-          className="font-body text-xs font-medium transition-opacity active:opacity-50 min-h-9"
-          style={{ color: "var(--color-text-secondary)" }}
+          className="font-body text-xs font-medium transition-opacity active:opacity-50 min-h-9 text-text-secondary"
         >
           Tomorrow
         </button>
         <button
           type="button"
           onClick={onArchive}
-          className="font-body text-xs font-medium transition-opacity active:opacity-50 min-h-9"
-          style={{ color: "var(--color-destructive)" }}
+          className="font-body text-xs font-medium transition-opacity active:opacity-50 min-h-9 text-destructive"
         >
           Archive
         </button>

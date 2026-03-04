@@ -18,14 +18,12 @@ export default function CloseStepTomorrow({
       <div className="flex flex-col gap-1.5">
         <label
           htmlFor="tomorrow-focus"
-          className="text-xs font-medium font-body uppercase tracking-widest"
-          style={{ color: "var(--color-text-tertiary)" }}
+          className="text-xs font-medium font-body uppercase tracking-widest text-text-tertiary"
         >
           Tomorrow&rsquo;s focus
         </label>
         <p
-          className="text-sm font-body"
-          style={{ color: "var(--color-text-tertiary)" }}
+          className="text-sm font-body text-text-tertiary"
         >
           What&rsquo;s the one thing that would make tomorrow a success?
         </p>

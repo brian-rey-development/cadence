@@ -23,8 +23,7 @@ export default function CloseStepAiFeedback({
         {data.feedback.split("\n\n").map((para, i) => (
           <p
             key={`feedback-${i}`}
-            className="font-body text-sm leading-relaxed"
-            style={{ color: "var(--color-text-secondary)" }}
+            className="font-body text-sm leading-relaxed text-text-secondary"
           >
             {para}
           </p>
@@ -34,8 +33,7 @@ export default function CloseStepAiFeedback({
       {data.insights.length > 0 && (
         <div className="flex flex-col gap-2">
           <span
-            className="text-xs font-medium font-body uppercase tracking-widest"
-            style={{ color: "var(--color-text-tertiary)" }}
+            className="text-xs font-medium font-body uppercase tracking-widest text-text-tertiary"
           >
             Insights
           </span>
@@ -47,8 +45,7 @@ export default function CloseStepAiFeedback({
                   style={{ backgroundColor: "var(--color-text-tertiary)" }}
                 />
                 <span
-                  className="font-body text-sm leading-relaxed"
-                  style={{ color: "var(--color-text-secondary)" }}
+                  className="font-body text-sm leading-relaxed text-text-secondary"
                 >
                   {insight}
                 </span>
@@ -60,18 +57,15 @@ export default function CloseStepAiFeedback({
 
       {data.nextDayFocus && (
         <div
-          className="rounded-xl px-4 py-3"
-          style={{ backgroundColor: "var(--color-bg-elevated)" }}
+          className="rounded-xl px-4 py-3 bg-bg-elevated"
         >
           <span
-            className="text-xs font-medium font-body uppercase tracking-widest"
-            style={{ color: "var(--color-text-tertiary)" }}
+            className="text-xs font-medium font-body uppercase tracking-widest text-text-tertiary"
           >
             Tomorrow
           </span>
           <p
-            className="mt-1 font-body text-sm leading-relaxed"
-            style={{ color: "var(--color-text-primary)" }}
+            className="mt-1 font-body text-sm leading-relaxed text-text-primary"
           >
             {data.nextDayFocus}
           </p>

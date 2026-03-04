@@ -53,14 +53,12 @@ export default function GoalMilestones({
               style={{ backgroundColor: accentColor }}
             />
             <span
-              className="font-body text-sm font-medium leading-snug"
-              style={{ color: "var(--color-text-primary)" }}
+              className="font-body text-sm font-medium leading-snug text-text-primary"
             >
               {milestone.title}
             </span>
             <span
-              className="font-mono text-2xs ml-auto shrink-0"
-              style={{ color: "var(--color-text-tertiary)" }}
+              className="font-mono text-2xs ml-auto shrink-0 text-text-tertiary"
             >
               {milestone.targetDate}
             </span>
@@ -84,8 +82,7 @@ export default function GoalMilestones({
                   className="shrink-0"
                 />
                 <span
-                  className="font-body text-xs leading-snug"
-                  style={{ color: "var(--color-text-secondary)" }}
+                  className="font-body text-xs leading-snug text-text-secondary"
                 >
                   {taskTitle}
                 </span>

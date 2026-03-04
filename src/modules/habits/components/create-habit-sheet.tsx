@@ -30,7 +30,10 @@ async function fetchHabitFeedback(
   return res.json();
 }
 
-export default function CreateHabitSheet({ open, onClose }: CreateHabitSheetProps) {
+export default function CreateHabitSheet({
+  open,
+  onClose,
+}: CreateHabitSheetProps) {
   const [name, setName] = useState("");
   const [area, setArea] = useState<Area>("work");
   const [frequency, setFrequency] = useState(7);
@@ -50,7 +53,10 @@ export default function CreateHabitSheet({ open, onClose }: CreateHabitSheetProp
       setFeedback(result);
       setStep("feedback");
     } catch (err) {
-      console.warn("[create-habit] AI feedback unavailable, saving directly:", err);
+      console.warn(
+        "[create-habit] AI feedback unavailable, saving directly:",
+        err,
+      );
       handleSave();
     } finally {
       setIsFetching(false);

@@ -71,7 +71,7 @@ export default function ReviewStepSuggestions({
       )}
 
       {error && (
-        <p className="text-sm" style={{ color: "var(--color-text-tertiary)" }}>
+        <p className="text-sm text-text-tertiary">
           {error}
         </p>
       )}
@@ -79,8 +79,7 @@ export default function ReviewStepSuggestions({
       {result && !isLoading && (
         <div className="flex flex-col gap-2">
           <p
-            className="text-xs uppercase tracking-wide"
-            style={{ color: "var(--color-text-tertiary)" }}
+            className="text-xs uppercase tracking-wide text-text-tertiary"
           >
             Suggestions
           </p>
@@ -103,8 +102,7 @@ export default function ReviewStepSuggestions({
 
       <div className="flex flex-col gap-2">
         <p
-          className="text-xs uppercase tracking-wide"
-          style={{ color: "var(--color-text-tertiary)" }}
+          className="text-xs uppercase tracking-wide text-text-tertiary"
         >
           Intentions
         </p>

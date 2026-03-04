@@ -51,13 +51,13 @@ export default function InstallPrompt() {
     <div className="fixed right-0 bottom-20 left-0 z-40 px-4">
       <div className="rounded-xl bg-[var(--color-bg-elevated)] p-4">
         <div className="mb-3 flex items-start justify-between gap-3">
-          <p className="font-['DM_Sans'] text-sm text-[var(--color-text-primary)]">
+          <p className="font-body text-sm text-text-primary">
             Add Cadence to your home screen
           </p>
           <button
             type="button"
             onClick={dismiss}
-            className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-[var(--color-text-secondary)]"
+            className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-text-secondary"
           >
             <X size={16} strokeWidth={1.5} />
           </button>
@@ -65,7 +65,7 @@ export default function InstallPrompt() {
         <button
           type="button"
           onClick={handleAdd}
-          className="w-full rounded-lg bg-[var(--color-interactive-primaryBg)] py-2.5 font-['DM_Sans'] text-sm font-medium text-[var(--color-interactive-primaryText)]"
+          className="w-full rounded-lg bg-[var(--color-interactive-primaryBg)] py-2.5 font-body text-sm font-medium text-[var(--color-interactive-primaryText)]"
         >
           Add to Home Screen
         </button>

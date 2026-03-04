@@ -45,17 +45,15 @@ export default function OpportunityCostBadge({
       >
         <div className="flex flex-col gap-4 pt-2 pb-4">
           <p
-            className="font-body text-sm leading-relaxed"
-            style={{ color: "var(--color-text-secondary)" }}
+            className="font-body text-sm leading-relaxed text-text-secondary"
           >
             {reasoning}
           </p>
           <p
-            className="font-body text-xs"
-            style={{ color: "var(--color-text-tertiary)" }}
+            className="font-body text-xs text-text-tertiary"
           >
             Prioritizing this task defers{" "}
-            <span style={{ color: "var(--color-text-primary)" }}>
+            <span className="text-text-primary">
               {count} other task{count === 1 ? "" : "s"}
             </span>{" "}
             competing for the same energy.

@@ -52,43 +52,28 @@ export default function GoalList({
     <>
       <div className="flex flex-col gap-6">
         <div className="flex items-center justify-between">
-          <span
-            className="text-[15px] font-medium font-['Fraunces']"
-            style={{ color: "var(--color-text-primary)" }}
-          >
+          <span className="text-sm font-medium font-display text-text-primary">
             {currentQuarterLabel}
           </span>
           <button
             type="button"
             onClick={() => setSheetOpen(true)}
-            className="flex items-center justify-center w-11 h-11 rounded-full transition-colors duration-150"
-            style={{ backgroundColor: "var(--color-bg-surface)" }}
+            className="flex items-center justify-center w-11 h-11 rounded-full transition-colors duration-150 bg-bg-surface"
             aria-label="Add goal"
           >
-            <Plus
-              size={18}
-              strokeWidth={1.5}
-              style={{ color: "var(--color-text-primary)" }}
-            />
+            <Plus size={18} strokeWidth={1.5} className="text-text-primary" />
           </button>
         </div>
 
         {!hasAny && (
-          <div
-            className="flex flex-col items-center gap-3 py-16 rounded-[12px]"
-            style={{ backgroundColor: "var(--color-bg-surface)" }}
-          >
-            <span
-              className="text-[15px] font-['DM_Sans']"
-              style={{ color: "var(--color-text-secondary)" }}
-            >
+          <div className="flex flex-col items-center gap-3 py-16">
+            <span className="text-sm font-body text-text-secondary">
               No goals this quarter
             </span>
             <button
               type="button"
               onClick={() => setSheetOpen(true)}
-              className="text-[13px] font-medium font-['DM_Sans']"
-              style={{ color: "var(--color-text-primary)" }}
+              className="text-sm font-medium font-body text-text-primary"
             >
               Add your first goal
             </button>
@@ -100,10 +85,10 @@ export default function GoalList({
           if (areaGoals.length === 0) return null;
 
           return (
-            <div key={area} className="flex flex-col gap-3">
+            <div key={area} className="flex flex-col gap-4">
               <span
-                className="text-[11px] font-medium font-['DM_Sans'] uppercase tracking-widest"
-                style={{ color: AREA_CONFIG[area].text }}
+                className="text-2xs font-semibold font-body uppercase tracking-label"
+                style={{ color: AREA_CONFIG[area].accent }}
               >
                 {AREA_CONFIG[area].label}
               </span>

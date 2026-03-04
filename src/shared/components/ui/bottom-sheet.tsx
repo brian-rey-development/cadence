@@ -64,7 +64,7 @@ export default function BottomSheet({
               <div className="absolute left-1/2 top-2 h-1 w-10 -translate-x-1/2 rounded-full bg-[var(--color-border-subtle)]" />
 
               {title && (
-                <h2 className="font-['Fraunces'] text-base text-[var(--color-text-primary)]">
+                <h2 className="font-display text-base text-text-primary">
                   {title}
                 </h2>
               )}
@@ -73,7 +73,7 @@ export default function BottomSheet({
                 type="button"
                 aria-label="Close"
                 onClick={onClose}
-                className="ml-auto flex h-8 w-8 items-center justify-center rounded-full text-[var(--color-text-tertiary)] transition-colors hover:bg-white/5"
+                className="ml-auto flex h-8 w-8 items-center justify-center rounded-full text-text-tertiary transition-colors hover:bg-white/5"
               >
                 <X size={18} strokeWidth={1.5} />
               </button>

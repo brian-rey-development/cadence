@@ -56,8 +56,7 @@ export default function WeeklyTasksSection({
   return (
     <div className="flex flex-col gap-2">
       <span
-        className="text-xs font-medium font-body uppercase tracking-widest"
-        style={{ color: "var(--color-text-tertiary)" }}
+        className="text-xs font-medium font-body uppercase tracking-widest text-text-tertiary"
       >
         This week
       </span>

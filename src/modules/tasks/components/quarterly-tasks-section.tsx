@@ -20,8 +20,7 @@ function TaskRow({
 
   return (
     <div
-      className="flex items-start gap-3 px-4 py-3 rounded-xl"
-      style={{ backgroundColor: "var(--color-bg-elevated)" }}
+      className="flex items-start gap-3 px-4 py-3 rounded-xl bg-bg-elevated"
     >
       <button
         type="button"
@@ -66,8 +65,7 @@ function TaskRow({
         </span>
         {task.goal && (
           <span
-            className="text-xs font-body truncate"
-            style={{ color: "var(--color-text-tertiary)" }}
+            className="text-xs font-body truncate text-text-tertiary"
           >
             {task.goal.title}
           </span>
@@ -118,8 +116,7 @@ export default function QuarterlyTasksSection({
   return (
     <div className="flex flex-col gap-2">
       <span
-        className="text-xs font-medium font-body uppercase tracking-widest"
-        style={{ color: "var(--color-text-tertiary)" }}
+        className="text-xs font-medium font-body uppercase tracking-widest text-text-tertiary"
       >
         Milestones
       </span>

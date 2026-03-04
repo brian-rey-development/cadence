@@ -14,14 +14,13 @@ export default function HabitSummaryHeader({
   return (
     <div className="flex flex-col gap-1">
       <span
-        className="text-[28px] font-['DM_Mono'] leading-none"
+        className="text-3xl font-mono leading-none"
         style={{ color: consistencyColor(consistency) }}
       >
         {consistency}%
       </span>
       <span
-        className="text-[13px] font-['DM_Sans']"
-        style={{ color: "var(--color-text-secondary)" }}
+        className="text-sm font-body text-text-secondary"
       >
         consistency this week
       </span>

@@ -25,8 +25,7 @@ export default function TaskIntentInput({
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-4 pt-2">
       <p
-        className="text-sm font-body"
-        style={{ color: "var(--color-text-secondary)" }}
+        className="text-sm font-body text-text-secondary"
       >
         Describe what you want to do in plain language.
       </p>

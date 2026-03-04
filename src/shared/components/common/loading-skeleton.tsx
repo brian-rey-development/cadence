@@ -6,7 +6,7 @@ type LoadingSkeletonProps = {
 function SkeletonRow({ className = "" }: { className?: string }) {
   return (
     <div
-      className={`rounded-[10px] bg-[var(--color-bg-surface)] animate-pulse ${className}`}
+      className={`rounded-md bg-[var(--color-bg-surface)] animate-pulse ${className}`}
     />
   );
 }
