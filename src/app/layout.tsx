@@ -25,6 +25,15 @@ export const metadata: Metadata = {
   title: "Cadence",
   description: "A personal productivity system built as a mobile-first PWA.",
   manifest: "/manifest.webmanifest",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "black-translucent",
+    title: "Cadence",
+    startupImage: [],
+  },
+  icons: {
+    apple: "/icons/icon-192.png",
+  },
 };
 
 export const viewport: Viewport = {

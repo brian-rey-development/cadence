@@ -34,15 +34,15 @@
 
 ---
 
-## Epic 4: App Shell & Navigation []
+## Epic 4: App Shell & Navigation [x]
 *The mobile shell feels native before any real content exists.*
 
-- [ ] As a user, I see a bottom navigation bar with Today, Week, Plus, Habits, and Quarter tabs so I can move between sections with one tap
-- [ ] As a user, the Plus button in the center of the nav is visually elevated so it always feels like the primary action
-- [ ] As a user, the active tab is visually distinct so I always know where I am
-- [ ] As a user, the app runs in standalone mode when installed to my home screen so there is no browser chrome
-- [ ] As a user, a splash screen with the Cadence wordmark appears on launch so the experience feels native
-- [ ] As a developer, the app shell works offline so the navigation never breaks without connectivity
+- [x] As a user, I see a bottom navigation bar with Today, Week, Plus, Habits, and Quarter tabs so I can move between sections with one tap
+- [x] As a user, the Plus button in the center of the nav is visually elevated so it always feels like the primary action
+- [x] As a user, the active tab is visually distinct so I always know where I am
+- [x] As a user, the app runs in standalone mode when installed to my home screen so there is no browser chrome
+- [x] As a user, a splash screen with the Cadence wordmark appears on launch so the experience feels native
+- [x] As a developer, the app shell works offline so the navigation never breaks without connectivity
 
 ---
 

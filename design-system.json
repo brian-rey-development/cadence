@@ -1,0 +1,523 @@
+{
+  "meta": {
+    "name": "Cadence",
+    "version": "1.0.0",
+    "description": "Design system tokens for Cadence — a personal productivity PWA",
+    "colorModes": ["dark", "light"]
+  },
+
+  "typography": {
+    "fonts": {
+      "display": {
+        "family": "Fraunces",
+        "source": "https://fonts.google.com/specimen/Fraunces",
+        "weights": [300, 400, 600],
+        "variable": true,
+        "axes": ["wght", "SOFT", "WONK"]
+      },
+      "body": {
+        "family": "DM Sans",
+        "source": "https://fonts.google.com/specimen/DM+Sans",
+        "weights": [400, 500, 600]
+      },
+      "mono": {
+        "family": "DM Mono",
+        "source": "https://fonts.google.com/specimen/DM+Mono",
+        "weights": [400, 500]
+      }
+    },
+    "scale": {
+      "xs": { "size": "11px", "lineHeight": "16px", "letterSpacing": "0.01em" },
+      "sm": { "size": "13px", "lineHeight": "20px", "letterSpacing": "0" },
+      "base": { "size": "15px", "lineHeight": "24px", "letterSpacing": "0" },
+      "md": {
+        "size": "17px",
+        "lineHeight": "26px",
+        "letterSpacing": "-0.01em"
+      },
+      "lg": {
+        "size": "20px",
+        "lineHeight": "28px",
+        "letterSpacing": "-0.01em"
+      },
+      "xl": {
+        "size": "24px",
+        "lineHeight": "32px",
+        "letterSpacing": "-0.02em"
+      },
+      "2xl": {
+        "size": "30px",
+        "lineHeight": "36px",
+        "letterSpacing": "-0.02em"
+      },
+      "3xl": {
+        "size": "38px",
+        "lineHeight": "44px",
+        "letterSpacing": "-0.03em"
+      },
+      "4xl": {
+        "size": "48px",
+        "lineHeight": "52px",
+        "letterSpacing": "-0.03em"
+      }
+    },
+    "roles": {
+      "appName": {
+        "font": "display",
+        "size": "2xl",
+        "weight": 300,
+        "letterSpacing": "-0.02em"
+      },
+      "sectionHeading": {
+        "font": "display",
+        "size": "xl",
+        "weight": 400,
+        "letterSpacing": "-0.02em"
+      },
+      "taskTitle": { "font": "body", "size": "base", "weight": 400 },
+      "taskTitleDone": {
+        "font": "body",
+        "size": "base",
+        "weight": 400,
+        "textDecoration": "line-through"
+      },
+      "label": { "font": "body", "size": "sm", "weight": 500 },
+      "caption": { "font": "body", "size": "xs", "weight": 400 },
+      "counter": { "font": "mono", "size": "sm", "weight": 500 },
+      "metric": { "font": "mono", "size": "3xl", "weight": 400 },
+      "microcopy": { "font": "body", "size": "sm", "weight": 400 },
+      "navLabel": {
+        "font": "body",
+        "size": "xs",
+        "weight": 500,
+        "letterSpacing": "0.01em"
+      }
+    },
+    "iconStrokeWidth": 1.5
+  },
+
+  "color": {
+    "dark": {
+      "background": {
+        "base": "#0E0E0F",
+        "surface": "#17171A",
+        "elevated": "#1F1F24",
+        "overlay": "#252529"
+      },
+      "border": {
+        "subtle": "#2A2A30",
+        "default": "#33333B",
+        "strong": "#3A3A42"
+      },
+      "text": {
+        "primary": "#F0EDE8",
+        "secondary": "#8A8A95",
+        "tertiary": "#55555F",
+        "disabled": "#3A3A42"
+      },
+      "areas": {
+        "work": {
+          "accent": "#4AADA8",
+          "subtle": "#4AADA814",
+          "border": "#4AADA830",
+          "text": "#6BBFBA",
+          "label": "Work"
+        },
+        "personal": {
+          "accent": "#C17D4E",
+          "subtle": "#C17D4E14",
+          "border": "#C17D4E30",
+          "text": "#CE9570",
+          "label": "Personal"
+        },
+        "identity": {
+          "accent": "#7B6FA0",
+          "subtle": "#7B6FA014",
+          "border": "#7B6FA030",
+          "text": "#9589BA",
+          "label": "Identity"
+        }
+      },
+      "status": {
+        "success": {
+          "default": "#5A9E72",
+          "subtle": "#5A9E7214",
+          "text": "#72B589"
+        },
+        "warning": {
+          "default": "#B8924A",
+          "subtle": "#B8924A14",
+          "text": "#CAAA6A"
+        },
+        "destructive": {
+          "default": "#9E5A5A",
+          "subtle": "#9E5A5A14",
+          "text": "#B57575"
+        },
+        "zombie": {
+          "default": "#9E5A5A",
+          "pulse": "#9E5A5A60",
+          "text": "#B57575"
+        }
+      },
+      "interactive": {
+        "primaryBg": "#F0EDE8",
+        "primaryText": "#0E0E0F",
+        "primaryHover": "#E0DDD8",
+        "ghostHover": "#FFFFFF08",
+        "ghostActive": "#FFFFFF12"
+      }
+    },
+    "light": {
+      "background": {
+        "base": "#F5F2ED",
+        "surface": "#FFFCF8",
+        "elevated": "#FFFFFF",
+        "overlay": "#F0EDE6"
+      },
+      "border": {
+        "subtle": "#E2DDD6",
+        "default": "#D4CEC6",
+        "strong": "#C0B9B0"
+      },
+      "text": {
+        "primary": "#1A1A1E",
+        "secondary": "#6B6B75",
+        "tertiary": "#9A9AA5",
+        "disabled": "#C8C8D0"
+      },
+      "areas": {
+        "work": {
+          "accent": "#37918C",
+          "subtle": "#37918C12",
+          "border": "#37918C25",
+          "text": "#2A706C",
+          "label": "Work"
+        },
+        "personal": {
+          "accent": "#A66238",
+          "subtle": "#A6623812",
+          "border": "#A6623825",
+          "text": "#854E2C",
+          "label": "Personal"
+        },
+        "identity": {
+          "accent": "#62578A",
+          "subtle": "#62578A12",
+          "border": "#62578A25",
+          "text": "#4E446F",
+          "label": "Identity"
+        }
+      },
+      "status": {
+        "success": {
+          "default": "#3D7A55",
+          "subtle": "#3D7A5512",
+          "text": "#2E5E40"
+        },
+        "warning": {
+          "default": "#966F2E",
+          "subtle": "#966F2E12",
+          "text": "#7A5820"
+        },
+        "destructive": {
+          "default": "#803E3E",
+          "subtle": "#803E3E12",
+          "text": "#662E2E"
+        },
+        "zombie": {
+          "default": "#803E3E",
+          "pulse": "#803E3E50",
+          "text": "#662E2E"
+        }
+      },
+      "interactive": {
+        "primaryBg": "#1A1A1E",
+        "primaryText": "#F5F2ED",
+        "primaryHover": "#2A2A30",
+        "ghostHover": "#00000006",
+        "ghostActive": "#0000000E"
+      }
+    }
+  },
+
+  "spacing": {
+    "base": 4,
+    "scale": {
+      "0": "0px",
+      "1": "4px",
+      "2": "8px",
+      "3": "12px",
+      "4": "16px",
+      "5": "20px",
+      "6": "24px",
+      "8": "32px",
+      "10": "40px",
+      "12": "48px",
+      "16": "64px",
+      "20": "80px",
+      "24": "96px"
+    },
+    "semantic": {
+      "cardPaddingX": "16px",
+      "cardPaddingY": "14px",
+      "cardGap": "8px",
+      "sectionGap": "24px",
+      "pageHorizontal": "20px",
+      "pageTop": "24px",
+      "bottomNavHeight": "64px",
+      "bottomNavPaddingY": "12px",
+      "sheetHandleHeight": "4px",
+      "sheetHandleWidth": "36px",
+      "touchTargetMin": "44px"
+    }
+  },
+
+  "radii": {
+    "none": "0px",
+    "sm": "6px",
+    "md": "10px",
+    "lg": "16px",
+    "xl": "22px",
+    "full": "9999px",
+    "semantic": {
+      "card": "10px",
+      "sheet": "20px",
+      "badge": "6px",
+      "button": "9999px",
+      "input": "10px",
+      "checkbox": "5px",
+      "heatmapCell": "3px",
+      "progressRing": "9999px",
+      "appIcon": "22%"
+    }
+  },
+
+  "shadows": {
+    "dark": {
+      "sm": "none",
+      "md": "none",
+      "lg": "none",
+      "note": "Dark mode elevation is communicated via background color, not shadow"
+    },
+    "light": {
+      "sm": "0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04)",
+      "md": "0 4px 12px rgba(0,0,0,0.08), 0 2px 4px rgba(0,0,0,0.04)",
+      "lg": "0 8px 24px rgba(0,0,0,0.10), 0 4px 8px rgba(0,0,0,0.06)"
+    },
+    "special": {
+      "closeDayGlow": {
+        "description": "Applied to the Close Day button after 6pm. Color is determined at runtime by the area with most completed tasks.",
+        "template": "0 0 20px {areaAccent}40, 0 0 8px {areaAccent}20"
+      }
+    }
+  },
+
+  "animation": {
+    "durations": {
+      "fast": "150ms",
+      "normal": "250ms",
+      "slow": "400ms"
+    },
+    "easing": {
+      "default": "cubic-bezier(0.25, 0, 0, 1)",
+      "note": "Single easing for all transitions. No bounces, no springs."
+    },
+    "transitions": {
+      "default": "all 250ms cubic-bezier(0.25, 0, 0, 1)",
+      "fast": "all 150ms cubic-bezier(0.25, 0, 0, 1)",
+      "slow": "all 400ms cubic-bezier(0.25, 0, 0, 1)",
+      "color": "color 150ms cubic-bezier(0.25, 0, 0, 1), background-color 150ms cubic-bezier(0.25, 0, 0, 1)",
+      "transform": "transform 250ms cubic-bezier(0.25, 0, 0, 1)"
+    },
+    "keyframes": {
+      "checkmark": {
+        "description": "Stroke drawn left to right on task completion",
+        "duration": "300ms",
+        "easing": "cubic-bezier(0.25, 0, 0, 1)"
+      },
+      "zombiePulse": {
+        "description": "Slow opacity pulse on zombie task indicator",
+        "duration": "2400ms",
+        "easing": "ease-in-out",
+        "iterationCount": "infinite",
+        "opacityRange": [0.4, 1]
+      },
+      "sheetEnter": {
+        "description": "Bottom sheet slides up from bottom",
+        "duration": "400ms",
+        "easing": "cubic-bezier(0.25, 0, 0, 1)",
+        "from": { "transform": "translateY(100%)" },
+        "to": { "transform": "translateY(0)" }
+      },
+      "sheetExit": {
+        "description": "Bottom sheet slides down on dismiss",
+        "duration": "300ms",
+        "easing": "cubic-bezier(0.25, 0, 0, 1)",
+        "from": { "transform": "translateY(0)" },
+        "to": { "transform": "translateY(100%)" }
+      },
+      "fadeIn": {
+        "duration": "250ms",
+        "easing": "cubic-bezier(0.25, 0, 0, 1)",
+        "from": { "opacity": 0 },
+        "to": { "opacity": 1 }
+      }
+    }
+  },
+
+  "components": {
+    "taskCard": {
+      "paddingX": "16px",
+      "paddingY": "14px",
+      "borderRadius": "10px",
+      "borderWidth": "1px",
+      "areaBarWidth": "3px",
+      "areaBarRadius": "9999px",
+      "gap": "8px",
+      "minHeight": "56px",
+      "swipeThreshold": "80px",
+      "states": {
+        "default": { "bg": "background.surface", "border": "border.subtle" },
+        "pressed": { "bg": "background.elevated", "border": "border.default" },
+        "done": {
+          "bg": "background.base",
+          "border": "border.subtle",
+          "opacity": 0.6
+        },
+        "zombie": { "border": "status.zombie.default" }
+      }
+    },
+    "bottomNav": {
+      "height": "64px",
+      "paddingY": "12px",
+      "paddingX": "20px",
+      "iconSize": "20px",
+      "labelSize": "xs",
+      "plusButtonSize": "48px",
+      "plusButtonRadius": "9999px",
+      "plusIconSize": "22px",
+      "backdropBlur": "12px",
+      "borderTop": "1px solid border.subtle"
+    },
+    "sheet": {
+      "borderRadius": "20px 20px 0 0",
+      "handleWidth": "36px",
+      "handleHeight": "4px",
+      "handleRadius": "9999px",
+      "handleColor": "border.strong",
+      "handleMarginTop": "12px",
+      "paddingX": "20px",
+      "paddingTop": "8px",
+      "paddingBottom": "32px",
+      "backdropColor": "rgba(0,0,0,0.6)",
+      "backdropBlur": "2px"
+    },
+    "badge": {
+      "paddingX": "8px",
+      "paddingY": "3px",
+      "borderRadius": "6px",
+      "fontSize": "xs",
+      "fontWeight": 500
+    },
+    "button": {
+      "primary": {
+        "height": "48px",
+        "paddingX": "24px",
+        "borderRadius": "9999px",
+        "fontSize": "base",
+        "fontWeight": 500
+      },
+      "ghost": {
+        "height": "40px",
+        "paddingX": "16px",
+        "borderRadius": "9999px",
+        "fontSize": "sm",
+        "fontWeight": 400
+      },
+      "icon": {
+        "size": "40px",
+        "borderRadius": "9999px",
+        "iconSize": "18px"
+      }
+    },
+    "input": {
+      "height": "48px",
+      "paddingX": "16px",
+      "borderRadius": "10px",
+      "fontSize": "base",
+      "borderWidth": "1px",
+      "states": {
+        "default": { "border": "border.subtle", "bg": "background.surface" },
+        "focus": { "border": "border.strong", "bg": "background.surface" },
+        "error": { "border": "status.destructive.default" }
+      }
+    },
+    "heatmap": {
+      "cellSize": "12px",
+      "cellRadius": "3px",
+      "cellGap": "3px",
+      "emptyOpacity": 0.12,
+      "filledOpacity": 1
+    },
+    "progressRing": {
+      "sizes": {
+        "sm": { "diameter": "40px", "strokeWidth": "3px" },
+        "md": { "diameter": "56px", "strokeWidth": "4px" },
+        "lg": { "diameter": "80px", "strokeWidth": "5px" }
+      },
+      "trackOpacity": 0.15
+    },
+    "dailyCounter": {
+      "description": "The X/7 badge always visible in Today view",
+      "font": "mono",
+      "size": "sm",
+      "weight": 500,
+      "states": {
+        "low": { "max": 4, "color": "text.secondary" },
+        "warning": { "min": 5, "max": 6, "color": "status.warning.text" },
+        "full": { "min": 7, "color": "status.destructive.text" }
+      }
+    }
+  },
+
+  "logo": {
+    "wordmark": {
+      "text": "cadence",
+      "font": "display",
+      "weight": 300,
+      "letterSpacing": "-0.02em",
+      "case": "lowercase"
+    },
+    "icon": {
+      "character": "c",
+      "font": "display",
+      "weight": 300,
+      "background": "#17171A",
+      "foreground": "#F0EDE8",
+      "borderRadius": "22%",
+      "sizes": {
+        "favicon": "32px",
+        "pwaSmall": "192px",
+        "pwaLarge": "512px",
+        "maskable": "512px"
+      }
+    }
+  },
+
+  "pwa": {
+    "themeColor": "#0E0E0F",
+    "backgroundColor": "#0E0E0F",
+    "display": "standalone",
+    "orientation": "portrait"
+  },
+
+  "constants": {
+    "dailyTaskLimit": 7,
+    "dailyTaskWarning": 5,
+    "zombieDays": 2,
+    "maxGoalsPerArea": 3,
+    "areas": ["work", "personal", "identity"],
+    "closeDayAfterHour": 18
+  }
+}
