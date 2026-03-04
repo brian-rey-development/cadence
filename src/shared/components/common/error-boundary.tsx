@@ -18,17 +18,21 @@ export default class ErrorBoundary extends Component<Props, State> {
     return { hasError: true };
   }
 
+  componentDidCatch(error: Error, info: React.ErrorInfo) {
+    console.error(error, info);
+  }
+
   render() {
     if (this.state.hasError) {
       return (
         this.props.fallback ?? (
           <div className="flex flex-col items-center justify-center gap-2 py-16 text-center">
-            <p className="text-[15px] font-['DM_Sans'] text-[#8A8A95]">
+            <p className="text-[15px] font-['DM_Sans'] text-[var(--color-text-secondary)]">
               Something went wrong.
             </p>
             <button
               type="button"
-              className="text-[13px] font-['DM_Sans'] text-[#F0EDE8] underline"
+              className="text-[13px] font-['DM_Sans'] text-[var(--color-text-primary)] underline"
               onClick={() => this.setState({ hasError: false })}
             >
               Try again
