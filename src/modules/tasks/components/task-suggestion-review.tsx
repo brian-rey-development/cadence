@@ -1,5 +1,6 @@
 "use client";
 
+import { Link } from "lucide-react";
 import { useState } from "react";
 import type { GoalModel } from "@/db/schema/goals";
 import type { CreateTaskResponse } from "@/modules/ai/prompts/create-task";
@@ -207,6 +208,21 @@ export default function TaskSuggestionReview({
               </option>
             ))}
           </select>
+          {goalId === null && (
+            <div className="flex items-center gap-1.5 mt-1">
+              <Link
+                size={12}
+                strokeWidth={1.5}
+                style={{ color: "var(--color-text-tertiary)" }}
+              />
+              <span
+                className="text-[12px] font-['DM_Sans']"
+                style={{ color: "var(--color-text-tertiary)" }}
+              >
+                No quarter goal linked
+              </span>
+            </div>
+          )}
         </div>
       )}
 
