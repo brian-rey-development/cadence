@@ -18,7 +18,7 @@ export async function saveWeeklyReview(
   const session = await requireAuth();
 
   await db.insert(weeklyReviews).values({
-    userId: session.user.id,
+    userId: session.id,
     weekStart: input.weekStart,
     wins: input.wins,
     blockers: input.blockers,

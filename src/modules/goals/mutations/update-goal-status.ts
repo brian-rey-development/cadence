@@ -15,7 +15,7 @@ export async function updateGoalStatus(
   await db
     .update(goals)
     .set({ status, updatedAt: new Date() })
-    .where(and(eq(goals.id, goalId), eq(goals.userId, session.user.id)));
+    .where(and(eq(goals.id, goalId), eq(goals.userId, session.id)));
 
   revalidatePath("/quarter");
 }

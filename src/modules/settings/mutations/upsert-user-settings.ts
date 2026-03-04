@@ -16,7 +16,7 @@ export async function upsertUserSettings(
   input: UpsertSettingsInput,
 ): Promise<void> {
   const session = await requireAuth();
-  const userId = session.user.id;
+  const userId = session.id;
 
   await db
     .insert(userSettings)

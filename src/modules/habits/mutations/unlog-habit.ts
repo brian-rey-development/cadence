@@ -15,7 +15,7 @@ export async function unlogHabit(habitId: string, date: string): Promise<void> {
       and(
         eq(habitLogs.habitId, habitId),
         eq(habitLogs.date, date),
-        eq(habitLogs.userId, session.user.id),
+        eq(habitLogs.userId, session.id),
       ),
     );
 

@@ -8,7 +8,7 @@ import {
 
 export default async function QuarterPage() {
   const session = await requireAuth();
-  const goals = await getGoalsForQuarter(session.user.id);
+  const goals = await getGoalsForQuarter(session.id);
   const quarterLabel = formatQuarterLabel(currentQuarter());
 
   return (

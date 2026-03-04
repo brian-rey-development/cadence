@@ -10,7 +10,7 @@ export async function createTask(data: NewTask): Promise<TaskWithGoal> {
 
   const [inserted] = await db
     .insert(tasks)
-    .values({ ...data, userId: session.user.id })
+    .values({ ...data, userId: session.id })
     .returning();
 
   return { ...inserted, goal: null };

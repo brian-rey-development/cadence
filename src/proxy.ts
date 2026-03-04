@@ -24,17 +24,17 @@ export async function proxy(request: NextRequest) {
   });
 
   const {
-    data: { session },
-  } = await supabase.auth.getSession();
+    data: { user },
+  } = await supabase.auth.getUser();
 
   const isProtected = PROTECTED_PATHS.some((p) => pathname.startsWith(p));
   const isAuthPath = AUTH_PATHS.some((p) => pathname.startsWith(p));
 
-  if (isProtected && !session) {
+  if (isProtected && !user) {
     return NextResponse.redirect(new URL("/login", request.url));
   }
 
-  if (isAuthPath && session) {
+  if (isAuthPath && user) {
     return NextResponse.redirect(new URL("/today", request.url));
   }
 

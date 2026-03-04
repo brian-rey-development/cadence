@@ -12,7 +12,7 @@ export async function archiveTask(taskId: string): Promise<void> {
   await db
     .update(tasks)
     .set({ status: "archived", updatedAt: new Date() })
-    .where(and(eq(tasks.id, taskId), eq(tasks.userId, session.user.id)));
+    .where(and(eq(tasks.id, taskId), eq(tasks.userId, session.id)));
 
   revalidatePath("/today");
 }

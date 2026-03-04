@@ -24,7 +24,7 @@ export async function postponeTask({
       postponeCount: sql`${tasks.postponeCount} + 1`,
       updatedAt: new Date(),
     })
-    .where(and(eq(tasks.id, taskId), eq(tasks.userId, session.user.id)));
+    .where(and(eq(tasks.id, taskId), eq(tasks.userId, session.id)));
 
   revalidatePath("/today");
 }

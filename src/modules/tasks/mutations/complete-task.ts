@@ -16,7 +16,7 @@ export async function completeTask(taskId: string): Promise<void> {
       completedAt: new Date(),
       updatedAt: new Date(),
     })
-    .where(and(eq(tasks.id, taskId), eq(tasks.userId, session.user.id)));
+    .where(and(eq(tasks.id, taskId), eq(tasks.userId, session.id)));
 
   revalidatePath("/today");
 }

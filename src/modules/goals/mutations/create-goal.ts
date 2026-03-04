@@ -13,7 +13,7 @@ type CreateGoalInput = Omit<NewGoal, "userId" | "quarter" | "status">;
 
 export async function createGoal(data: CreateGoalInput): Promise<void> {
   const session = await requireAuth();
-  const userId = session.user.id;
+  const userId = session.id;
   const quarter = currentQuarter();
 
   const [{ value: activeCount }] = await db

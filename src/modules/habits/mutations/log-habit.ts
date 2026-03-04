@@ -11,7 +11,7 @@ export async function logHabit(habitId: string, date: string): Promise<void> {
   await db.insert(habitLogs).values({
     habitId,
     date,
-    userId: session.user.id,
+    userId: session.id,
   });
 
   revalidatePath("/habits");

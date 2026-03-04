@@ -17,7 +17,7 @@ export async function saveDailyReview({
   aiSummary,
 }: SaveDailyReviewInput): Promise<void> {
   const session = await requireAuth();
-  const userId = session.user.id;
+  const userId = session.id;
 
   const existing = await db.query.dailyReviews.findFirst({
     where: and(eq(dailyReviews.userId, userId), eq(dailyReviews.date, date)),

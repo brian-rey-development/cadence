@@ -13,7 +13,7 @@ export async function createHabit(data: NewHabit): Promise<void> {
     name: data.name,
     area: data.area,
     weeklyFrequency: data.weeklyFrequency,
-    userId: session.user.id,
+    userId: session.id,
   });
 
   revalidatePath("/habits");

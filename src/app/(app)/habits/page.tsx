@@ -13,7 +13,7 @@ export default async function HabitsPage() {
     new Date(Date.now() - (HABIT_HEATMAP_DAYS - 1) * 24 * 60 * 60 * 1000),
   );
 
-  const habits = await getHabitsWithLogs(session.user.id, startDate);
+  const habits = await getHabitsWithLogs(session.id, startDate);
   const consistency = weeklyConsistency(habits);
 
   return (

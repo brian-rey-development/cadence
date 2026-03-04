@@ -7,7 +7,7 @@ import WeekClient from "./week-client";
 
 export default async function Page() {
   const session = await requireAuth();
-  const userId = session.user.id;
+  const userId = session.id;
 
   const start = weekStart();
 

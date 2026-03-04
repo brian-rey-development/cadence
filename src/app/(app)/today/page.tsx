@@ -9,7 +9,7 @@ import TodayClient from "./today-client";
 
 export default async function TodayPage() {
   const session = await requireAuth();
-  const userId = session.user.id;
+  const userId = session.id;
   const date = today();
 
   const [tasks, habitSummary] = await Promise.all([

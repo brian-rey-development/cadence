@@ -4,8 +4,8 @@ import { createClient } from "@/shared/lib/supabase/server";
 export default async function RootPage() {
   const supabase = await createClient();
   const {
-    data: { session },
-  } = await supabase.auth.getSession();
+    data: { user },
+  } = await supabase.auth.getUser();
 
-  redirect(session ? "/today" : "/login");
+  redirect(user ? "/today" : "/login");
 }
