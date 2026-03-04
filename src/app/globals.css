@@ -1,26 +1,140 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ─── Cadence Design Tokens ─────────────────────────────────────────── */
+
+@theme {
+  /* Fonts */
+  --font-display: var(--font-fraunces), serif;
+  --font-body: var(--font-dm-sans), sans-serif;
+  --font-mono: var(--font-dm-mono), monospace;
+
+  /* Dark-mode backgrounds (default) */
+  --color-bg-base: #0e0e0f;
+  --color-bg-surface: #17171a;
+  --color-bg-elevated: #1f1f24;
+  --color-bg-overlay: #252529;
+
+  /* Dark-mode borders */
+  --color-border-subtle: #2a2a30;
+  --color-border-default: #33333b;
+  --color-border-strong: #3a3a42;
+
+  /* Dark-mode text */
+  --color-text-primary: #f0ede8;
+  --color-text-secondary: #8a8a95;
+  --color-text-tertiary: #55555f;
+  --color-text-disabled: #3a3a42;
+
+  /* Areas */
+  --color-work-accent: #4aada8;
+  --color-work-subtle: #4aada814;
+  --color-work-border: #4aada830;
+  --color-work-text: #6bbfba;
+
+  --color-personal-accent: #c17d4e;
+  --color-personal-subtle: #c17d4e14;
+  --color-personal-border: #c17d4e30;
+  --color-personal-text: #ce9570;
+
+  --color-identity-accent: #7b6fa0;
+  --color-identity-subtle: #7b6fa014;
+  --color-identity-border: #7b6fa030;
+  --color-identity-text: #9589ba;
+
+  /* Status */
+  --color-success: #5a9e72;
+  --color-success-subtle: #5a9e7214;
+  --color-success-text: #72b589;
+
+  --color-warning: #b8924a;
+  --color-warning-subtle: #b8924a14;
+  --color-warning-text: #caaa6a;
+
+  --color-destructive: #9e5a5a;
+  --color-destructive-subtle: #9e5a5a14;
+  --color-destructive-text: #b57575;
+
+  --color-zombie: #9e5a5a;
+  --color-zombie-pulse: #9e5a5a60;
+  --color-zombie-text: #b57575;
+
+  /* Interactive */
+  --color-primary-bg: #f0ede8;
+  --color-primary-text: #0e0e0f;
+  --color-primary-hover: #e0ddd8;
+  --color-ghost-hover: #ffffff08;
+  --color-ghost-active: #ffffff12;
+
+  /* Radii */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 22px;
+  --radius-full: 9999px;
+  --radius-card: 10px;
+  --radius-sheet: 20px;
+  --radius-badge: 6px;
+  --radius-button: 9999px;
+  --radius-input: 10px;
+  --radius-checkbox: 5px;
+  --radius-heatmap-cell: 3px;
+
+  /* Spacing semantic */
+  --spacing-bottom-nav: 64px;
+  --spacing-touch-target: 44px;
+
+  /* Animation */
+  --ease-default: cubic-bezier(0.25, 0, 0, 1);
+  --duration-fast: 150ms;
+  --duration-normal: 250ms;
+  --duration-slow: 400ms;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+/* ─── Light-mode overrides ───────────────────────────────────────────── */
+@media (prefers-color-scheme: light) {
+  @theme {
+    --color-bg-base: #f5f2ed;
+    --color-bg-surface: #fffcf8;
+    --color-bg-elevated: #ffffff;
+    --color-bg-overlay: #f0ede6;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --color-border-subtle: #e2ddd6;
+    --color-border-default: #d4cec6;
+    --color-border-strong: #c0b9b0;
+
+    --color-text-primary: #1a1a1e;
+    --color-text-secondary: #6b6b75;
+    --color-text-tertiary: #9a9aa5;
+    --color-text-disabled: #c8c8d0;
+
+    --color-work-accent: #37918c;
+    --color-work-subtle: #37918c12;
+    --color-work-border: #37918c25;
+    --color-work-text: #2a706c;
+
+    --color-personal-accent: #a66238;
+    --color-personal-subtle: #a6623812;
+    --color-personal-border: #a6623825;
+    --color-personal-text: #854e2c;
+
+    --color-identity-accent: #62578a;
+    --color-identity-subtle: #62578a12;
+    --color-identity-border: #62578a25;
+    --color-identity-text: #4e446f;
+
+    --color-primary-bg: #1a1a1e;
+    --color-primary-text: #f5f2ed;
+    --color-primary-hover: #2a2a30;
+    --color-ghost-hover: #00000006;
+    --color-ghost-active: #0000000e;
   }
 }
 
+/* ─── Base styles ────────────────────────────────────────────────────── */
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-bg-base);
+  color: var(--color-text-primary);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
