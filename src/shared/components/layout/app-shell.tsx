@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import CreateTaskSheet from "@/modules/tasks/components/create-task-sheet";
+import ErrorBoundary from "@/shared/components/common/error-boundary";
 import InstallPrompt from "@/shared/components/common/install-prompt";
 import OfflineBanner from "@/shared/components/common/offline-banner";
 import BottomNav from "./bottom-nav";
@@ -17,7 +18,9 @@ export default function AppShell({ children }: AppShellProps) {
     <div className="relative flex min-h-svh flex-col bg-[var(--color-bg-base)]">
       <OfflineBanner />
       <InstallPrompt />
-      <main className="flex-1 overflow-y-auto pb-[64px]">{children}</main>
+      <main className="flex-1 overflow-y-auto pb-[64px]">
+        <ErrorBoundary>{children}</ErrorBoundary>
+      </main>
       <BottomNav onPlusClick={() => setIsCreateOpen(true)} />
       <CreateTaskSheet
         isOpen={isCreateOpen}
