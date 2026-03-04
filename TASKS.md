@@ -23,14 +23,14 @@
 
 ---
 
-## Epic 3: Authentication []
+## Epic 3: Authentication [x]
 *The user can log in with a magic link and reach a protected app.*
 
-- [ ] As a user, I see a minimal login screen with the Cadence wordmark and an email input when I'm not authenticated
-- [ ] As a user, I receive a magic link email after submitting my address so I can log in without a password
-- [ ] As a user, I am redirected to `/today` after clicking the magic link so I land in the right place immediately
-- [ ] As a user, unauthenticated routes redirect me to `/login` so my data is never exposed
-- [ ] As a developer, `requireAuth()` in `modules/auth/utils.ts` throws and redirects if there is no session so I never write the same guard twice
+- [x] As a user, I see a minimal login screen with the Cadence wordmark and an email input when I'm not authenticated
+- [x] As a user, I receive a magic link email after submitting my address so I can log in without a password
+- [x] As a user, I am redirected to `/today` after clicking the magic link so I land in the right place immediately
+- [x] As a user, unauthenticated routes redirect me to `/login` so my data is never exposed
+- [x] As a developer, `requireAuth()` in `modules/auth/utils.ts` throws and redirects if there is no session so I never write the same guard twice
 
 ---
 
