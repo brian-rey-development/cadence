@@ -49,12 +49,12 @@ export default function TaskList({
   })).filter((g) => g.tasks.length > 0);
 
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-8">
       {grouped.map(({ area, tasks: areaTasks }) => (
-        <section key={area} className="flex flex-col gap-2">
+        <section key={area} className="flex flex-col">
           <h2
-            className="text-xs font-['DM_Sans'] font-medium uppercase tracking-widest px-1"
-            style={{ color: AREA_CONFIG[area].text }}
+            className="text-2xs font-body font-semibold uppercase tracking-label mb-1"
+            style={{ color: AREA_CONFIG[area].accent }}
           >
             {AREA_CONFIG[area].label}
           </h2>

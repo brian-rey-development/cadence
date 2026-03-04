@@ -21,6 +21,7 @@ type BuildPromptInput = {
   area: string;
   daysSinceCreated: number;
   goals: Goal[];
+  userContext?: string | null;
 };
 
 export function buildPrompt({
@@ -28,13 +29,18 @@ export function buildPrompt({
   area,
   daysSinceCreated,
   goals,
+  userContext,
 }: BuildPromptInput): string {
   const goalsList =
     goals.length > 0
       ? goals.map((g) => `- ${g.title}`).join("\n")
       : "No active goals.";
 
+  const userBlock = userContext ? `${userContext}\n\n` : "";
+
   return `You are a productivity assistant helping the user fix a stalled task in Cadence.
+
+${userBlock}
 
 This task has been postponed for ${daysSinceCreated} days without completion. It may be too vague, too large, or unclear.
 

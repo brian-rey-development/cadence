@@ -30,7 +30,9 @@ export default function GoalMilestones({
       userId: "placeholder",
       title,
       area,
+      type: "daily",
       date: targetDate,
+      weekStart: null,
       goalId,
       status: "pending",
       postponeCount: 0,
@@ -51,13 +53,13 @@ export default function GoalMilestones({
               style={{ backgroundColor: accentColor }}
             />
             <span
-              className="font-['DM_Sans'] text-[13px] font-medium leading-snug"
+              className="font-body text-sm font-medium leading-snug"
               style={{ color: "var(--color-text-primary)" }}
             >
               {milestone.title}
             </span>
             <span
-              className="font-['DM_Mono'] text-[10px] ml-auto shrink-0"
+              className="font-mono text-2xs ml-auto shrink-0"
               style={{ color: "var(--color-text-tertiary)" }}
             >
               {milestone.targetDate}
@@ -82,7 +84,7 @@ export default function GoalMilestones({
                   className="shrink-0"
                 />
                 <span
-                  className="font-['DM_Sans'] text-[12px] leading-snug"
+                  className="font-body text-xs leading-snug"
                   style={{ color: "var(--color-text-secondary)" }}
                 >
                   {taskTitle}

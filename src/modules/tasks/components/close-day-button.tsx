@@ -42,7 +42,7 @@ export default function CloseDayButton({
     <button
       type="button"
       onClick={onClick}
-      className="flex items-center gap-2 min-h-[44px] px-6 rounded-full font-['DM_Sans'] text-sm font-medium transition-all active:opacity-80"
+      className="flex items-center gap-2 min-h-11 px-6 rounded-full font-body text-sm font-medium transition-all active:opacity-80"
       style={{
         backgroundColor: "var(--color-bg-surface)",
         color: "var(--color-text-primary)",

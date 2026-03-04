@@ -11,3 +11,8 @@ export const goalStatusEnum = pgEnum("goal_status", [
   "achieved",
   "abandoned",
 ]);
+export const taskTypeEnum = pgEnum("task_type", [
+  "daily",
+  "weekly",
+  "quarterly",
+]);

@@ -11,20 +11,11 @@ export default function WeekIntentionsBanner({
 
   return (
     <div
-      className="flex gap-3 rounded-xl px-4 py-4"
-      style={{
-        backgroundColor: "var(--color-bg-elevated)",
-        border: "1px solid var(--color-border-subtle)",
-      }}
+      className="flex gap-3 py-3 pl-4"
+      style={{ borderLeft: "2px solid var(--color-border-subtle)" }}
     >
-      <Quote
-        size={16}
-        strokeWidth={1.5}
-        className="mt-0.5 shrink-0"
-        style={{ color: "var(--color-text-tertiary)" }}
-      />
       <p
-        className="text-sm leading-relaxed"
+        className="text-sm leading-relaxed italic"
         style={{ color: "var(--color-text-secondary)" }}
       >
         {intentions}

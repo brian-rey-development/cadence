@@ -10,6 +10,11 @@ export const userSettings = pgTable("user_settings", {
   pushSubscription: text("push_subscription"), // JSON-stringified PushSubscriptionJSON
   lastMorningSentDate: text("last_morning_sent_date"), // "YYYY-MM-DD"
   lastEveningSentDate: text("last_evening_sent_date"), // "YYYY-MM-DD"
+  // AI profile fields
+  aiDisplayName: text("ai_display_name"),
+  aiRole: text("ai_role"),
+  aiAbout: text("ai_about"),
+  aiWorkStyle: text("ai_work_style"),
   createdAt: timestamp("created_at", { withTimezone: true })
     .notNull()
     .defaultNow(),

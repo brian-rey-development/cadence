@@ -14,7 +14,7 @@ export default function ReviewStepStats({
   return (
     <div className="flex flex-col gap-6">
       <div>
-        <h3 className="font-['Fraunces'] text-lg text-[var(--color-text-primary)] mb-4">
+        <h3 className="font-display text-lg text-text-primary mb-4">
           This week at a glance
         </h3>
 
@@ -38,15 +38,15 @@ export default function ReviewStepStats({
                       className="w-2 h-2 rounded-full"
                       style={{ backgroundColor: config.accent }}
                     />
-                    <span className="text-[13px] font-['DM_Sans'] text-[var(--color-text-secondary)]">
+                    <span className="text-sm font-body text-text-secondary">
                       {config.label}
                     </span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <span className="font-['DM_Mono'] text-[13px] text-[var(--color-text-secondary)]">
+                    <span className="font-mono text-sm text-text-secondary">
                       {areaStats.completed}/{areaStats.total}
                     </span>
-                    <span className="font-['DM_Mono'] text-[13px] text-[var(--color-text-primary)]">
+                    <span className="font-mono text-sm text-text-primary">
                       {pct}%
                     </span>
                   </div>
@@ -73,10 +73,8 @@ export default function ReviewStepStats({
         className="flex items-center justify-between rounded-lg px-4 py-3"
         style={{ backgroundColor: "var(--color-bg-subtle)" }}
       >
-        <span className="text-sm text-[var(--color-text-secondary)]">
-          Habit consistency
-        </span>
-        <span className="font-['DM_Mono'] text-base text-[var(--color-text-primary)]">
+        <span className="text-sm text-text-secondary">Habit consistency</span>
+        <span className="font-mono text-base text-text-primary">
           {stats.habitConsistency}%
         </span>
       </div>
@@ -90,7 +88,7 @@ export default function ReviewStepStats({
           }}
         >
           <span
-            className="font-['DM_Mono'] text-xs"
+            className="font-mono text-xs"
             style={{ color: "var(--color-zombie-text)" }}
           >
             ☠

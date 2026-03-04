@@ -57,7 +57,9 @@ export default function CreateTaskSheet({
   function handleConfirm(data: {
     title: string;
     area: Area;
-    date: string;
+    type: "daily" | "weekly" | "quarterly";
+    date: string | null;
+    weekStart: string | null;
     goalId: string | null;
   }) {
     createTask(
@@ -65,7 +67,9 @@ export default function CreateTaskSheet({
         userId: "optimistic",
         title: data.title,
         area: data.area,
+        type: data.type,
         date: data.date,
+        weekStart: data.weekStart,
         goalId: data.goalId ?? null,
         status: "pending",
         postponeCount: 0,

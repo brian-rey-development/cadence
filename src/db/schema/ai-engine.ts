@@ -9,6 +9,7 @@ import {
   unique,
   uuid,
 } from "drizzle-orm/pg-core";
+
 import { goals } from "./goals";
 import { tasks } from "./tasks";
 
@@ -101,7 +102,23 @@ export const aiUserContext = pgTable("ai_user_context", {
     .defaultNow(),
 }).enableRLS();
 
+export const aiDailyQuotes = pgTable(
+  "ai_daily_quotes",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    userId: uuid("user_id").notNull(),
+    date: text("date").notNull(), // "YYYY-MM-DD"
+    quote: text("quote").notNull(),
+    theme: text("theme").notNull(),
+    createdAt: timestamp("created_at", { withTimezone: true })
+      .notNull()
+      .defaultNow(),
+  },
+  (t) => [unique("ai_daily_quotes_user_date_unique").on(t.userId, t.date)],
+).enableRLS();
+
 export type AiEmbeddingModel = typeof aiEmbeddings.$inferSelect;
 export type AiTaskScoreModel = typeof aiTaskScores.$inferSelect;
 export type AiGoalBreakdownModel = typeof aiGoalBreakdowns.$inferSelect;
 export type AiUserContextModel = typeof aiUserContext.$inferSelect;
+export type AiDailyQuoteModel = typeof aiDailyQuotes.$inferSelect;

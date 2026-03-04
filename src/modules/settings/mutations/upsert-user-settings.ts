@@ -10,6 +10,10 @@ type UpsertSettingsInput = {
   morningNotificationTime: string | null;
   eveningNotificationTime: string | null;
   timezone: string;
+  aiDisplayName?: string | null;
+  aiRole?: string | null;
+  aiAbout?: string | null;
+  aiWorkStyle?: string | null;
 };
 
 export async function upsertUserSettings(

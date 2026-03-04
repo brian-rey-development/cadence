@@ -68,10 +68,10 @@ export default function TaskCard({
   }
 
   return (
-    <div className="relative overflow-hidden rounded-[10px]">
+    <div className="relative overflow-hidden">
       {/* Archive reveal layer */}
       <motion.div
-        className="absolute inset-y-0 right-0 flex items-center justify-end pr-4 rounded-[10px]"
+        className="absolute inset-0 flex items-center justify-end pr-4"
         style={{
           opacity: archiveOpacity,
           backgroundColor: "var(--color-destructive-subtle)",
@@ -85,47 +85,31 @@ export default function TaskCard({
         />
       </motion.div>
 
-      {/* Card */}
+      {/* Row */}
       <motion.div
         drag="x"
         dragConstraints={{ left: -120, right: 0 }}
         dragElastic={0.1}
-        style={{
-          x,
-          backgroundColor: isDone
-            ? "var(--color-bg-base)"
-            : "var(--color-bg-surface)",
-          opacity: isDone ? 0.6 : 1,
-          border:
-            zombieAge !== null
-              ? "1px solid var(--color-zombie)"
-              : "1px solid var(--color-border-subtle)",
-        }}
+        style={{ x, opacity: isDone ? 0.45 : 1 }}
         onDragEnd={handleDragEnd}
-        className="relative flex items-center gap-3 rounded-[10px] min-h-[56px] px-4 py-[14px]"
+        className="relative flex items-center gap-3 min-h-11 py-2.5"
       >
-        {/* Area bar */}
-        <div
-          className="absolute left-0 inset-y-2 w-[3px] rounded-full"
-          style={{ backgroundColor: areaColor }}
+        <Checkbox
+          checked={isDone}
+          onChange={() => !isDone && onComplete(task.id)}
+          disabled={isDone}
         />
-
-        <div className="ml-2">
-          <Checkbox
-            checked={isDone}
-            onChange={() => !isDone && onComplete(task.id)}
-            disabled={isDone}
-          />
-        </div>
 
         <div className="flex-1 min-w-0 flex flex-col gap-0.5">
           <div className="flex items-center gap-2">
             <span
-              className="font-['DM_Sans'] text-sm leading-snug truncate"
+              className="font-body text-sm leading-snug truncate"
               style={{
-                color: "var(--color-text-primary)",
+                color:
+                  zombieAge !== null
+                    ? "var(--color-zombie-text)"
+                    : "var(--color-text-primary)",
                 textDecoration: isDone ? "line-through" : "none",
-                opacity: isDone ? 0.5 : 1,
               }}
             >
               {task.title}
@@ -143,8 +127,8 @@ export default function TaskCard({
           <div className="flex items-center gap-2">
             {task.goal && (
               <span
-                className="font-['DM_Sans'] text-[11px] truncate"
-                style={{ color: areaColor, opacity: 0.7 }}
+                className="font-body text-xs truncate"
+                style={{ color: "var(--color-text-tertiary)" }}
               >
                 {task.goal.title}
               </span>

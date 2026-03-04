@@ -45,7 +45,9 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
     return NextResponse.json({ error: "Goal not found" }, { status: 404 });
   }
 
-  console.log(`[goal-breakdown] generating on-demand for goal "${goal.title}" (${goalId})`);
+  console.log(
+    `[goal-breakdown] generating on-demand for goal "${goal.title}" (${goalId})`,
+  );
   const ragContext = await buildRagContext(user.id, goal.title);
 
   const { object } = await generateObject({
@@ -54,7 +56,9 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
     prompt: buildPrompt({ goal, ragContext, today: today() }),
   });
 
-  console.log(`[goal-breakdown] generated ${object.milestones.length} milestones for goal ${goalId}`);
+  console.log(
+    `[goal-breakdown] generated ${object.milestones.length} milestones for goal ${goalId}`,
+  );
   await upsertGoalBreakdown(user.id, goalId, object.milestones);
 
   const breakdown = await getGoalBreakdown(user.id, goalId);

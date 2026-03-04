@@ -5,7 +5,7 @@ import type { Area } from "@/shared/config/constants";
 import { AREAS } from "@/shared/config/constants";
 
 const LEGEND_CLASS =
-  "text-xs font-['DM_Sans'] font-medium uppercase tracking-widest mb-1.5";
+  "text-xs font-body font-medium uppercase tracking-widest mb-1.5";
 const LEGEND_STYLE = { color: "var(--color-text-tertiary)" };
 
 type AreaSelectorProps = {
@@ -29,7 +29,7 @@ export default function AreaSelector({ area, onChange }: AreaSelectorProps) {
               type="button"
               aria-pressed={isSelected}
               onClick={() => onChange(a)}
-              className="flex-1 rounded-[10px] py-2.5 text-[13px] font-medium font-['DM_Sans'] transition-colors duration-150 min-h-[44px]"
+              className="flex-1 rounded-md py-2.5 text-sm font-medium font-body transition-colors duration-150 min-h-11"
               style={{
                 backgroundColor: isSelected ? config.subtle : "transparent",
                 color: isSelected ? config.text : "var(--color-text-tertiary)",

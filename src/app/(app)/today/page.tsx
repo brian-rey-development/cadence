@@ -1,4 +1,5 @@
 import { getTaskScores } from "@/modules/ai-engine/queries/get-task-scores";
+import DailyQuote from "@/modules/ai/components/daily-quote";
 import { requireAuth } from "@/modules/auth/utils";
 import HabitSummaryBar from "@/modules/habits/components/habit-summary-bar";
 import { getHabitSummaryToday } from "@/modules/habits/queries/get-habit-summary-today";
@@ -31,13 +32,13 @@ export default async function TodayPage() {
         <header className="flex items-start justify-between">
           <div>
             <h1
-              className="font-['Fraunces'] text-2xl"
+              className="font-display text-2xl"
               style={{ color: "var(--color-text-primary)" }}
             >
               Today
             </h1>
             <p
-              className="text-[13px] font-['DM_Sans']"
+              className="text-sm font-body"
               style={{ color: "var(--color-text-tertiary)" }}
             >
               {new Date().toLocaleDateString("en-US", {
@@ -52,13 +53,15 @@ export default async function TodayPage() {
             <Link
               href="/settings"
               aria-label="Settings"
-              className="flex min-h-[44px] min-w-[44px] items-center justify-center rounded-full transition-colors duration-[150ms] active:bg-[var(--color-ghost-active)]"
+              className="flex min-h-11 min-w-11 items-center justify-center rounded-full transition-colors duration-150 active:bg-[var(--color-ghost-active)]"
               style={{ color: "var(--color-text-tertiary)" }}
             >
               <Settings size={20} strokeWidth={1.5} />
             </Link>
           </div>
         </header>
+
+        <DailyQuote />
 
         <TaskList initialTasks={tasks} initialScores={scores} date={date} />
 

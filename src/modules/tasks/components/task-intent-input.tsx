@@ -25,7 +25,7 @@ export default function TaskIntentInput({
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-4 pt-2">
       <p
-        className="text-sm font-['DM_Sans']"
+        className="text-sm font-body"
         style={{ color: "var(--color-text-secondary)" }}
       >
         Describe what you want to do in plain language.
@@ -37,7 +37,7 @@ export default function TaskIntentInput({
         placeholder="e.g. Prepare the Q2 proposal slides for Monday"
         rows={3}
         disabled={isLoading}
-        className="w-full resize-none rounded-[10px] px-4 py-3 text-[15px] font-['DM_Sans'] outline-none transition-colors duration-150 disabled:opacity-40"
+        className="w-full resize-none rounded-md px-4 py-3 text-sm font-body outline-none transition-colors duration-150 disabled:opacity-40"
         style={{
           backgroundColor: "var(--color-bg-base)",
           color: "var(--color-text-primary)",
@@ -53,9 +53,7 @@ export default function TaskIntentInput({
       />
 
       {error && (
-        <p className="text-[13px] font-['DM_Sans'] text-[var(--color-destructive-text)]">
-          {error}
-        </p>
+        <p className="text-sm font-body text-destructive-text">{error}</p>
       )}
 
       <Button

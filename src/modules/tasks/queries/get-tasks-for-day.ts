@@ -10,7 +10,11 @@ export async function getTasksForDay(
   date: string,
 ): Promise<TaskWithGoal[]> {
   return db.query.tasks.findMany({
-    where: and(eq(tasks.userId, userId), eq(tasks.date, date)),
+    where: and(
+      eq(tasks.userId, userId),
+      eq(tasks.date, date),
+      eq(tasks.type, "daily"),
+    ),
     with: { goal: true },
     orderBy: (t, { asc }) => [asc(t.createdAt)],
   });

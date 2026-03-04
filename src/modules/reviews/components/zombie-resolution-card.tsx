@@ -30,61 +30,47 @@ export default function ZombieResolutionCard({
 
   return (
     <div
-      className="relative rounded-xl px-4 py-3 flex flex-col gap-3"
+      className="flex flex-col gap-3 pl-4 py-3"
       style={{
-        backgroundColor: "var(--color-bg-surface)",
-        border: zombie
-          ? "1px solid var(--color-zombie)"
-          : "1px solid var(--color-border-subtle)",
+        borderLeft: `2px solid ${zombie ? "var(--color-zombie)" : config.accent}`,
       }}
     >
-      <div
-        className="absolute left-0 inset-y-2 w-[3px] rounded-full"
-        style={{ backgroundColor: config.accent }}
-      />
-
-      <div className="ml-2 flex items-center gap-2 flex-wrap">
+      <div className="flex items-center gap-2 flex-wrap">
         <span
-          className="font-['DM_Sans'] text-sm flex-1"
-          style={{ color: "var(--color-text-primary)" }}
+          className="font-body text-sm flex-1"
+          style={{
+            color: zombie
+              ? "var(--color-zombie-text)"
+              : "var(--color-text-primary)",
+          }}
         >
           {task.title}
         </span>
         {task.postponeCount > 0 && (
           <span
-            className="font-['DM_Mono'] text-xs px-1.5 py-0.5 rounded"
-            style={{
-              color: "var(--color-text-tertiary)",
-              backgroundColor: "var(--color-bg-elevated)",
-            }}
+            className="font-mono text-xs"
+            style={{ color: "var(--color-text-tertiary)" }}
           >
-            x{task.postponeCount}
+            ×{task.postponeCount}
           </span>
         )}
         {zombie && (
           <span
-            className="font-['DM_Mono'] text-xs px-1.5 py-0.5 rounded"
-            style={{
-              color: "var(--color-zombie-text)",
-              backgroundColor: "var(--color-status-zombie-subtle)",
-              border: "1px solid var(--color-zombie)",
-            }}
+            className="font-mono text-xs"
+            style={{ color: "var(--color-zombie-text)", opacity: 0.8 }}
           >
             {age}d stale
           </span>
         )}
       </div>
 
-      <div className="ml-2 flex gap-2">
+      <div className="flex gap-3">
         {zombie && (
           <button
             type="button"
             onClick={onReformulate}
-            className="flex-1 min-h-[36px] rounded-lg font-['DM_Sans'] text-xs font-medium transition-opacity active:opacity-70"
-            style={{
-              backgroundColor: config.subtle,
-              color: config.text,
-            }}
+            className="font-body text-xs font-medium transition-opacity active:opacity-50 min-h-9"
+            style={{ color: config.text }}
           >
             Reformulate
           </button>
@@ -92,22 +78,16 @@ export default function ZombieResolutionCard({
         <button
           type="button"
           onClick={() => onPostpone(tomorrow())}
-          className="flex-1 min-h-[36px] rounded-lg font-['DM_Sans'] text-xs font-medium transition-opacity active:opacity-70"
-          style={{
-            backgroundColor: "var(--color-bg-elevated)",
-            color: "var(--color-text-secondary)",
-          }}
+          className="font-body text-xs font-medium transition-opacity active:opacity-50 min-h-9"
+          style={{ color: "var(--color-text-secondary)" }}
         >
           Tomorrow
         </button>
         <button
           type="button"
           onClick={onArchive}
-          className="flex-1 min-h-[36px] rounded-lg font-['DM_Sans'] text-xs font-medium transition-opacity active:opacity-70"
-          style={{
-            backgroundColor: "var(--color-destructive-subtle)",
-            color: "var(--color-destructive)",
-          }}
+          className="font-body text-xs font-medium transition-opacity active:opacity-50 min-h-9"
+          style={{ color: "var(--color-destructive)" }}
         >
           Archive
         </button>

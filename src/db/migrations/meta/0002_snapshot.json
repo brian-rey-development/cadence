@@ -76,10 +76,7 @@
         "ai_embeddings_entity_unique": {
           "name": "ai_embeddings_entity_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "entity_id",
-            "entity_type"
-          ]
+          "columns": ["entity_id", "entity_type"]
         }
       },
       "policies": {},
@@ -130,12 +127,8 @@
           "name": "ai_goal_breakdowns_goal_id_goals_id_fk",
           "tableFrom": "ai_goal_breakdowns",
           "tableTo": "goals",
-          "columnsFrom": [
-            "goal_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["goal_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         }
@@ -145,9 +138,7 @@
         "ai_goal_breakdowns_goal_id_unique": {
           "name": "ai_goal_breakdowns_goal_id_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "goal_id"
-          ]
+          "columns": ["goal_id"]
         }
       },
       "policies": {},
@@ -216,12 +207,8 @@
           "name": "ai_task_scores_task_id_tasks_id_fk",
           "tableFrom": "ai_task_scores",
           "tableTo": "tasks",
-          "columnsFrom": [
-            "task_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["task_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         }
@@ -231,9 +218,7 @@
         "ai_task_scores_task_id_unique": {
           "name": "ai_task_scores_task_id_unique",
           "nullsNotDistinct": false,
-          "columns": [
-            "task_id"
-          ]
+          "columns": ["task_id"]
         }
       },
       "policies": {},
@@ -388,12 +373,8 @@
           "name": "habit_logs_habit_id_habits_id_fk",
           "tableFrom": "habit_logs",
           "tableTo": "habits",
-          "columnsFrom": [
-            "habit_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["habit_id"],
+          "columnsTo": ["id"],
           "onDelete": "cascade",
           "onUpdate": "no action"
         }
@@ -661,12 +642,8 @@
           "name": "tasks_goal_id_goals_id_fk",
           "tableFrom": "tasks",
           "tableTo": "goals",
-          "columnsFrom": [
-            "goal_id"
-          ],
-          "columnsTo": [
-            "id"
-          ],
+          "columnsFrom": ["goal_id"],
+          "columnsTo": ["id"],
           "onDelete": "set null",
           "onUpdate": "no action"
         }
@@ -766,29 +743,17 @@
     "public.area": {
       "name": "area",
       "schema": "public",
-      "values": [
-        "work",
-        "personal",
-        "identity"
-      ]
+      "values": ["work", "personal", "identity"]
     },
     "public.goal_status": {
       "name": "goal_status",
       "schema": "public",
-      "values": [
-        "active",
-        "achieved",
-        "abandoned"
-      ]
+      "values": ["active", "achieved", "abandoned"]
     },
     "public.task_status": {
       "name": "task_status",
       "schema": "public",
-      "values": [
-        "pending",
-        "completed",
-        "archived"
-      ]
+      "values": ["pending", "completed", "archived"]
     }
   },
   "schemas": {},

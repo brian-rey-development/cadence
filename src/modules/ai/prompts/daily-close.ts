@@ -15,19 +15,25 @@ type BuildPromptInput = {
   completedTitles: string[];
   reflection: string;
   date: string;
+  userContext?: string | null;
 };
 
 export function buildPrompt({
   completedTitles,
   reflection,
   date,
+  userContext,
 }: BuildPromptInput): string {
   const taskList =
     completedTitles.length > 0
       ? completedTitles.map((t) => `- ${t}`).join("\n")
       : "No tasks completed.";
 
+  const userBlock = userContext ? `${userContext}\n\n` : "";
+
   return `You are a productivity assistant helping the user close out their day in Cadence.
+
+${userBlock}
 
 Date: ${date}
 

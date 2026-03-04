@@ -1,10 +1,12 @@
 import { generateObject } from "ai";
 import { NextResponse } from "next/server";
 import { getModel } from "@/modules/ai/client";
+import { buildUserContext } from "@/modules/ai/utils/build-user-context";
 import {
   buildPrompt,
   zombieCheckSchema,
 } from "@/modules/ai/prompts/zombie-check";
+import { getUserSettings } from "@/modules/settings/queries/get-user-settings";
 import { createClient } from "@/shared/lib/supabase/server";
 
 export async function POST(req: Request) {
@@ -18,7 +20,9 @@ export async function POST(req: Request) {
   }
 
   const body = await req.json();
-  const prompt = buildPrompt(body);
+  const settings = await getUserSettings(user.id);
+  const userContext = settings ? buildUserContext(settings) : null;
+  const prompt = buildPrompt({ ...body, userContext });
 
   const result = await generateObject({
     model: getModel(),

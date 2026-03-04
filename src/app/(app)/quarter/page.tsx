@@ -5,22 +5,28 @@ import {
   currentQuarter,
   formatQuarterLabel,
 } from "@/modules/goals/utils/goal-utils";
+import QuarterlyTasksSection from "@/modules/tasks/components/quarterly-tasks-section";
+import { getQuarterlyTasks } from "@/modules/tasks/queries/get-quarterly-tasks";
 
 export default async function QuarterPage() {
   const session = await requireAuth();
-  const goals = await getGoalsForQuarter(session.id);
+  const [goals, quarterlyTasks] = await Promise.all([
+    getGoalsForQuarter(session.id),
+    getQuarterlyTasks(session.id),
+  ]);
   const quarterLabel = formatQuarterLabel(currentQuarter());
 
   return (
     <main className="flex flex-col gap-6 px-4 py-6 max-w-lg mx-auto">
       <header>
         <h1
-          className="font-['Fraunces'] text-2xl"
+          className="font-display text-2xl"
           style={{ color: "var(--color-text-primary)" }}
         >
           Goals
         </h1>
       </header>
+      <QuarterlyTasksSection initialTasks={quarterlyTasks} />
       <GoalList
         initialData={goals}
         currentQuarterLabel={quarterLabel}

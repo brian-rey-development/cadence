@@ -1,10 +1,12 @@
 import { generateObject } from "ai";
 import { NextResponse } from "next/server";
 import { getModel } from "@/modules/ai/client";
+import { buildUserContext } from "@/modules/ai/utils/build-user-context";
 import {
   buildPrompt,
   dailyCloseSchema,
 } from "@/modules/ai/prompts/daily-close";
+import { getUserSettings } from "@/modules/settings/queries/get-user-settings";
 import { createClient } from "@/shared/lib/supabase/server";
 
 export async function POST(req: Request) {
@@ -24,7 +26,15 @@ export async function POST(req: Request) {
     date: string;
   };
 
-  const prompt = buildPrompt({ completedTitles, reflection, date });
+  const settings = await getUserSettings(user.id);
+  const userContext = settings ? buildUserContext(settings) : null;
+
+  const prompt = buildPrompt({
+    completedTitles,
+    reflection,
+    date,
+    userContext,
+  });
 
   const result = await generateObject({
     model: getModel(),

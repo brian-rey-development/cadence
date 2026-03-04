@@ -2,7 +2,10 @@ import { generateObject } from "ai";
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import { getModel } from "@/modules/ai/client";
-import { buildPrompt, refineHabitSchema } from "@/modules/ai/prompts/refine-habit";
+import {
+  buildPrompt,
+  refineHabitSchema,
+} from "@/modules/ai/prompts/refine-habit";
 import { AREAS } from "@/shared/config/constants";
 import { createClient } from "@/shared/lib/supabase/server";
 
@@ -24,13 +27,18 @@ export async function POST(req: Request) {
 
   const parsed = bodySchema.safeParse(await req.json());
   if (!parsed.success) {
-    return NextResponse.json({ error: "Invalid request body" }, { status: 400 });
+    return NextResponse.json(
+      { error: "Invalid request body" },
+      { status: 400 },
+    );
   }
 
   const { name, area, weeklyFrequency } = parsed.data;
   const prompt = buildPrompt({ name, area, weeklyFrequency });
 
-  console.log(`[refine-habit] calling AI for habit "${name}" (${area}, ${weeklyFrequency}x/week)`);
+  console.log(
+    `[refine-habit] calling AI for habit "${name}" (${area}, ${weeklyFrequency}x/week)`,
+  );
   try {
     const result = await generateObject({
       model: getModel(),
@@ -41,6 +49,9 @@ export async function POST(req: Request) {
     return NextResponse.json(result.object);
   } catch (err) {
     console.error("[refine-habit] AI call failed:", err);
-    return NextResponse.json({ error: "AI generation failed" }, { status: 500 });
+    return NextResponse.json(
+      { error: "AI generation failed" },
+      { status: 500 },
+    );
   }
 }

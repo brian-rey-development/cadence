@@ -9,10 +9,11 @@ function taskAgeDays(dateStr: string): number {
 }
 
 export function isZombie(task: TaskModel): boolean {
-  if (task.status !== "pending") return false;
+  if (task.status !== "pending" || !task.date) return false;
   return taskAgeDays(task.date) >= ZOMBIE_DAYS;
 }
 
 export function getZombieAge(task: TaskModel): number {
+  if (!task.date) return 0;
   return taskAgeDays(task.date);
 }

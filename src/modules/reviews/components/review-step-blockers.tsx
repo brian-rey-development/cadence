@@ -14,10 +14,8 @@ export default function ReviewStepBlockers({
   return (
     <div className="flex flex-col gap-6">
       <div className="flex flex-col gap-1">
-        <h3 className="font-['Fraunces'] text-lg text-[var(--color-text-primary)]">
-          Blockers
-        </h3>
-        <p className="text-[13px] font-['DM_Sans'] text-[var(--color-text-secondary)]">
+        <h3 className="font-display text-lg text-text-primary">Blockers</h3>
+        <p className="text-sm font-body text-text-secondary">
           What kept getting in the way?
         </p>
       </div>
@@ -27,7 +25,7 @@ export default function ReviewStepBlockers({
         onChange={(e) => setBlockers(e.target.value)}
         placeholder="Something I keep bumping into..."
         rows={5}
-        className="w-full resize-none rounded-xl px-4 py-3 font-['DM_Sans'] text-sm outline-none"
+        className="w-full resize-none rounded-xl px-4 py-3 font-body text-sm outline-none"
         style={{
           backgroundColor: "var(--color-bg-surface)",
           color: "var(--color-text-primary)",

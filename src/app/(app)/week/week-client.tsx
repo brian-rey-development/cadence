@@ -6,6 +6,8 @@ import type { WeeklyReviewModel } from "@/db/schema/reviews";
 import WeekIntentionsBanner from "@/modules/reviews/components/week-intentions-banner";
 import WeeklyReviewSheet from "@/modules/reviews/components/weekly-review-sheet";
 import type { WeeklyStats } from "@/modules/reviews/queries/get-weekly-stats";
+import WeeklyTasksSection from "@/modules/tasks/components/weekly-tasks-section";
+import type { TaskWithGoal } from "@/modules/tasks/tasks.types";
 import { AREA_CONFIG } from "@/shared/config/areas";
 import { AREAS } from "@/shared/config/constants";
 
@@ -14,6 +16,7 @@ type WeekClientProps = {
   intentions: WeeklyReviewModel | undefined;
   goals: GoalModel[];
   weekStart: string;
+  weeklyTasks: TaskWithGoal[];
 };
 
 function formatWeekRange(startStr: string): string {
@@ -35,6 +38,7 @@ export default function WeekClient({
   intentions,
   goals,
   weekStart,
+  weeklyTasks,
 }: WeekClientProps) {
   const [isReviewOpen, setIsReviewOpen] = useState(false);
 
@@ -56,13 +60,13 @@ export default function WeekClient({
     <div className="flex flex-col gap-5 px-5 py-6">
       <header>
         <h1
-          className="font-['Fraunces'] text-2xl"
+          className="font-display text-2xl"
           style={{ color: "var(--color-text-primary)" }}
         >
           Week
         </h1>
         <p
-          className="text-[13px] font-['DM_Sans']"
+          className="text-sm font-body"
           style={{ color: "var(--color-text-tertiary)" }}
         >
           {formatWeekRange(weekStart)}
@@ -77,13 +81,13 @@ export default function WeekClient({
       >
         <div className="flex flex-col gap-0.5 flex-1">
           <span
-            className="text-xs font-['DM_Sans']"
+            className="text-xs font-body"
             style={{ color: "var(--color-text-tertiary)" }}
           >
             Tasks this week
           </span>
           <span
-            className="font-['DM_Mono'] text-2xl"
+            className="font-mono text-2xl"
             style={{ color: "var(--color-text-primary)" }}
           >
             {totalCompleted}/{totalTasks}
@@ -97,13 +101,13 @@ export default function WeekClient({
 
         <div className="flex flex-col gap-0.5 flex-1 text-right">
           <span
-            className="text-xs font-['DM_Sans']"
+            className="text-xs font-body"
             style={{ color: "var(--color-text-tertiary)" }}
           >
             Habit consistency
           </span>
           <span
-            className="font-['DM_Mono'] text-2xl"
+            className="font-mono text-2xl"
             style={{ color: "var(--color-text-primary)" }}
           >
             {stats.habitConsistency}%
@@ -119,7 +123,7 @@ export default function WeekClient({
             return (
               <span
                 key={area}
-                className="text-[11px] font-medium font-['DM_Sans'] px-2.5 py-1 rounded-full"
+                className="text-xs font-medium font-body px-2.5 py-1 rounded-full"
                 style={{
                   backgroundColor: config.subtle,
                   color: config.text,
@@ -131,6 +135,8 @@ export default function WeekClient({
           })}
         </div>
       )}
+
+      <WeeklyTasksSection initialTasks={weeklyTasks} weekStart={weekStart} />
 
       <button
         type="button"

@@ -13,6 +13,7 @@ type BuildPromptInput = {
   blockers: string;
   goals: Array<{ title: string; area: string }>;
   stats: WeeklyStats;
+  userContext?: string | null;
 };
 
 export function buildPrompt({
@@ -20,6 +21,7 @@ export function buildPrompt({
   blockers,
   goals,
   stats,
+  userContext,
 }: BuildPromptInput): string {
   const goalsList =
     goals.length > 0
@@ -30,7 +32,11 @@ export function buildPrompt({
     .map(([area, s]) => `${area}: ${s.completed}/${s.total} tasks completed`)
     .join(", ");
 
+  const userBlock = userContext ? `${userContext}\n\n` : "";
+
   return `You are a productivity coach for Cadence, a personal task management app.
+
+${userBlock}
 
 Based on the user's weekly review, provide 2-3 actionable suggestions for next week and generate a concise intentions statement.
 

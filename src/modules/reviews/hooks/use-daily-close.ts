@@ -14,7 +14,15 @@ type PostponeInput = {
 type SaveReviewInput = {
   date: string;
   reflection: string;
+  gratitude: string;
+  challenges: string;
+  learnings: string;
+  tomorrowFocus: string;
+  mood: "great" | "good" | "okay" | "tough";
   aiSummary: string;
+  aiFeedback: string;
+  aiInsights: string[];
+  aiNextDayFocus: string;
 };
 
 export function useDailyClose() {

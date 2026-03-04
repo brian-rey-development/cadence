@@ -41,6 +41,7 @@ type BuildPromptInput = {
   description: string | null;
   area: Area;
   quarter: string;
+  userContext?: string | null;
 };
 
 const AREA_CONTEXT: Record<Area, string> = {
@@ -55,8 +56,13 @@ export function buildPrompt({
   description,
   area,
   quarter,
+  userContext,
 }: BuildPromptInput): string {
+  const userBlock = userContext ? `${userContext}\n\n` : "";
+
   return `You are a goal-setting coach for Cadence, a personal productivity app.
+
+${userBlock}
 
 The user is creating a quarterly goal for the "${area}" area (${AREA_CONTEXT[area]}) for ${quarter}.
 

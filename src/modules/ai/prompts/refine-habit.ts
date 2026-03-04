@@ -27,7 +27,11 @@ type BuildPromptInput = {
   weeklyFrequency: number;
 };
 
-export function buildPrompt({ name, area, weeklyFrequency }: BuildPromptInput): string {
+export function buildPrompt({
+  name,
+  area,
+  weeklyFrequency,
+}: BuildPromptInput): string {
   const frequencyLabel =
     weeklyFrequency === 7 ? "daily" : `${weeklyFrequency}x per week`;
 

@@ -31,7 +31,7 @@ export default function OpportunityCostBadge({
       >
         <Zap size={10} strokeWidth={1.5} style={{ color: areaColor }} />
         <span
-          className="font-['DM_Mono'] text-[10px] leading-none"
+          className="font-mono text-2xs leading-none"
           style={{ color: areaColor }}
         >
           {count}
@@ -45,13 +45,13 @@ export default function OpportunityCostBadge({
       >
         <div className="flex flex-col gap-4 pt-2 pb-4">
           <p
-            className="font-['DM_Sans'] text-sm leading-relaxed"
+            className="font-body text-sm leading-relaxed"
             style={{ color: "var(--color-text-secondary)" }}
           >
             {reasoning}
           </p>
           <p
-            className="font-['DM_Sans'] text-xs"
+            className="font-body text-xs"
             style={{ color: "var(--color-text-tertiary)" }}
           >
             Prioritizing this task defers{" "}

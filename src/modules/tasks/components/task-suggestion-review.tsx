@@ -9,6 +9,14 @@ import type { Area } from "@/shared/config/constants";
 import AreaSelector from "./area-selector";
 import DateSelector from "./date-selector";
 
+type TaskType = "daily" | "weekly" | "quarterly";
+
+const TYPE_LABELS: Record<TaskType, string> = {
+  daily: "Daily",
+  weekly: "Weekly",
+  quarterly: "Quarterly",
+};
+
 type TaskSuggestionReviewProps = {
   suggestion: CreateTaskResponse;
   goals: GoalModel[];
@@ -16,7 +24,9 @@ type TaskSuggestionReviewProps = {
   onConfirm: (data: {
     title: string;
     area: Area;
-    date: string;
+    type: TaskType;
+    date: string | null;
+    weekStart: string | null;
     goalId: string | null;
   }) => void;
   isSubmitting: boolean;
@@ -31,19 +41,29 @@ export default function TaskSuggestionReview({
 }: TaskSuggestionReviewProps) {
   const [title, setTitle] = useState(suggestion.title);
   const [area, setArea] = useState<Area>(suggestion.area);
+  const [taskType, setTaskType] = useState<TaskType>(
+    suggestion.type ?? "daily",
+  );
   const [selectedDate, setSelectedDate] = useState(suggestion.date ?? date);
   const [goalId, setGoalId] = useState<string | null>(suggestion.goalId);
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    onConfirm({ title: title.trim(), area, date: selectedDate, goalId });
+    onConfirm({
+      title: title.trim(),
+      area,
+      type: taskType,
+      date: taskType === "daily" ? selectedDate : null,
+      weekStart: taskType === "weekly" ? suggestion.weekStart : null,
+      goalId,
+    });
   }
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-5 pt-2">
       {suggestion.warning && (
         <div
-          className="rounded-[10px] px-4 py-3 text-[13px] font-['DM_Sans']"
+          className="rounded-md px-4 py-3 text-sm font-body"
           style={{
             backgroundColor: "var(--color-warning-subtle)",
             color: "var(--color-warning-text)",
@@ -57,7 +77,7 @@ export default function TaskSuggestionReview({
       <div className="flex flex-col gap-1.5">
         <label
           htmlFor="task-title"
-          className="text-xs font-['DM_Sans'] font-medium uppercase tracking-widest"
+          className="text-xs font-body font-medium uppercase tracking-widest"
           style={{ color: "var(--color-text-tertiary)" }}
         >
           Task
@@ -67,7 +87,7 @@ export default function TaskSuggestionReview({
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           rows={2}
-          className="w-full resize-none rounded-[10px] px-4 py-3 text-[15px] font-['DM_Sans'] outline-none transition-colors duration-150"
+          className="w-full resize-none rounded-md px-4 py-3 text-sm font-body outline-none transition-colors duration-150"
           style={{
             backgroundColor: "var(--color-bg-base)",
             color: "var(--color-text-primary)",
@@ -82,14 +102,60 @@ export default function TaskSuggestionReview({
         />
       </div>
 
+      <div className="flex flex-col gap-1.5">
+        <span
+          className="text-xs font-body font-medium uppercase tracking-widest"
+          style={{ color: "var(--color-text-tertiary)" }}
+        >
+          Type
+        </span>
+        <div className="flex gap-2">
+          {(["daily", "weekly", "quarterly"] as const).map((t) => (
+            <button
+              key={t}
+              type="button"
+              onClick={() => setTaskType(t)}
+              className="rounded-full px-3 py-1.5 text-sm font-body font-medium transition-colors duration-150"
+              style={{
+                backgroundColor:
+                  taskType === t
+                    ? "var(--color-text-primary)"
+                    : "var(--color-bg-elevated)",
+                color:
+                  taskType === t
+                    ? "var(--color-bg-base)"
+                    : "var(--color-text-secondary)",
+              }}
+            >
+              {TYPE_LABELS[t]}
+            </button>
+          ))}
+        </div>
+      </div>
+
       <AreaSelector area={area} onChange={setArea} />
-      <DateSelector selectedDate={selectedDate} onChange={setSelectedDate} />
+      {taskType === "daily" && (
+        <div className="flex flex-col gap-1.5">
+          <DateSelector
+            selectedDate={selectedDate}
+            onChange={setSelectedDate}
+          />
+          {suggestion.schedulingReason && (
+            <p
+              className="text-xs font-body leading-relaxed"
+              style={{ color: "var(--color-text-tertiary)" }}
+            >
+              {suggestion.schedulingReason}
+            </p>
+          )}
+        </div>
+      )}
 
       {goals.length > 0 && (
         <div className="flex flex-col gap-1.5">
           <label
             htmlFor="task-goal"
-            className="text-xs font-['DM_Sans'] font-medium uppercase tracking-widest"
+            className="text-xs font-body font-medium uppercase tracking-widest"
             style={{ color: "var(--color-text-tertiary)" }}
           >
             Goal (optional)
@@ -98,7 +164,7 @@ export default function TaskSuggestionReview({
             id="task-goal"
             value={goalId ?? ""}
             onChange={(e) => setGoalId(e.target.value || null)}
-            className="h-12 w-full rounded-[10px] px-4 text-[15px] font-['DM_Sans'] outline-none transition-colors duration-150"
+            className="h-12 w-full rounded-md px-4 text-sm font-body outline-none transition-colors duration-150"
             style={{
               backgroundColor: "var(--color-bg-base)",
               color: "var(--color-text-primary)",
@@ -120,7 +186,7 @@ export default function TaskSuggestionReview({
                 style={{ color: "var(--color-text-tertiary)" }}
               />
               <span
-                className="text-[12px] font-['DM_Sans']"
+                className="text-xs font-body"
                 style={{ color: "var(--color-text-tertiary)" }}
               >
                 No quarter goal linked

@@ -2,11 +2,13 @@ import { generateObject } from "ai";
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import { getModel } from "@/modules/ai/client";
+import { buildUserContext } from "@/modules/ai/utils/build-user-context";
 import {
   buildPrompt,
   goalRefineSchema,
 } from "@/modules/ai/prompts/goal-refine";
 import { currentQuarter } from "@/modules/goals/utils/goal-utils";
+import { getUserSettings } from "@/modules/settings/queries/get-user-settings";
 import { AREAS } from "@/shared/config/constants";
 import { createClient } from "@/shared/lib/supabase/server";
 
@@ -36,7 +38,15 @@ export async function POST(req: Request) {
 
   const { title, description, area } = parsed.data;
   const quarter = currentQuarter();
-  const prompt = buildPrompt({ title, description, area, quarter });
+  const settings = await getUserSettings(user.id);
+  const userContext = settings ? buildUserContext(settings) : null;
+  const prompt = buildPrompt({
+    title,
+    description,
+    area,
+    quarter,
+    userContext,
+  });
 
   console.log(`[refine-goal] calling Grok for goal "${title}" (${area})`);
   try {

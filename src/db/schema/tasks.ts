@@ -1,5 +1,5 @@
 import { integer, pgTable, text, timestamp, uuid } from "drizzle-orm/pg-core";
-import { areaEnum, taskStatusEnum } from "./enums";
+import { areaEnum, taskStatusEnum, taskTypeEnum } from "./enums";
 import { goals } from "./goals";
 
 export const tasks = pgTable("tasks", {
@@ -7,7 +7,9 @@ export const tasks = pgTable("tasks", {
   userId: uuid("user_id").notNull(),
   title: text("title").notNull(),
   area: areaEnum("area").notNull(),
-  date: text("date").notNull(), // ISO date string "YYYY-MM-DD"
+  type: taskTypeEnum("type").notNull().default("daily"),
+  date: text("date"), // ISO date string "YYYY-MM-DD"; null for quarterly tasks
+  weekStart: text("week_start"), // "YYYY-MM-DD" Monday; required when type = "weekly"
   status: taskStatusEnum("status").notNull().default("pending"),
   goalId: uuid("goal_id").references(() => goals.id, { onDelete: "set null" }),
   postponeCount: integer("postpone_count").notNull().default(0),

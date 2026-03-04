@@ -56,9 +56,7 @@ export default function ReviewStepSuggestions({
 
   return (
     <div className="flex flex-col gap-6">
-      <h3 className="font-['Fraunces'] text-lg text-[var(--color-text-primary)]">
-        Next week
-      </h3>
+      <h3 className="font-display text-lg text-text-primary">Next week</h3>
 
       {isLoading && (
         <div className="flex flex-col gap-2">
