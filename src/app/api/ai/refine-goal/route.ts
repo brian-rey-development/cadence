@@ -38,14 +38,19 @@ export async function POST(req: Request) {
   const quarter = currentQuarter();
   const prompt = buildPrompt({ title, description, area, quarter });
 
+  console.log(`[refine-goal] calling Grok for goal "${title}" (${area})`);
   try {
     const result = await generateObject({
       model: getModel(),
       schema: goalRefineSchema,
       prompt,
     });
+    console.log(
+      `[refine-goal] Grok result: isSpecific=${result.object.isSpecific}`,
+    );
     return NextResponse.json(result.object);
-  } catch {
+  } catch (err) {
+    console.error("[refine-goal] Grok call failed:", err);
     return NextResponse.json(
       { error: "AI generation failed" },
       { status: 500 },

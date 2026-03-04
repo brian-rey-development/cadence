@@ -2,13 +2,19 @@
 
 import { useQuery } from "@tanstack/react-query";
 import type { AiGoalBreakdown } from "../ai-engine.types";
-import { getGoalBreakdown } from "../queries/get-goal-breakdown";
 
-export function useGoalBreakdown(userId: string, goalId: string) {
+async function fetchBreakdown(goalId: string): Promise<AiGoalBreakdown | null> {
+  const res = await fetch(`/api/ai/engine/goal-breakdown?goalId=${goalId}`);
+  if (!res.ok) return null;
+  return res.json();
+}
+
+export function useGoalBreakdown(_userId: string, goalId: string) {
   return useQuery<AiGoalBreakdown | null>({
     queryKey: ["ai-engine", "breakdown", goalId],
-    queryFn: () => getGoalBreakdown(userId, goalId),
-    staleTime: (query) => (query.state.data ? 1000 * 60 * 60 : 0),
+    queryFn: () => fetchBreakdown(goalId),
+    staleTime: Number.POSITIVE_INFINITY,
     refetchInterval: (query) => (query.state.data ? false : 8000),
+    refetchOnWindowFocus: false,
   });
 }

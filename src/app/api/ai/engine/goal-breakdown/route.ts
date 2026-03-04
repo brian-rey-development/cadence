@@ -1,7 +1,6 @@
 import { generateObject } from "ai";
 import { type NextRequest, NextResponse } from "next/server";
 import { getModel } from "@/modules/ai/client";
-import { createClient } from "@/shared/lib/supabase/server";
 import { upsertGoalBreakdown } from "@/modules/ai-engine/mutations/upsert-goal-breakdown";
 import {
   buildPrompt,
@@ -12,6 +11,7 @@ import { getGoalForBreakdown } from "@/modules/ai-engine/queries/get-goal-for-br
 import { buildRagContext } from "@/modules/ai-engine/utils/context-builder";
 import { isStale } from "@/modules/ai-engine/utils/stale";
 import { env } from "@/shared/config/env";
+import { createClient } from "@/shared/lib/supabase/server";
 import { today } from "@/shared/utils/date";
 
 type GoalBreakdownBody = { userId: string; goalId: string };
@@ -57,7 +57,9 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     return NextResponse.json({ error: "Goal not found" }, { status: 404 });
   }
 
-  console.log(`[goal-breakdown] calling Grok for goal "${goal.title}" (${goalId})`);
+  console.log(
+    `[goal-breakdown] calling Grok for goal "${goal.title}" (${goalId})`,
+  );
   const ragContext = await buildRagContext(userId, goal.title);
 
   const { object } = await generateObject({
@@ -66,7 +68,9 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     prompt: buildPrompt({ goal, ragContext, today: today() }),
   });
 
-  console.log(`[goal-breakdown] Grok returned ${object.milestones.length} milestones for goal ${goalId}`);
+  console.log(
+    `[goal-breakdown] Grok returned ${object.milestones.length} milestones for goal ${goalId}`,
+  );
   await upsertGoalBreakdown(userId, goalId, object.milestones);
 
   return NextResponse.json({ ok: true });
