@@ -24,7 +24,10 @@ type DateSelectorProps = {
   onChange: (date: string) => void;
 };
 
-export default function DateSelector({ selectedDate, onChange }: DateSelectorProps) {
+export default function DateSelector({
+  selectedDate,
+  onChange,
+}: DateSelectorProps) {
   const tomorrowISO = (() => {
     const d = new Date();
     d.setDate(d.getDate() + 1);
@@ -57,8 +60,12 @@ export default function DateSelector({ selectedDate, onChange }: DateSelectorPro
                 "flex-1 rounded-[10px] py-2.5 text-[13px] font-['DM_Sans'] font-medium transition-colors duration-150 min-h-[44px]",
               )}
               style={{
-                backgroundColor: isSelected ? "var(--color-bg-base)" : "transparent",
-                color: isSelected ? "var(--color-text-primary)" : "var(--color-text-tertiary)",
+                backgroundColor: isSelected
+                  ? "var(--color-bg-base)"
+                  : "transparent",
+                color: isSelected
+                  ? "var(--color-text-primary)"
+                  : "var(--color-text-tertiary)",
                 border: isSelected
                   ? "1px solid var(--color-border-default)"
                   : "1px solid var(--color-border-subtle)",

@@ -3,7 +3,14 @@ import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 import { env } from "@/shared/config/env";
 
-const PROTECTED_PATHS = ["/today", "/week", "/quarter", "/habits", "/review", "/settings"];
+const PROTECTED_PATHS = [
+  "/today",
+  "/week",
+  "/quarter",
+  "/habits",
+  "/review",
+  "/settings",
+];
 const AUTH_PATHS = ["/login"];
 
 export async function proxy(request: NextRequest) {

@@ -27,7 +27,10 @@ export async function POST(req: Request) {
 
   const parsed = bodySchema.safeParse(await req.json());
   if (!parsed.success) {
-    return NextResponse.json({ error: "Invalid request body" }, { status: 400 });
+    return NextResponse.json(
+      { error: "Invalid request body" },
+      { status: 400 },
+    );
   }
 
   const { intent } = parsed.data;
@@ -52,6 +55,9 @@ export async function POST(req: Request) {
     });
     return NextResponse.json({ suggestion: result.object, goals });
   } catch {
-    return NextResponse.json({ error: "AI generation failed" }, { status: 500 });
+    return NextResponse.json(
+      { error: "AI generation failed" },
+      { status: 500 },
+    );
   }
 }

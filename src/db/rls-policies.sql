@@ -72,3 +72,48 @@ CREATE POLICY "user_settings: users manage own rows"
   ON user_settings FOR ALL
   USING (auth.uid() = user_id)
   WITH CHECK (auth.uid() = user_id);
+
+-- ─── ai_embeddings ───────────────────────────────────────────────────────────
+
+ALTER TABLE ai_embeddings ADD CONSTRAINT ai_embeddings_user_id_fk
+  FOREIGN KEY (user_id) REFERENCES auth.users(id) ON DELETE CASCADE;
+
+CREATE POLICY "ai_embeddings: users manage own rows"
+  ON ai_embeddings FOR ALL
+  USING (auth.uid() = user_id)
+  WITH CHECK (auth.uid() = user_id);
+
+-- ─── ai_task_scores ──────────────────────────────────────────────────────────
+
+ALTER TABLE ai_task_scores ADD CONSTRAINT ai_task_scores_user_id_fk
+  FOREIGN KEY (user_id) REFERENCES auth.users(id) ON DELETE CASCADE;
+
+CREATE POLICY "ai_task_scores: users manage own rows"
+  ON ai_task_scores FOR ALL
+  USING (auth.uid() = user_id)
+  WITH CHECK (auth.uid() = user_id);
+
+-- ─── ai_goal_breakdowns ──────────────────────────────────────────────────────
+
+ALTER TABLE ai_goal_breakdowns ADD CONSTRAINT ai_goal_breakdowns_user_id_fk
+  FOREIGN KEY (user_id) REFERENCES auth.users(id) ON DELETE CASCADE;
+
+CREATE POLICY "ai_goal_breakdowns: users manage own rows"
+  ON ai_goal_breakdowns FOR ALL
+  USING (auth.uid() = user_id)
+  WITH CHECK (auth.uid() = user_id);
+
+-- ─── ai_user_context ─────────────────────────────────────────────────────────
+
+ALTER TABLE ai_user_context ADD CONSTRAINT ai_user_context_user_id_fk
+  FOREIGN KEY (user_id) REFERENCES auth.users(id) ON DELETE CASCADE;
+
+CREATE POLICY "ai_user_context: users manage own rows"
+  ON ai_user_context FOR ALL
+  USING (auth.uid() = user_id)
+  WITH CHECK (auth.uid() = user_id);
+
+-- ─── pgvector setup (run once) ───────────────────────────────────────────────
+-- CREATE EXTENSION IF NOT EXISTS vector;
+-- After migration, add IVFFlat index for fast similarity search:
+-- CREATE INDEX ON ai_embeddings USING ivfflat (embedding vector_cosine_ops) WITH (lists = 100);

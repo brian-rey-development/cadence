@@ -2,24 +2,52 @@
 
 import { animate, motion, useMotionValue, useTransform } from "framer-motion";
 import { Trash2 } from "lucide-react";
+import type { AiTaskScore } from "@/modules/ai-engine/ai-engine.types";
 import Checkbox from "@/shared/components/ui/checkbox";
 import { AREA_CONFIG } from "@/shared/config/areas";
 import type { TaskWithGoal } from "../tasks.types";
 import { getZombieAge, isZombie } from "../utils/zombie";
+import OpportunityCostBadge from "./opportunity-cost-badge";
 import ZombieBadge from "./zombie-badge";
 
 const EASING = [0.25, 0, 0, 1] as const;
 const ARCHIVE_THRESHOLD = -80;
 const ARCHIVE_ANIM_DURATION = 0.25;
+const IMPACT_SEGMENTS = 4;
 
 type TaskCardProps = {
   task: TaskWithGoal;
+  score?: AiTaskScore;
   onComplete: (id: string) => void;
   onArchive: (id: string) => void;
 };
 
+const SEGMENT_KEYS = ["a", "b", "c", "d"] as const;
+
+function ImpactBar({ score, color }: { score: number; color: string }) {
+  const filled = Math.round(Number(score) * IMPACT_SEGMENTS);
+  return (
+    <div
+      role="img"
+      className="flex items-center gap-0.5"
+      aria-label={`Impact: ${filled}/${IMPACT_SEGMENTS}`}
+    >
+      {SEGMENT_KEYS.map((key, i) => (
+        <div
+          key={key}
+          className="h-1 w-3 rounded-full"
+          style={{
+            backgroundColor: i < filled ? color : "var(--color-border-subtle)",
+          }}
+        />
+      ))}
+    </div>
+  );
+}
+
 export default function TaskCard({
   task,
+  score,
   onComplete,
   onArchive,
 }: TaskCardProps) {
@@ -28,6 +56,7 @@ export default function TaskCard({
   const areaColor = AREA_CONFIG[task.area].accent;
   const x = useMotionValue(0);
   const archiveOpacity = useTransform(x, [-120, -60], [1, 0]);
+  const opportunityCostCount = score?.opportunityCost?.length ?? 0;
 
   function handleDragEnd() {
     if (x.get() < ARCHIVE_THRESHOLD) {
@@ -102,15 +131,28 @@ export default function TaskCard({
               {task.title}
             </span>
             {zombieAge !== null && <ZombieBadge daysOld={zombieAge} />}
+            {!isDone && opportunityCostCount > 0 && score && (
+              <OpportunityCostBadge
+                count={opportunityCostCount}
+                reasoning={score.reasoning}
+                areaColor={areaColor}
+              />
+            )}
           </div>
-          {task.goal && (
-            <span
-              className="font-['DM_Sans'] text-[11px] truncate"
-              style={{ color: areaColor, opacity: 0.7 }}
-            >
-              {task.goal.title}
-            </span>
-          )}
+
+          <div className="flex items-center gap-2">
+            {task.goal && (
+              <span
+                className="font-['DM_Sans'] text-[11px] truncate"
+                style={{ color: areaColor, opacity: 0.7 }}
+              >
+                {task.goal.title}
+              </span>
+            )}
+            {!isDone && score && (
+              <ImpactBar score={Number(score.impactScore)} color={areaColor} />
+            )}
+          </div>
         </div>
       </motion.div>
     </div>

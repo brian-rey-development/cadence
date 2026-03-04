@@ -2,6 +2,8 @@
 
 import { useQueryClient } from "@tanstack/react-query";
 import { useEffect } from "react";
+import type { AiTaskScore } from "@/modules/ai-engine/ai-engine.types";
+import { useTaskScoreMap } from "@/modules/ai-engine/hooks/use-task-scores";
 import { AREA_CONFIG } from "@/shared/config/areas";
 import { AREAS } from "@/shared/config/constants";
 import { useArchiveTask } from "../hooks/use-archive-task";
@@ -13,10 +15,15 @@ import TaskCard from "./task-card";
 
 type TaskListProps = {
   initialTasks: TaskWithGoal[];
+  initialScores: AiTaskScore[];
   date: string;
 };
 
-export default function TaskList({ initialTasks, date }: TaskListProps) {
+export default function TaskList({
+  initialTasks,
+  initialScores,
+  date,
+}: TaskListProps) {
   const queryClient = useQueryClient();
 
   useEffect(() => {
@@ -26,6 +33,7 @@ export default function TaskList({ initialTasks, date }: TaskListProps) {
   const { data: tasks = [] } = useTasksForDay(date, initialTasks);
   const { mutate: complete } = useCompleteTask(date);
   const { mutate: archive } = useArchiveTask(date);
+  const scoreMap = useTaskScoreMap(date, initialScores);
 
   const grouped = AREAS.map((area) => ({
     area,
@@ -58,6 +66,7 @@ export default function TaskList({ initialTasks, date }: TaskListProps) {
             <TaskCard
               key={task.id}
               task={task}
+              score={scoreMap[task.id]}
               onComplete={complete}
               onArchive={archive}
             />

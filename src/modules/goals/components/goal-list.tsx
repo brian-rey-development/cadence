@@ -14,11 +14,13 @@ import GoalCard from "./goal-card";
 type GoalListProps = {
   initialData: GoalWithTasks[];
   currentQuarterLabel: string;
+  userId: string;
 };
 
 export default function GoalList({
   initialData,
   currentQuarterLabel,
+  userId,
 }: GoalListProps) {
   const { data: goals } = useGoals(initialData);
   const { mutate: updateStatus, isPending: isUpdating } = useUpdateGoalStatus();
@@ -109,6 +111,7 @@ export default function GoalList({
                 <GoalCard
                   key={goal.id}
                   goal={goal}
+                  userId={userId}
                   onStatusChange={(goalId, status) =>
                     updateStatus({ goalId, status })
                   }
