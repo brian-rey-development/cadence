@@ -1,6 +1,7 @@
 import { generateObject } from "ai";
 import { type NextRequest, NextResponse } from "next/server";
 import { getModel } from "@/modules/ai/client";
+import { createClient } from "@/shared/lib/supabase/server";
 import { upsertGoalBreakdown } from "@/modules/ai-engine/mutations/upsert-goal-breakdown";
 import {
   buildPrompt,
@@ -19,6 +20,25 @@ function authorized(req: NextRequest): boolean {
   return req.headers.get("authorization") === `Bearer ${env.cronSecret}`;
 }
 
+export async function GET(req: NextRequest): Promise<NextResponse> {
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  const goalId = req.nextUrl.searchParams.get("goalId");
+  if (!goalId) {
+    return NextResponse.json({ error: "Missing goalId" }, { status: 400 });
+  }
+
+  const breakdown = await getGoalBreakdown(user.id, goalId);
+  return NextResponse.json(breakdown ?? null);
+}
+
 export async function POST(req: NextRequest): Promise<NextResponse> {
   if (!authorized(req)) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
@@ -28,6 +48,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
 
   const existing = await getGoalBreakdown(userId, goalId);
   if (existing && !isStale(existing.computedAt, 72)) {
+    console.log(`[goal-breakdown] cache hit for goal ${goalId}, skipping`);
     return NextResponse.json({ ok: true, cached: true });
   }
 
@@ -36,6 +57,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     return NextResponse.json({ error: "Goal not found" }, { status: 404 });
   }
 
+  console.log(`[goal-breakdown] calling Grok for goal "${goal.title}" (${goalId})`);
   const ragContext = await buildRagContext(userId, goal.title);
 
   const { object } = await generateObject({
@@ -44,6 +66,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     prompt: buildPrompt({ goal, ragContext, today: today() }),
   });
 
+  console.log(`[goal-breakdown] Grok returned ${object.milestones.length} milestones for goal ${goalId}`);
   await upsertGoalBreakdown(userId, goalId, object.milestones);
 
   return NextResponse.json({ ok: true });
