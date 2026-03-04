@@ -31,7 +31,7 @@ export default function BottomSheet({
         <>
           <motion.div
             key="backdrop"
-            className="fixed inset-0 z-40"
+            className="fixed inset-0 z-[55]"
             style={{ backgroundColor: "rgba(0,0,0,0.6)" }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -42,7 +42,7 @@ export default function BottomSheet({
 
           <motion.div
             key="sheet"
-            className="fixed bottom-0 left-0 right-0 z-50 flex flex-col"
+            className="fixed bottom-0 left-0 right-0 z-[60] flex flex-col"
             style={{
               backgroundColor: "var(--color-bg-elevated)",
               borderTopLeftRadius: 20,
