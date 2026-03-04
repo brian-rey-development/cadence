@@ -1,10 +1,5 @@
-import withSerwistInit from "@serwist/next";
+import { withSerwist } from "@serwist/turbopack";
 import type { NextConfig } from "next";
-
-const withSerwist = withSerwistInit({
-  swSrc: "src/app/sw.ts",
-  swDest: "public/sw.js",
-});
 
 const nextConfig: NextConfig = {
   reactCompiler: true,

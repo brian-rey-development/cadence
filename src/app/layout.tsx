@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { DM_Mono, DM_Sans, Fraunces } from "next/font/google";
 import "./globals.css";
+import { SerwistProvider } from "./serwist-provider";
 
 const fraunces = Fraunces({
   variable: "--font-fraunces",
@@ -52,7 +53,7 @@ export default function RootLayout({
       <body
         className={`${fraunces.variable} ${dmSans.variable} ${dmMono.variable}`}
       >
-        {children}
+        <SerwistProvider swUrl="/serwist/sw.js">{children}</SerwistProvider>
       </body>
     </html>
   );
