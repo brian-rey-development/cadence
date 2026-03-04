@@ -10,9 +10,9 @@ export default function ZombieBadge({ daysOld }: ZombieBadgeProps) {
     <motion.span
       className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-xs font-['DM_Mono']"
       style={{
-        color: "var(--color-status-zombie-text)",
-        backgroundColor: "var(--color-status-zombie-subtle)",
-        border: "1px solid var(--color-status-zombie-default)",
+        color: "var(--color-zombie-text)",
+        backgroundColor: "var(--color-zombie-pulse)",
+        border: "1px solid var(--color-zombie)",
       }}
       animate={{ opacity: [1, 0.6, 1] }}
       transition={{

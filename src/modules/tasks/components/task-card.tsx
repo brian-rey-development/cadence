@@ -51,6 +51,7 @@ export default function TaskCard({
         <Trash2
           size={18}
           strokeWidth={1.5}
+          aria-label="Archive task"
           style={{ color: "var(--color-destructive)" }}
         />
       </motion.div>
@@ -64,11 +65,11 @@ export default function TaskCard({
           x,
           backgroundColor: isDone
             ? "var(--color-bg-base)"
-            : "var(--color-surface)",
+            : "var(--color-bg-surface)",
           opacity: isDone ? 0.6 : 1,
           border:
             zombieAge !== null
-              ? "1px solid var(--color-status-zombie-default, #9E5A5A)"
+              ? "1px solid var(--color-zombie)"
               : "1px solid var(--color-border-subtle)",
         }}
         onDragEnd={handleDragEnd}
