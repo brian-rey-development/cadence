@@ -1,0 +1,3 @@
+[functions.send-notifications]
+# Run every 5 minutes to check notification windows
+schedule = "*/5 * * * *"
