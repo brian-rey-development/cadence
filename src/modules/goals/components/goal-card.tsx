@@ -65,7 +65,7 @@ export default function GoalCard({
         )}
       </div>
 
-      <div className="flex items-center gap-2 shrink-0">
+      <div className="flex flex-col items-center gap-2 shrink-0">
         <div className="flex flex-col items-center gap-0.5">
           <ProgressRing
             progress={goal.progress}
@@ -82,12 +82,12 @@ export default function GoalCard({
         </div>
 
         {isActive && (
-          <div className="flex flex-col gap-1">
+          <div className="flex gap-1">
             <button
               type="button"
               onClick={() => onStatusChange(goal.id, "achieved")}
               disabled={isUpdating}
-              className="flex items-center justify-center w-11 h-[22px] rounded-[6px] transition-colors duration-150"
+              className="flex items-center justify-center h-11 w-9 rounded-[8px] transition-colors duration-150"
               style={{ backgroundColor: "var(--color-bg-base)" }}
               aria-label="Mark as achieved"
             >
@@ -101,7 +101,7 @@ export default function GoalCard({
               type="button"
               onClick={() => onStatusChange(goal.id, "abandoned")}
               disabled={isUpdating}
-              className="flex items-center justify-center w-11 h-[22px] rounded-[6px] transition-colors duration-150"
+              className="flex items-center justify-center h-11 w-9 rounded-[8px] transition-colors duration-150"
               style={{ backgroundColor: "var(--color-bg-base)" }}
               aria-label="Mark as abandoned"
             >

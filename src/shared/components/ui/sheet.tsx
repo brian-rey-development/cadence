@@ -17,7 +17,7 @@ export default function Sheet({ open, onClose, title, children }: SheetProps) {
       {open && (
         <>
           <motion.div
-            className="fixed inset-0 z-40"
+            className="fixed inset-0 z-[55]"
             style={{ backgroundColor: "rgba(0,0,0,0.5)" }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -26,7 +26,7 @@ export default function Sheet({ open, onClose, title, children }: SheetProps) {
             onClick={onClose}
           />
           <motion.div
-            className="fixed bottom-0 left-0 right-0 z-50 rounded-t-[20px] px-4 pb-8 pt-5"
+            className="fixed bottom-0 left-0 right-0 z-[60] rounded-t-[20px] px-4 pb-8 pt-5"
             style={{ backgroundColor: "var(--color-bg-surface)" }}
             initial={{ y: "100%" }}
             animate={{ y: 0 }}
