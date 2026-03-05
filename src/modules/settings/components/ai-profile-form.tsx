@@ -110,7 +110,7 @@ export default function AiProfileForm({ initialSettings }: AiProfileFormProps) {
               className="w-full resize-none rounded-xl px-4 py-3 font-body text-base outline-none"
               style={{
                 backgroundColor: "var(--color-bg-elevated)",
-                border: "1px solid var(--color-border-subtle)",
+                border: "1px solid var(--color-border-default)",
                 color: "var(--color-text-primary)",
               }}
             />

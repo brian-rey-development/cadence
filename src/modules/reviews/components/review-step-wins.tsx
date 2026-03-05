@@ -27,7 +27,7 @@ export default function ReviewStepWins({ onNext }: ReviewStepWinsProps) {
         style={{
           backgroundColor: "var(--color-bg-surface)",
           color: "var(--color-text-primary)",
-          border: "1px solid var(--color-border-subtle)",
+          border: "1px solid var(--color-border-default)",
         }}
       />
 

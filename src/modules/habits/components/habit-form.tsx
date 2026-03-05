@@ -56,7 +56,7 @@ export default function HabitForm({
                   color: isSelected
                     ? config.text
                     : "var(--color-text-secondary)",
-                  border: `1.5px solid ${isSelected ? config.border : "var(--color-border-subtle)"}`,
+                  border: `1.5px solid ${isSelected ? config.border : "var(--color-border-default)"}`,
                 }}
               >
                 {config.label}
@@ -86,7 +86,7 @@ export default function HabitForm({
                   color: isSelected
                     ? "var(--color-bg-base)"
                     : "var(--color-text-secondary)",
-                  border: `1.5px solid ${isSelected ? "var(--color-text-primary)" : "var(--color-border-subtle)"}`,
+                  border: `1.5px solid ${isSelected ? "var(--color-text-primary)" : "var(--color-border-default)"}`,
                 }}
               >
                 {f}

@@ -5,7 +5,7 @@ type InputProps = React.InputHTMLAttributes<HTMLInputElement> & {
 export default function Input({ error, className = "", ...props }: InputProps) {
   const borderClass = error
     ? "border-[var(--color-destructive)] focus:border-[var(--color-destructive)]"
-    : "border-[var(--color-border-subtle)] focus:border-[var(--color-border-strong)]";
+    : "border-[var(--color-border-default)] focus:border-[var(--color-border-strong)]";
 
   return (
     <div className="flex flex-col gap-1">

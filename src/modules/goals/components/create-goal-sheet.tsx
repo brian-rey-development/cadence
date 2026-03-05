@@ -29,7 +29,7 @@ type Step = "input" | "refine";
 const TEXTAREA_STYLE = {
   backgroundColor: "var(--color-bg-base)",
   color: "var(--color-text-primary)",
-  border: "1px solid var(--color-border-subtle)",
+  border: "1px solid var(--color-border-default)",
 } as const;
 
 async function fetchRefinement(
@@ -225,7 +225,7 @@ export default function CreateGoalSheet({
 
             {refinement?.questions && refinement.questions.length > 0 && (
               <div className="flex flex-col gap-1.5">
-                <span className="text-sm font-body uppercase tracking-wide text-text-tertiary">
+                <span className="text-sm font-body uppercase tracking-wide text-text-secondary">
                   Clarifying questions
                 </span>
                 <ul className="flex flex-col gap-1">
@@ -242,7 +242,7 @@ export default function CreateGoalSheet({
             )}
 
             <div className="flex flex-col gap-2">
-              <span className="text-sm font-body uppercase tracking-wide text-text-tertiary">
+              <span className="text-sm font-body uppercase tracking-wide text-text-secondary">
                 Refined goal
               </span>
               <Input
@@ -278,7 +278,7 @@ export default function CreateGoalSheet({
                 className="h-11 px-4 rounded-md text-base font-medium font-body transition-colors duration-150"
                 style={{
                   color: "var(--color-text-secondary)",
-                  border: "1.5px solid var(--color-border-subtle)",
+                  border: "1.5px solid var(--color-border-default)",
                 }}
               >
                 Back
@@ -322,11 +322,11 @@ function ScopeToggle({ scope, onChange, disabled }: ScopeToggleProps) {
             className="flex-1 h-9 rounded-md text-base font-medium font-body transition-colors duration-150 capitalize disabled:opacity-50"
             style={{
               backgroundColor: isActive
-                ? "var(--color-bg-surface)"
+                ? "var(--color-text-primary)"
                 : "transparent",
               color: isActive
-                ? "var(--color-text-primary)"
-                : "var(--color-text-tertiary)",
+                ? "var(--color-bg-base)"
+                : "var(--color-text-secondary)",
             }}
           >
             {s === "quarterly" ? "This quarter" : "This week"}
@@ -365,7 +365,7 @@ function Textarea({
         e.currentTarget.style.borderColor = "var(--color-border-default)";
       }}
       onBlur={(e) => {
-        e.currentTarget.style.borderColor = "var(--color-border-subtle)";
+        e.currentTarget.style.borderColor = "var(--color-border-default)";
       }}
     />
   );
@@ -409,7 +409,7 @@ function AreaSelector({
                   : isSelected
                     ? config.text
                     : "var(--color-text-secondary)",
-                border: `1.5px solid ${isSelected ? config.border : "var(--color-border-subtle)"}`,
+                border: `1.5px solid ${isSelected ? config.border : "var(--color-border-default)"}`,
                 opacity: isDisabled ? 0.4 : 1,
               }}
             >
@@ -450,7 +450,7 @@ function ParentGoalSelector({
           color: value
             ? "var(--color-text-primary)"
             : "var(--color-text-tertiary)",
-          border: "1px solid var(--color-border-subtle)",
+          border: "1px solid var(--color-border-default)",
         }}
       >
         <option value="">None</option>

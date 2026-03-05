@@ -6,7 +6,7 @@ import { AREAS } from "@/shared/config/constants";
 
 const LEGEND_CLASS =
   "text-sm font-body font-medium uppercase tracking-widest mb-1.5";
-const LEGEND_STYLE = { color: "var(--color-text-tertiary)" };
+const LEGEND_STYLE = { color: "var(--color-text-secondary)" };
 
 type AreaSelectorProps = {
   area: Area;
@@ -32,10 +32,10 @@ export default function AreaSelector({ area, onChange }: AreaSelectorProps) {
               className="flex-1 rounded-md py-2.5 text-base font-medium font-body transition-colors duration-150 min-h-11"
               style={{
                 backgroundColor: isSelected ? config.subtle : "transparent",
-                color: isSelected ? config.text : "var(--color-text-tertiary)",
+                color: isSelected ? config.text : "var(--color-text-secondary)",
                 border: isSelected
                   ? `1px solid ${config.border}`
-                  : "1px solid var(--color-border-subtle)",
+                  : "1px solid var(--color-border-default)",
               }}
             >
               {config.label}

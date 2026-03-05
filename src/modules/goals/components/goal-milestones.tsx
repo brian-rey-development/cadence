@@ -204,7 +204,7 @@ export default function GoalMilestones({
             value={newTitle}
             onChange={(e) => setNewTitle(e.target.value)}
             className="text-base font-body bg-transparent outline-none border-b pb-1 text-text-primary"
-            style={{ borderColor: "var(--color-border-subtle)" }}
+            style={{ borderColor: "var(--color-border-default)" }}
             onKeyDown={(e) => {
               if (e.key === "Enter") handleAdd();
               if (e.key === "Escape") setIsAdding(false);

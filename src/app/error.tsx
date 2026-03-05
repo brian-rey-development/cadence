@@ -5,7 +5,7 @@ type ErrorProps = {
   reset: () => void;
 };
 
-export default function Error({ reset }: ErrorProps) {
+export default function AppError({ reset }: ErrorProps) {
   return (
     <div className="flex min-h-svh flex-col items-center justify-center gap-4 px-5 text-center bg-[var(--color-bg-base)]">
       <p className="text-xl font-display text-text-primary">

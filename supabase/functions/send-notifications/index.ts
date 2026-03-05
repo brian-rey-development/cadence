@@ -75,6 +75,7 @@ Deno.serve(async (_req: Request) => {
         user.last_morning_sent_date !== todayStr &&
         isWithinWindow(userNow, user.morning_notification_time, WINDOW_MINUTES)
       ) {
+        // biome-ignore lint/style/noNonNullAssertion: query filters push_subscription IS NOT NULL
         await sendPush(user.push_subscription!, MORNING_TITLE, MORNING_BODY);
         updates.last_morning_sent_date = todayStr;
         sent++;
@@ -88,6 +89,7 @@ Deno.serve(async (_req: Request) => {
       ) {
         const dayClosed = await isDayClosed(supabase, user.user_id, todayStr);
         if (!dayClosed) {
+          // biome-ignore lint/style/noNonNullAssertion: query filters push_subscription IS NOT NULL
           await sendPush(user.push_subscription!, EVENING_TITLE, EVENING_BODY);
           updates.last_evening_sent_date = todayStr;
           sent++;

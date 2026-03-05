@@ -11,14 +11,14 @@ export default function AuthForm() {
 
   return (
     <div className="flex flex-col gap-6 w-full">
-      <div className="flex rounded-full border border-[var(--color-border-subtle)] p-1">
+      <div className="flex rounded-full border border-[var(--color-border-default)] p-1">
         <button
           type="button"
           onClick={() => setTab("signin")}
           className={`flex-1 h-9 rounded-full text-sm font-body transition-colors duration-150 ${
             tab === "signin"
-              ? "bg-[var(--color-bg-elevated)] text-text-primary"
-              : "text-text-tertiary"
+              ? "bg-[var(--color-text-primary)] text-[var(--color-bg-base)]"
+              : "text-text-secondary"
           }`}
         >
           Sign in
@@ -28,8 +28,8 @@ export default function AuthForm() {
           onClick={() => setTab("signup")}
           className={`flex-1 h-9 rounded-full text-sm font-body transition-colors duration-150 ${
             tab === "signup"
-              ? "bg-[var(--color-bg-elevated)] text-text-primary"
-              : "text-text-tertiary"
+              ? "bg-[var(--color-text-primary)] text-[var(--color-bg-base)]"
+              : "text-text-secondary"
           }`}
         >
           Create account

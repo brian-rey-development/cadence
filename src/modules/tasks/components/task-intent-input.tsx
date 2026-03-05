@@ -38,14 +38,14 @@ export default function TaskIntentInput({
         style={{
           backgroundColor: "var(--color-bg-base)",
           color: "var(--color-text-primary)",
-          border: "1px solid var(--color-border-subtle)",
+          border: "1px solid var(--color-border-default)",
           minHeight: 80,
         }}
         onFocus={(e) => {
-          e.currentTarget.style.borderColor = "var(--color-border-default)";
+          e.currentTarget.style.borderColor = "var(--color-border-strong)";
         }}
         onBlur={(e) => {
-          e.currentTarget.style.borderColor = "var(--color-border-subtle)";
+          e.currentTarget.style.borderColor = "var(--color-border-default)";
         }}
       />
 

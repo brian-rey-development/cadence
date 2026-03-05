@@ -5,7 +5,7 @@ import { today, toISODate } from "@/shared/utils/date";
 
 const LEGEND_CLASS =
   "text-sm font-body font-medium uppercase tracking-widest mb-1.5";
-const LEGEND_STYLE = { color: "var(--color-text-tertiary)" };
+const LEGEND_STYLE = { color: "var(--color-text-secondary)" };
 
 const DATE_OPTIONS = [
   { label: "Today", getValue: () => today() },
@@ -65,10 +65,10 @@ export default function DateSelector({
                   : "transparent",
                 color: isSelected
                   ? "var(--color-text-primary)"
-                  : "var(--color-text-tertiary)",
+                  : "var(--color-text-secondary)",
                 border: isSelected
-                  ? "1px solid var(--color-border-default)"
-                  : "1px solid var(--color-border-subtle)",
+                  ? "1px solid var(--color-border-strong)"
+                  : "1px solid var(--color-border-default)",
               }}
             >
               {label}

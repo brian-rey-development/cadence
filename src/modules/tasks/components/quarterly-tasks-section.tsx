@@ -37,6 +37,7 @@ function TaskRow({
             viewBox="0 0 10 8"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
           >
             <path
               d="M1 4L3.5 6.5L9 1"
