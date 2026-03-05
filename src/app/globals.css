@@ -141,6 +141,12 @@
 }
 
 /* ─── Base styles ────────────────────────────────────────────────────── */
+button,
+[role="button"],
+label[for] {
+  cursor: pointer;
+}
+
 body {
   background: var(--color-bg-base);
   color: var(--color-text-primary);
