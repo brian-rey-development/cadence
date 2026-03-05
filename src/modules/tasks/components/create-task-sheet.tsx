@@ -71,6 +71,7 @@ export default function CreateTaskSheet({
         date: data.date,
         weekStart: data.weekStart,
         goalId: data.goalId ?? null,
+        milestoneId: null,
         status: "pending",
         postponeCount: 0,
         completedAt: null,

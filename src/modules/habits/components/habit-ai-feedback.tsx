@@ -23,9 +23,7 @@ type FeedbackCardProps = {
 
 function FeedbackCard({ icon, label, text, accentColor }: FeedbackCardProps) {
   return (
-    <div
-      className="flex flex-col gap-1.5 rounded-md px-3.5 py-3 bg-bg-elevated"
-    >
+    <div className="flex flex-col gap-1.5 rounded-md px-3.5 py-3 bg-bg-elevated">
       <div className="flex items-center gap-1.5">
         <span style={{ color: accentColor }}>{icon}</span>
         <span
@@ -35,9 +33,7 @@ function FeedbackCard({ icon, label, text, accentColor }: FeedbackCardProps) {
           {label}
         </span>
       </div>
-      <p
-        className="text-sm font-body leading-relaxed text-text-primary"
-      >
+      <p className="text-sm font-body leading-relaxed text-text-primary">
         {text}
       </p>
     </div>

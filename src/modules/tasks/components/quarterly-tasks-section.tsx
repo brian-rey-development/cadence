@@ -19,9 +19,7 @@ function TaskRow({
   const isDone = task.status === "completed";
 
   return (
-    <div
-      className="flex items-start gap-3 px-4 py-3 rounded-xl bg-bg-elevated"
-    >
+    <div className="flex items-start gap-3 px-4 py-3 rounded-xl bg-bg-elevated">
       <button
         type="button"
         onClick={() => onToggle(task.id)}
@@ -64,9 +62,7 @@ function TaskRow({
           {task.title}
         </span>
         {task.goal && (
-          <span
-            className="text-xs font-body truncate text-text-tertiary"
-          >
+          <span className="text-xs font-body truncate text-text-tertiary">
             {task.goal.title}
           </span>
         )}
@@ -115,9 +111,7 @@ export default function QuarterlyTasksSection({
 
   return (
     <div className="flex flex-col gap-2">
-      <span
-        className="text-xs font-medium font-body uppercase tracking-widest text-text-tertiary"
-      >
+      <span className="text-xs font-medium font-body uppercase tracking-widest text-text-tertiary">
         Milestones
       </span>
       <div className="flex flex-col gap-2">

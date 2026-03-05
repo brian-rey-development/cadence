@@ -9,7 +9,7 @@ export async function getTasksForClose(
 ): Promise<TaskWithGoal[]> {
   return db.query.tasks.findMany({
     where: and(eq(tasks.userId, userId), eq(tasks.date, date)),
-    with: { goal: true },
+    with: { goal: true, milestone: true },
     orderBy: (t, { asc }) => [asc(t.createdAt)],
   });
 }

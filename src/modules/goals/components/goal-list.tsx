@@ -4,7 +4,7 @@ import { Plus } from "lucide-react";
 import { useMemo, useState } from "react";
 import { AREA_CONFIG } from "@/shared/config/areas";
 import { AREAS, type Area } from "@/shared/config/constants";
-import type { GoalWithTasks } from "../goals.types";
+import type { GoalWithMilestones } from "../goals.types";
 import { useGoals } from "../hooks/use-goals";
 import { useUpdateGoalStatus } from "../hooks/use-update-goal-status";
 import { calculateProgress, groupGoalsByArea } from "../utils/goal-utils";
@@ -12,15 +12,13 @@ import CreateGoalSheet from "./create-goal-sheet";
 import GoalCard from "./goal-card";
 
 type GoalListProps = {
-  initialData: GoalWithTasks[];
+  initialData: GoalWithMilestones[];
   currentQuarterLabel: string;
-  userId: string;
 };
 
 export default function GoalList({
   initialData,
   currentQuarterLabel,
-  userId,
 }: GoalListProps) {
   const { data: goals } = useGoals(initialData);
   const { mutate: updateStatus, isPending: isUpdating } = useUpdateGoalStatus();
@@ -96,7 +94,6 @@ export default function GoalList({
                 <GoalCard
                   key={goal.id}
                   goal={goal}
-                  userId={userId}
                   onStatusChange={(goalId, status) =>
                     updateStatus({ goalId, status })
                   }

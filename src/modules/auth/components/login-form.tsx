@@ -40,11 +40,7 @@ export default function LoginForm() {
             }}
             aria-hidden="true"
           />
-          <Mail
-            size={40}
-            strokeWidth={1.5}
-            className="text-text-primary"
-          />
+          <Mail size={40} strokeWidth={1.5} className="text-text-primary" />
         </div>
         <div className="flex flex-col gap-1">
           <p className="text-sm font-body text-text-primary">

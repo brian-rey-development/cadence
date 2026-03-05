@@ -19,9 +19,7 @@ export default function HabitSummaryHeader({
       >
         {consistency}%
       </span>
-      <span
-        className="text-sm font-body text-text-secondary"
-      >
+      <span className="text-sm font-body text-text-secondary">
         consistency this week
       </span>
     </div>

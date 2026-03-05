@@ -58,7 +58,8 @@ export default function InstallPrompt() {
           </button>
         </div>
         <p className="mb-3 font-body text-xs text-text-secondary">
-          Faster load times, offline access, and push reminders - works like a native app.
+          Faster load times, offline access, and push reminders - works like a
+          native app.
         </p>
         <button
           type="button"

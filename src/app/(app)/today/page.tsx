@@ -3,8 +3,8 @@ import Link from "next/link";
 import DailyQuote from "@/modules/ai/components/daily-quote";
 import { getTaskScores } from "@/modules/ai-engine/queries/get-task-scores";
 import { requireAuth } from "@/modules/auth/utils";
-import HabitSummaryBar from "@/modules/habits/components/habit-summary-bar";
-import { getHabitSummaryToday } from "@/modules/habits/queries/get-habit-summary-today";
+import HabitList from "@/modules/habits/components/habit-list";
+import { getHabitsWithLogs } from "@/modules/habits/queries/get-habits-with-logs";
 import DailyLimitBanner from "@/modules/tasks/components/daily-limit-banner";
 import TaskList from "@/modules/tasks/components/task-list";
 import { getTasksForDay } from "@/modules/tasks/queries/get-tasks-for-day";
@@ -16,9 +16,9 @@ export default async function TodayPage() {
   const userId = session.id;
   const date = today();
 
-  const [tasks, habitSummary] = await Promise.all([
+  const [tasks, habits] = await Promise.all([
     getTasksForDay(userId, date),
-    getHabitSummaryToday(userId, date),
+    getHabitsWithLogs(userId, date),
   ]);
 
   const scores = await getTaskScores(
@@ -31,14 +31,8 @@ export default async function TodayPage() {
       <div className="flex flex-col gap-6 px-4 py-6 max-w-lg mx-auto">
         <header className="flex items-start justify-between">
           <div>
-            <h1
-              className="font-display text-2xl text-text-primary"
-            >
-              Today
-            </h1>
-            <p
-              className="text-sm font-body text-text-tertiary"
-            >
+            <h1 className="font-display text-2xl text-text-primary">Today</h1>
+            <p className="text-sm font-body text-text-tertiary">
               {new Date().toLocaleDateString("en-US", {
                 weekday: "long",
                 month: "long",
@@ -64,10 +58,7 @@ export default async function TodayPage() {
 
         <div style={{ borderTop: "1px solid var(--color-border-subtle)" }} />
 
-        <HabitSummaryBar
-          total={habitSummary.total}
-          completed={habitSummary.completed}
-        />
+        <HabitList initialData={habits} />
       </div>
     </TodayClient>
   );

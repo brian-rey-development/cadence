@@ -1,7 +1,9 @@
 "use server";
 
+import { and, eq } from "drizzle-orm";
 import { after } from "next/server";
 import { db } from "@/db";
+import { milestones } from "@/db/schema/milestones";
 import { tasks } from "@/db/schema/tasks";
 import { requireAuth } from "@/modules/auth/utils";
 import { env } from "@/shared/config/env";
@@ -34,13 +36,28 @@ function triggerEngineRoutes(
 
 export async function createTask(data: NewTask): Promise<TaskWithGoal> {
   const session = await requireAuth();
+  const userId = session.id;
+
+  let resolvedGoalId = data.goalId ?? null;
+
+  if (data.milestoneId) {
+    const milestone = await db.query.milestones.findFirst({
+      where: and(
+        eq(milestones.id, data.milestoneId),
+        eq(milestones.userId, userId),
+      ),
+    });
+    if (milestone) {
+      resolvedGoalId = milestone.goalId;
+    }
+  }
 
   const [inserted] = await db
     .insert(tasks)
-    .values({ ...data, userId: session.id })
+    .values({ ...data, userId, goalId: resolvedGoalId })
     .returning();
 
-  triggerEngineRoutes(session.id, inserted.id, inserted.title);
+  triggerEngineRoutes(userId, inserted.id, inserted.title);
 
-  return { ...inserted, goal: null };
+  return { ...inserted, goal: null, milestone: null };
 }

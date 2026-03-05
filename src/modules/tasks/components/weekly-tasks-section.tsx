@@ -55,9 +55,7 @@ export default function WeeklyTasksSection({
 
   return (
     <div className="flex flex-col gap-2">
-      <span
-        className="text-xs font-medium font-body uppercase tracking-widest text-text-tertiary"
-      >
+      <span className="text-xs font-medium font-body uppercase tracking-widest text-text-tertiary">
         This week
       </span>
       <div className="flex flex-col gap-2">

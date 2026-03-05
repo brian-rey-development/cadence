@@ -21,9 +21,7 @@ export default async function SettingsPage() {
         </p>
         <div className="mt-2 overflow-hidden rounded-2xl bg-[var(--color-bg-elevated)]">
           <div className="flex items-center gap-3 px-4 py-3.5">
-            <div
-              className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-bg-surface"
-            >
+            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-bg-surface">
               <span className="text-sm font-medium font-body text-text-secondary">
                 {initial}
               </span>

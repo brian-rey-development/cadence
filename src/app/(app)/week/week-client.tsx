@@ -3,6 +3,8 @@
 import { useState } from "react";
 import type { GoalModel } from "@/db/schema/goals";
 import type { WeeklyReviewModel } from "@/db/schema/reviews";
+import WeeklyGoalList from "@/modules/goals/components/weekly-goal-list";
+import type { GoalWithTasksAndParent } from "@/modules/goals/goals.types";
 import WeekIntentionsBanner from "@/modules/reviews/components/week-intentions-banner";
 import WeeklyReviewSheet from "@/modules/reviews/components/weekly-review-sheet";
 import type { WeeklyStats } from "@/modules/reviews/queries/get-weekly-stats";
@@ -17,6 +19,7 @@ type WeekClientProps = {
   goals: GoalModel[];
   weekStart: string;
   weeklyTasks: TaskWithGoal[];
+  weeklyGoals: GoalWithTasksAndParent[];
 };
 
 function formatWeekRange(startStr: string): string {
@@ -39,6 +42,7 @@ export default function WeekClient({
   goals,
   weekStart,
   weeklyTasks,
+  weeklyGoals,
 }: WeekClientProps) {
   const [isReviewOpen, setIsReviewOpen] = useState(false);
 
@@ -56,35 +60,25 @@ export default function WeekClient({
     (area) => stats.tasksByArea[area]?.total > 0,
   );
 
+  const quarterlyGoals = goals.filter((g) => g.scope === "quarterly");
+
   return (
     <div className="flex flex-col gap-5 px-5 py-6">
       <header>
-        <h1
-          className="font-display text-2xl text-text-primary"
-        >
-          Week
-        </h1>
-        <p
-          className="text-sm font-body text-text-tertiary"
-        >
+        <h1 className="font-display text-2xl text-text-primary">Week</h1>
+        <p className="text-sm font-body text-text-tertiary">
           {formatWeekRange(weekStart)}
         </p>
       </header>
 
       <WeekIntentionsBanner intentions={intentions?.intentions ?? null} />
 
-      <div
-        className="flex items-center rounded-xl px-4 py-4 bg-bg-elevated"
-      >
+      <div className="flex items-center rounded-xl px-4 py-4 bg-bg-elevated">
         <div className="flex flex-col gap-0.5 flex-1">
-          <span
-            className="text-xs font-body text-text-tertiary"
-          >
+          <span className="text-xs font-body text-text-tertiary">
             Tasks this week
           </span>
-          <span
-            className="font-mono text-2xl text-text-primary"
-          >
+          <span className="font-mono text-2xl text-text-primary">
             {totalCompleted}/{totalTasks}
           </span>
         </div>
@@ -95,14 +89,10 @@ export default function WeekClient({
         />
 
         <div className="flex flex-col gap-0.5 flex-1 text-right">
-          <span
-            className="text-xs font-body text-text-tertiary"
-          >
+          <span className="text-xs font-body text-text-tertiary">
             Habit consistency
           </span>
-          <span
-            className="font-mono text-2xl text-text-primary"
-          >
+          <span className="font-mono text-2xl text-text-primary">
             {stats.habitConsistency}%
           </span>
         </div>
@@ -128,6 +118,11 @@ export default function WeekClient({
           })}
         </div>
       )}
+
+      <WeeklyGoalList
+        initialGoals={weeklyGoals}
+        quarterlyGoals={quarterlyGoals}
+      />
 
       <WeeklyTasksSection initialTasks={weeklyTasks} weekStart={weekStart} />
 

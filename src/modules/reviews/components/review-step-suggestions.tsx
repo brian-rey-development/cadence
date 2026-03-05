@@ -70,17 +70,11 @@ export default function ReviewStepSuggestions({
         </div>
       )}
 
-      {error && (
-        <p className="text-sm text-text-tertiary">
-          {error}
-        </p>
-      )}
+      {error && <p className="text-sm text-text-tertiary">{error}</p>}
 
       {result && !isLoading && (
         <div className="flex flex-col gap-2">
-          <p
-            className="text-xs uppercase tracking-wide text-text-tertiary"
-          >
+          <p className="text-xs uppercase tracking-wide text-text-tertiary">
             Suggestions
           </p>
           <ul className="flex flex-col gap-2">
@@ -101,9 +95,7 @@ export default function ReviewStepSuggestions({
       )}
 
       <div className="flex flex-col gap-2">
-        <p
-          className="text-xs uppercase tracking-wide text-text-tertiary"
-        >
+        <p className="text-xs uppercase tracking-wide text-text-tertiary">
           Intentions
         </p>
         <textarea

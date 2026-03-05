@@ -32,9 +32,7 @@ export default function CloseStepAiFeedback({
 
       {data.insights.length > 0 && (
         <div className="flex flex-col gap-2">
-          <span
-            className="text-xs font-medium font-body uppercase tracking-widest text-text-tertiary"
-          >
+          <span className="text-xs font-medium font-body uppercase tracking-widest text-text-tertiary">
             Insights
           </span>
           <ul className="flex flex-col gap-2">
@@ -44,9 +42,7 @@ export default function CloseStepAiFeedback({
                   className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full"
                   style={{ backgroundColor: "var(--color-text-tertiary)" }}
                 />
-                <span
-                  className="font-body text-sm leading-relaxed text-text-secondary"
-                >
+                <span className="font-body text-sm leading-relaxed text-text-secondary">
                   {insight}
                 </span>
               </li>
@@ -56,17 +52,11 @@ export default function CloseStepAiFeedback({
       )}
 
       {data.nextDayFocus && (
-        <div
-          className="rounded-xl px-4 py-3 bg-bg-elevated"
-        >
-          <span
-            className="text-xs font-medium font-body uppercase tracking-widest text-text-tertiary"
-          >
+        <div className="rounded-xl px-4 py-3 bg-bg-elevated">
+          <span className="text-xs font-medium font-body uppercase tracking-widest text-text-tertiary">
             Tomorrow
           </span>
-          <p
-            className="mt-1 font-body text-sm leading-relaxed text-text-primary"
-          >
+          <p className="mt-1 font-body text-sm leading-relaxed text-text-primary">
             {data.nextDayFocus}
           </p>
         </div>

@@ -2,8 +2,6 @@
 
 import { ChevronDown } from "lucide-react";
 import { useState } from "react";
-import type { Milestone } from "@/modules/ai-engine/ai-engine.types";
-import { useGoalBreakdown } from "@/modules/ai-engine/hooks/use-goal-breakdown";
 import ProgressRing from "@/shared/components/ui/progress-ring";
 import { AREA_CONFIG } from "@/shared/config/areas";
 import type { GoalWithProgress } from "../goals.types";
@@ -11,14 +9,12 @@ import GoalMilestones from "./goal-milestones";
 
 type GoalCardProps = {
   goal: GoalWithProgress;
-  userId: string;
   onStatusChange: (goalId: string, status: "achieved" | "abandoned") => void;
   isUpdating: boolean;
 };
 
 export default function GoalCard({
   goal,
-  userId,
   onStatusChange,
   isUpdating,
 }: GoalCardProps) {
@@ -29,12 +25,6 @@ export default function GoalCard({
   const totalCount = goal.tasks.length;
   const isActive = goal.status === "active";
   const [showMilestones, setShowMilestones] = useState(false);
-
-  const { data: breakdown, isLoading: isBreakdownLoading } = useGoalBreakdown(
-    userId,
-    goal.id,
-  );
-  const milestones = (breakdown?.milestones ?? []) as Milestone[];
 
   return (
     <div
@@ -84,7 +74,7 @@ export default function GoalCard({
                 className="font-body text-xs"
                 style={{ color: config.text }}
               >
-                Milestones
+                Milestones ({goal.milestones.length})
               </span>
               <ChevronDown
                 size={12}
@@ -135,30 +125,13 @@ export default function GoalCard({
 
       {isActive && showMilestones && (
         <div className="mt-3 pt-3 border-t border-border-subtle">
-          {isBreakdownLoading && (
-            <div className="flex flex-col gap-2">
-              {[1, 2, 3].map((i) => (
-                <div
-                  key={i}
-                  className="h-3 rounded-full animate-pulse bg-bg-elevated"
-                  style={{ width: `${60 + i * 10}%` }}
-                />
-              ))}
-            </div>
-          )}
-          {!isBreakdownLoading && milestones.length > 0 && (
-            <GoalMilestones
-              milestones={milestones}
-              goalId={goal.id}
-              area={goal.area}
-              accentColor={config.accent}
-            />
-          )}
-          {!isBreakdownLoading && milestones.length === 0 && (
-            <p className="font-body text-xs text-center py-2 text-text-tertiary">
-              Planning milestones...
-            </p>
-          )}
+          <GoalMilestones
+            milestones={goal.milestones}
+            goalTasks={goal.tasks}
+            goalId={goal.id}
+            area={goal.area}
+            accentColor={config.accent}
+          />
         </div>
       )}
     </div>

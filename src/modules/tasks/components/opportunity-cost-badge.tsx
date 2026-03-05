@@ -44,14 +44,10 @@ export default function OpportunityCostBadge({
         title="Opportunity cost"
       >
         <div className="flex flex-col gap-4 pt-2 pb-4">
-          <p
-            className="font-body text-sm leading-relaxed text-text-secondary"
-          >
+          <p className="font-body text-sm leading-relaxed text-text-secondary">
             {reasoning}
           </p>
-          <p
-            className="font-body text-xs text-text-tertiary"
-          >
+          <p className="font-body text-xs text-text-tertiary">
             Prioritizing this task defers{" "}
             <span className="text-text-primary">
               {count} other task{count === 1 ? "" : "s"}

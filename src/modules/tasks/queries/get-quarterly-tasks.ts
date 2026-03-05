@@ -12,7 +12,7 @@ export async function getQuarterlyTasks(
       eq(tasks.type, "quarterly"),
       isNull(tasks.date),
     ),
-    with: { goal: true },
+    with: { goal: true, milestone: true },
     orderBy: (t, { asc }) => [asc(t.createdAt)],
   });
 }

@@ -2,6 +2,7 @@ export * from "./ai-engine";
 export * from "./enums";
 export * from "./goals";
 export * from "./habits";
+export * from "./milestones";
 export * from "./relations";
 export * from "./reviews";
 export * from "./tasks";

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import type { GoalModel } from "@/db/schema/goals";
 import type { GoalRefineResponse } from "@/modules/ai/prompts/goal-refine";
 import Button from "@/shared/components/ui/button";
 import Input from "@/shared/components/ui/input";
@@ -12,12 +13,15 @@ import {
   type Area,
   MAX_GOALS_PER_AREA,
 } from "@/shared/config/constants";
+import { weekStart } from "@/shared/utils/week";
 import { useCreateGoal } from "../hooks/use-create-goal";
 
 type CreateGoalSheetProps = {
   open: boolean;
   onClose: () => void;
   goalsByArea: Record<Area, number>;
+  quarterlyGoals?: GoalModel[];
+  defaultScope?: "quarterly" | "weekly";
 };
 
 type Step = "input" | "refine";
@@ -46,11 +50,15 @@ export default function CreateGoalSheet({
   open,
   onClose,
   goalsByArea,
+  quarterlyGoals = [],
+  defaultScope = "quarterly",
 }: CreateGoalSheetProps) {
+  const [scope, setScope] = useState<"quarterly" | "weekly">(defaultScope);
   const [step, setStep] = useState<Step>("input");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [area, setArea] = useState<Area>("work");
+  const [parentGoalId, setParentGoalId] = useState<string>("");
 
   const [isRefining, setIsRefining] = useState(false);
   const [refineError, setRefineError] = useState<string | null>(null);
@@ -61,10 +69,12 @@ export default function CreateGoalSheet({
   const { mutate, isPending, error: saveError, reset } = useCreateGoal();
 
   function handleClose() {
+    setScope(defaultScope);
     setStep("input");
     setTitle("");
     setDescription("");
     setArea("work");
+    setParentGoalId("");
     setRefinement(null);
     setRefineError(null);
     reset();
@@ -73,7 +83,14 @@ export default function CreateGoalSheet({
 
   function saveGoal(finalTitle: string, finalDescription: string | null) {
     mutate(
-      { title: finalTitle, description: finalDescription, area },
+      {
+        title: finalTitle,
+        description: finalDescription,
+        area,
+        scope,
+        weekStart: scope === "weekly" ? weekStart() : null,
+        parentGoalId: parentGoalId || null,
+      },
       { onSuccess: handleClose },
     );
   }
@@ -81,6 +98,11 @@ export default function CreateGoalSheet({
   async function handleContinue(e: React.FormEvent) {
     e.preventDefault();
     if (!title.trim()) return;
+
+    if (scope === "weekly") {
+      saveGoal(title.trim(), description.trim() || null);
+      return;
+    }
 
     setIsRefining(true);
     setRefineError(null);
@@ -114,10 +136,21 @@ export default function CreateGoalSheet({
     saveGoal(refinedTitle.trim(), refinedDescription.trim() || null);
   }
 
+  const totalSteps = scope === "weekly" ? 1 : 2;
+
   return (
     <Sheet open={open} onClose={handleClose} title="New goal">
       <div className="flex flex-col gap-5">
-        <StepIndicator currentStep={step === "input" ? 1 : 2} totalSteps={2} />
+        <ScopeToggle
+          scope={scope}
+          onChange={setScope}
+          disabled={isRefining || isPending}
+        />
+
+        <StepIndicator
+          currentStep={step === "input" ? 1 : 2}
+          totalSteps={totalSteps}
+        />
 
         {step === "input" ? (
           <form onSubmit={handleContinue} className="flex flex-col gap-5">
@@ -144,20 +177,36 @@ export default function CreateGoalSheet({
               disabled={isRefining}
             />
 
+            {scope === "weekly" && quarterlyGoals.length > 0 && (
+              <ParentGoalSelector
+                quarterlyGoals={quarterlyGoals}
+                value={parentGoalId}
+                onChange={setParentGoalId}
+                disabled={isRefining}
+              />
+            )}
+
             {refineError && (
-              <span
-                className="text-sm font-body text-text-secondary"
-              >
+              <span className="text-sm font-body text-text-secondary">
                 {refineError}
+              </span>
+            )}
+
+            {saveError && (
+              <span
+                className="text-sm font-body"
+                style={{ color: "var(--color-destructive-text)" }}
+              >
+                {saveError.message}
               </span>
             )}
 
             <Button
               type="submit"
               disabled={!title.trim()}
-              isLoading={isRefining}
+              isLoading={isRefining || isPending}
             >
-              Continue
+              {scope === "weekly" ? "Save goal" : "Continue"}
             </Button>
           </form>
         ) : (
@@ -176,9 +225,7 @@ export default function CreateGoalSheet({
 
             {refinement?.questions && refinement.questions.length > 0 && (
               <div className="flex flex-col gap-1.5">
-                <span
-                  className="text-xs font-body uppercase tracking-wide text-text-tertiary"
-                >
+                <span className="text-xs font-body uppercase tracking-wide text-text-tertiary">
                   Clarifying questions
                 </span>
                 <ul className="flex flex-col gap-1">
@@ -195,9 +242,7 @@ export default function CreateGoalSheet({
             )}
 
             <div className="flex flex-col gap-2">
-              <span
-                className="text-xs font-body uppercase tracking-wide text-text-tertiary"
-              >
+              <span className="text-xs font-body uppercase tracking-wide text-text-tertiary">
                 Refined goal
               </span>
               <Input
@@ -254,6 +299,44 @@ export default function CreateGoalSheet({
   );
 }
 
+type ScopeToggleProps = {
+  scope: "quarterly" | "weekly";
+  onChange: (s: "quarterly" | "weekly") => void;
+  disabled: boolean;
+};
+
+function ScopeToggle({ scope, onChange, disabled }: ScopeToggleProps) {
+  return (
+    <div
+      className="flex rounded-lg p-1"
+      style={{ backgroundColor: "var(--color-bg-elevated)" }}
+    >
+      {(["quarterly", "weekly"] as const).map((s) => {
+        const isActive = scope === s;
+        return (
+          <button
+            key={s}
+            type="button"
+            disabled={disabled}
+            onClick={() => onChange(s)}
+            className="flex-1 h-9 rounded-md text-sm font-medium font-body transition-colors duration-150 capitalize disabled:opacity-50"
+            style={{
+              backgroundColor: isActive
+                ? "var(--color-bg-surface)"
+                : "transparent",
+              color: isActive
+                ? "var(--color-text-primary)"
+                : "var(--color-text-tertiary)",
+            }}
+          >
+            {s === "quarterly" ? "This quarter" : "This week"}
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
 type TextareaProps = {
   placeholder: string;
   value: string;
@@ -303,9 +386,7 @@ function AreaSelector({
 }: AreaSelectorProps) {
   return (
     <div className="flex flex-col gap-2">
-      <span
-        className="text-xs font-body uppercase tracking-wide text-text-secondary"
-      >
+      <span className="text-xs font-body uppercase tracking-wide text-text-secondary">
         Area
       </span>
       <div className="flex gap-2">
@@ -337,6 +418,48 @@ function AreaSelector({
           );
         })}
       </div>
+    </div>
+  );
+}
+
+type ParentGoalSelectorProps = {
+  quarterlyGoals: GoalModel[];
+  value: string;
+  onChange: (id: string) => void;
+  disabled: boolean;
+};
+
+function ParentGoalSelector({
+  quarterlyGoals,
+  value,
+  onChange,
+  disabled,
+}: ParentGoalSelectorProps) {
+  return (
+    <div className="flex flex-col gap-2">
+      <span className="text-xs font-body uppercase tracking-wide text-text-secondary">
+        Link to quarterly goal (optional)
+      </span>
+      <select
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        disabled={disabled}
+        className="w-full rounded-md px-4 py-3 text-sm font-body outline-none"
+        style={{
+          backgroundColor: "var(--color-bg-base)",
+          color: value
+            ? "var(--color-text-primary)"
+            : "var(--color-text-tertiary)",
+          border: "1px solid var(--color-border-subtle)",
+        }}
+      >
+        <option value="">None</option>
+        {quarterlyGoals.map((g) => (
+          <option key={g.id} value={g.id}>
+            {g.title}
+          </option>
+        ))}
+      </select>
     </div>
   );
 }

@@ -113,6 +113,16 @@ CREATE POLICY "ai_user_context: users manage own rows"
   USING (auth.uid() = user_id)
   WITH CHECK (auth.uid() = user_id);
 
+-- ─── milestones ──────────────────────────────────────────────────────────────
+
+ALTER TABLE milestones ADD CONSTRAINT milestones_user_id_fk
+  FOREIGN KEY (user_id) REFERENCES auth.users(id) ON DELETE CASCADE;
+
+CREATE POLICY "milestones: users manage own rows"
+  ON milestones FOR ALL
+  USING (auth.uid() = user_id)
+  WITH CHECK (auth.uid() = user_id);
+
 -- ─── pgvector setup (run once) ───────────────────────────────────────────────
 -- CREATE EXTENSION IF NOT EXISTS vector;
 -- After migration, add IVFFlat index for fast similarity search:

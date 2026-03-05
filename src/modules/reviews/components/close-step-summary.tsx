@@ -49,9 +49,7 @@ export default function CloseStepSummary({
   return (
     <div className="flex flex-col gap-5">
       <div className="flex flex-col gap-2">
-        <span
-          className="text-xs font-medium font-body uppercase tracking-widest text-text-tertiary"
-        >
+        <span className="text-xs font-medium font-body uppercase tracking-widest text-text-tertiary">
           How did today feel?
         </span>
         <div className="flex gap-2">
@@ -80,9 +78,7 @@ export default function CloseStepSummary({
 
       {completed.length > 0 && (
         <div className="flex flex-col gap-2">
-          <span
-            className="text-xs font-medium font-body uppercase tracking-widest text-text-tertiary"
-          >
+          <span className="text-xs font-medium font-body uppercase tracking-widest text-text-tertiary">
             Completed ({completed.length})
           </span>
           <ul className="flex flex-col gap-1.5">
@@ -95,9 +91,7 @@ export default function CloseStepSummary({
                   className="absolute left-0 inset-y-2 w-[3px] rounded-full"
                   style={{ backgroundColor: AREA_CONFIG[task.area].accent }}
                 />
-                <span
-                  className="font-body text-sm ml-2 text-text-secondary"
-                >
+                <span className="font-body text-sm ml-2 text-text-secondary">
                   {task.title}
                 </span>
               </li>
@@ -108,9 +102,7 @@ export default function CloseStepSummary({
 
       {incomplete.length > 0 && (
         <div className="flex flex-col gap-2">
-          <span
-            className="text-xs font-medium font-body uppercase tracking-widest text-text-tertiary"
-          >
+          <span className="text-xs font-medium font-body uppercase tracking-widest text-text-tertiary">
             To handle ({incomplete.length})
           </span>
           <ul className="flex flex-col gap-1.5">
@@ -119,9 +111,7 @@ export default function CloseStepSummary({
                 key={task.id}
                 className="flex flex-col gap-2 rounded-xl px-4 py-3 bg-bg-elevated"
               >
-                <span
-                  className="font-body text-sm text-text-primary"
-                >
+                <span className="font-body text-sm text-text-primary">
                   {task.title}
                 </span>
                 <div className="flex gap-2">

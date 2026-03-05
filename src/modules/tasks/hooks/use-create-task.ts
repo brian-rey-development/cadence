@@ -28,11 +28,13 @@ export function useCreateTask(date: string) {
         weekStart: newTask.weekStart ?? null,
         status: "pending",
         goalId: newTask.goalId ?? null,
+        milestoneId: newTask.milestoneId ?? null,
         postponeCount: 0,
         completedAt: null,
         createdAt: new Date(),
         updatedAt: new Date(),
         goal: null,
+        milestone: null,
       };
 
       queryClient.setQueryData<TaskWithGoal[]>(key, (prev = []) => [

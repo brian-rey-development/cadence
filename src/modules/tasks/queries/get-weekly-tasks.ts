@@ -13,7 +13,7 @@ export async function getWeeklyTasks(
       eq(tasks.weekStart, weekStartDate),
       eq(tasks.type, "weekly"),
     ),
-    with: { goal: true },
+    with: { goal: true, milestone: true },
     orderBy: (t, { asc }) => [asc(t.createdAt)],
   });
 }

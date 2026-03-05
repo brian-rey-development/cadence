@@ -87,14 +87,8 @@ export default function ReviewStepStats({
             border: "1px solid var(--color-zombie)",
           }}
         >
-          <span
-            className="font-mono text-xs text-zombie-text"
-          >
-            ☠
-          </span>
-          <span
-            className="text-sm text-zombie-text"
-          >
+          <span className="font-mono text-xs text-zombie-text">☠</span>
+          <span className="text-sm text-zombie-text">
             {stats.zombieCount} task{stats.zombieCount > 1 ? "s" : ""} postponed
             2+ times
           </span>

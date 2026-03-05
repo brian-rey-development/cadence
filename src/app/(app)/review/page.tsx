@@ -14,11 +14,7 @@ export default async function ReviewPage() {
   return (
     <div className="flex flex-col gap-8 px-4 py-6 max-w-lg mx-auto">
       <header>
-        <h1
-          className="font-display text-2xl text-text-primary"
-        >
-          Reviews
-        </h1>
+        <h1 className="font-display text-2xl text-text-primary">Reviews</h1>
       </header>
 
       <DailyJournalHistory journals={dailyJournals} />

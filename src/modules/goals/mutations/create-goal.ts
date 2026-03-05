@@ -8,31 +8,56 @@ import { goals } from "@/db/schema/goals";
 import { requireAuth } from "@/modules/auth/utils";
 import { MAX_GOALS_PER_AREA } from "@/shared/config/constants";
 import { env } from "@/shared/config/env";
-import type { NewGoal } from "../goals.types";
 import { currentQuarter } from "../utils/goal-utils";
 
-type CreateGoalInput = Omit<NewGoal, "userId" | "quarter" | "status">;
+type CreateGoalInput = {
+  title: string;
+  area: "work" | "personal" | "identity";
+  description?: string | null;
+  scope: "quarterly" | "weekly";
+  weekStart?: string | null;
+  parentGoalId?: string | null;
+};
+
+function quarterFromWeekStart(weekStartDate: string): string {
+  const date = new Date(`${weekStartDate}T00:00:00`);
+  const quarter = Math.ceil((date.getMonth() + 1) / 3);
+  return `${date.getFullYear()}-Q${quarter}`;
+}
 
 export async function createGoal(data: CreateGoalInput): Promise<void> {
   const session = await requireAuth();
   const userId = session.id;
-  const quarter = currentQuarter();
+
+  const isWeekly = data.scope === "weekly";
+  const quarter = isWeekly
+    ? quarterFromWeekStart(data.weekStart ?? "")
+    : currentQuarter();
+
+  const limitWhere = isWeekly
+    ? and(
+        eq(goals.userId, userId),
+        eq(goals.area, data.area),
+        eq(goals.scope, "weekly"),
+        eq(goals.weekStart, data.weekStart ?? ""),
+        eq(goals.status, "active"),
+      )
+    : and(
+        eq(goals.userId, userId),
+        eq(goals.area, data.area),
+        eq(goals.scope, "quarterly"),
+        eq(goals.quarter, quarter),
+        eq(goals.status, "active"),
+      );
 
   const [{ value: activeCount }] = await db
     .select({ value: count() })
     .from(goals)
-    .where(
-      and(
-        eq(goals.userId, userId),
-        eq(goals.area, data.area),
-        eq(goals.quarter, quarter),
-        eq(goals.status, "active"),
-      ),
-    );
+    .where(limitWhere);
 
   if (activeCount >= MAX_GOALS_PER_AREA) {
     throw new Error(
-      `You can have at most ${MAX_GOALS_PER_AREA} active goals per area per quarter.`,
+      `You can have at most ${MAX_GOALS_PER_AREA} active goals per area.`,
     );
   }
 
@@ -44,6 +69,9 @@ export async function createGoal(data: CreateGoalInput): Promise<void> {
       description: data.description,
       userId,
       quarter,
+      scope: data.scope,
+      weekStart: isWeekly ? data.weekStart : null,
+      parentGoalId: data.parentGoalId ?? null,
       status: "active",
     })
     .returning();
@@ -52,8 +80,9 @@ export async function createGoal(data: CreateGoalInput): Promise<void> {
     Authorization: `Bearer ${env.cronSecret}`,
     "Content-Type": "application/json",
   };
+
   after(async () => {
-    await Promise.allSettled([
+    const base = [
       fetch(`${env.appUrl}/api/ai/engine/embed`, {
         method: "POST",
         headers,
@@ -64,18 +93,27 @@ export async function createGoal(data: CreateGoalInput): Promise<void> {
           content: inserted.title,
         }),
       }),
-      fetch(`${env.appUrl}/api/ai/engine/goal-breakdown`, {
-        method: "POST",
-        headers,
-        body: JSON.stringify({ userId, goalId: inserted.id }),
-      }),
       fetch(`${env.appUrl}/api/ai/engine/score-tasks`, {
         method: "POST",
         headers,
         body: JSON.stringify({ userId }),
       }),
-    ]);
+    ];
+
+    const withBreakdown = isWeekly
+      ? base
+      : [
+          ...base,
+          fetch(`${env.appUrl}/api/ai/engine/goal-breakdown`, {
+            method: "POST",
+            headers,
+            body: JSON.stringify({ userId, goalId: inserted.id }),
+          }),
+        ];
+
+    await Promise.allSettled(withBreakdown);
   });
 
   revalidatePath("/quarter");
+  if (isWeekly) revalidatePath("/week");
 }

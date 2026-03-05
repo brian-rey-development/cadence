@@ -38,9 +38,7 @@ export default function HabitForm({
       />
 
       <div className="flex flex-col gap-2">
-        <span
-          className="text-xs font-body uppercase tracking-wide text-text-secondary"
-        >
+        <span className="text-xs font-body uppercase tracking-wide text-text-secondary">
           Area
         </span>
         <div className="flex gap-2">
@@ -69,9 +67,7 @@ export default function HabitForm({
       </div>
 
       <div className="flex flex-col gap-2">
-        <span
-          className="text-xs font-body uppercase tracking-wide text-text-secondary"
-        >
+        <span className="text-xs font-body uppercase tracking-wide text-text-secondary">
           Times per week
         </span>
         <div className="flex gap-2">

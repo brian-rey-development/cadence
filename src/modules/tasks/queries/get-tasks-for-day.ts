@@ -15,7 +15,7 @@ export async function getTasksForDay(
       eq(tasks.date, date),
       eq(tasks.type, "daily"),
     ),
-    with: { goal: true },
+    with: { goal: true, milestone: true },
     orderBy: (t, { asc }) => [asc(t.createdAt)],
   });
 }

@@ -10,6 +10,7 @@ import { getGoalBreakdown } from "@/modules/ai-engine/queries/get-goal-breakdown
 import { getGoalForBreakdown } from "@/modules/ai-engine/queries/get-goal-for-breakdown";
 import { buildRagContext } from "@/modules/ai-engine/utils/context-builder";
 import { isStale } from "@/modules/ai-engine/utils/stale";
+import { syncAiMilestonesToDb } from "@/modules/milestones/utils/sync-ai-milestones";
 import { env } from "@/shared/config/env";
 import { createClient } from "@/shared/lib/supabase/server";
 import { today } from "@/shared/utils/date";
@@ -59,7 +60,11 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
   console.log(
     `[goal-breakdown] generated ${object.milestones.length} milestones for goal ${goalId}`,
   );
-  await upsertGoalBreakdown(user.id, goalId, object.milestones);
+
+  await Promise.all([
+    upsertGoalBreakdown(user.id, goalId, object.milestones),
+    syncAiMilestonesToDb(user.id, goalId, object.milestones),
+  ]);
 
   const breakdown = await getGoalBreakdown(user.id, goalId);
   return NextResponse.json(breakdown ?? null);
@@ -84,7 +89,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
   }
 
   console.log(
-    `[goal-breakdown] calling Grok for goal "${goal.title}" (${goalId})`,
+    `[goal-breakdown] calling AI for goal "${goal.title}" (${goalId})`,
   );
   const ragContext = await buildRagContext(userId, goal.title);
 
@@ -95,9 +100,13 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
   });
 
   console.log(
-    `[goal-breakdown] Grok returned ${object.milestones.length} milestones for goal ${goalId}`,
+    `[goal-breakdown] generated ${object.milestones.length} milestones for goal ${goalId}`,
   );
-  await upsertGoalBreakdown(userId, goalId, object.milestones);
+
+  await Promise.all([
+    upsertGoalBreakdown(userId, goalId, object.milestones),
+    syncAiMilestonesToDb(userId, goalId, object.milestones),
+  ]);
 
   return NextResponse.json({ ok: true });
 }

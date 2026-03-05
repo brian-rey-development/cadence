@@ -2,11 +2,11 @@
 
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useEffect } from "react";
-import type { GoalWithTasks } from "../goals.types";
+import type { GoalWithMilestones } from "../goals.types";
 
 export const GOALS_QUERY_KEY = ["goals", "quarter"] as const;
 
-export function useGoals(initialData: GoalWithTasks[]) {
+export function useGoals(initialData: GoalWithMilestones[]) {
   const queryClient = useQueryClient();
 
   useEffect(() => {

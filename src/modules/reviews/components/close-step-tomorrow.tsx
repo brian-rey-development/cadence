@@ -22,9 +22,7 @@ export default function CloseStepTomorrow({
         >
           Tomorrow&rsquo;s focus
         </label>
-        <p
-          className="text-sm font-body text-text-tertiary"
-        >
+        <p className="text-sm font-body text-text-tertiary">
           What&rsquo;s the one thing that would make tomorrow a success?
         </p>
         <textarea

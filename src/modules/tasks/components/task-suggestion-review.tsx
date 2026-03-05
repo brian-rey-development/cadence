@@ -102,9 +102,7 @@ export default function TaskSuggestionReview({
       </div>
 
       <div className="flex flex-col gap-1.5">
-        <span
-          className="text-xs font-body font-medium uppercase tracking-widest text-text-tertiary"
-        >
+        <span className="text-xs font-body font-medium uppercase tracking-widest text-text-tertiary">
           Type
         </span>
         <div className="flex gap-2">
@@ -139,9 +137,7 @@ export default function TaskSuggestionReview({
             onChange={setSelectedDate}
           />
           {suggestion.schedulingReason && (
-            <p
-              className="text-xs font-body leading-relaxed text-text-tertiary"
-            >
+            <p className="text-xs font-body leading-relaxed text-text-tertiary">
               {suggestion.schedulingReason}
             </p>
           )}
@@ -181,9 +177,7 @@ export default function TaskSuggestionReview({
                 strokeWidth={1.5}
                 className="text-text-tertiary"
               />
-              <span
-                className="text-xs font-body text-text-tertiary"
-              >
+              <span className="text-xs font-body text-text-tertiary">
                 No quarter goal linked
               </span>
             </div>

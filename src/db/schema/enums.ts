@@ -16,3 +16,5 @@ export const taskTypeEnum = pgEnum("task_type", [
   "weekly",
   "quarterly",
 ]);
+export const goalScopeEnum = pgEnum("goal_scope", ["quarterly", "weekly"]);
+export const milestoneSourceEnum = pgEnum("milestone_source", ["ai", "manual"]);
