@@ -64,7 +64,7 @@ export default function BottomSheet({
               <div className="absolute left-1/2 top-2 h-1 w-10 -translate-x-1/2 rounded-full bg-[var(--color-border-subtle)]" />
 
               {title && (
-                <h2 className="font-display text-base text-text-primary">
+                <h2 className="font-display text-lg text-text-primary">
                   {title}
                 </h2>
               )}

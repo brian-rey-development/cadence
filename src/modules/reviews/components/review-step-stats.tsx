@@ -14,7 +14,7 @@ export default function ReviewStepStats({
   return (
     <div className="flex flex-col gap-6">
       <div>
-        <h3 className="font-display text-lg text-text-primary mb-4">
+        <h3 className="font-display text-xl text-text-primary mb-4">
           This week at a glance
         </h3>
 
@@ -38,15 +38,15 @@ export default function ReviewStepStats({
                       className="w-2 h-2 rounded-full"
                       style={{ backgroundColor: config.accent }}
                     />
-                    <span className="text-sm font-body text-text-secondary">
+                    <span className="text-base font-body text-text-secondary">
                       {config.label}
                     </span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <span className="font-mono text-sm text-text-secondary">
+                    <span className="font-mono text-base text-text-secondary">
                       {areaStats.completed}/{areaStats.total}
                     </span>
-                    <span className="font-mono text-sm text-text-primary">
+                    <span className="font-mono text-base text-text-primary">
                       {pct}%
                     </span>
                   </div>
@@ -73,8 +73,8 @@ export default function ReviewStepStats({
         className="flex items-center justify-between rounded-lg px-4 py-3"
         style={{ backgroundColor: "var(--color-bg-subtle)" }}
       >
-        <span className="text-sm text-text-secondary">Habit consistency</span>
-        <span className="font-mono text-base text-text-primary">
+        <span className="text-base text-text-secondary">Habit consistency</span>
+        <span className="font-mono text-lg text-text-primary">
           {stats.habitConsistency}%
         </span>
       </div>
@@ -87,8 +87,8 @@ export default function ReviewStepStats({
             border: "1px solid var(--color-zombie)",
           }}
         >
-          <span className="font-mono text-xs text-zombie-text">☠</span>
-          <span className="text-sm text-zombie-text">
+          <span className="font-mono text-sm text-zombie-text">☠</span>
+          <span className="text-base text-zombie-text">
             {stats.zombieCount} task{stats.zombieCount > 1 ? "s" : ""} postponed
             2+ times
           </span>
@@ -98,7 +98,7 @@ export default function ReviewStepStats({
       <button
         type="button"
         onClick={onNext}
-        className="mt-2 w-full rounded-xl py-3.5 text-sm font-medium transition-opacity active:opacity-70"
+        className="mt-2 w-full rounded-xl py-3.5 text-base font-medium transition-opacity active:opacity-70"
         style={{
           backgroundColor: "var(--color-text-primary)",
           color: "var(--color-bg-base)",

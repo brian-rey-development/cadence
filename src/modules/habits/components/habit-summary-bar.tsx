@@ -13,10 +13,10 @@ export default function HabitSummaryBar({
 
   return (
     <div className="flex items-center justify-between py-2">
-      <span className="text-xs font-body uppercase tracking-sm text-text-tertiary">
+      <span className="text-sm font-body uppercase tracking-sm text-text-tertiary">
         habits today
       </span>
-      <span className="font-mono text-xs text-text-secondary">
+      <span className="font-mono text-sm text-text-secondary">
         {completed}/{total}
       </span>
     </div>

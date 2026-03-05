@@ -43,10 +43,10 @@ export default function LoginForm() {
           <Mail size={40} strokeWidth={1.5} className="text-text-primary" />
         </div>
         <div className="flex flex-col gap-1">
-          <p className="text-sm font-body text-text-primary">
+          <p className="text-base font-body text-text-primary">
             Check your email
           </p>
-          <p className="text-sm font-body text-text-secondary max-w-60">
+          <p className="text-base font-body text-text-secondary max-w-60">
             We sent a magic link to{" "}
             <span className="text-text-primary">{email}</span>
           </p>

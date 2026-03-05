@@ -38,7 +38,7 @@ export default function HabitForm({
       />
 
       <div className="flex flex-col gap-2">
-        <span className="text-xs font-body uppercase tracking-wide text-text-secondary">
+        <span className="text-sm font-body uppercase tracking-wide text-text-secondary">
           Area
         </span>
         <div className="flex gap-2">
@@ -50,7 +50,7 @@ export default function HabitForm({
                 key={a}
                 type="button"
                 onClick={() => onAreaChange(a)}
-                className="flex-1 h-11 rounded-md text-sm font-medium font-body transition-colors duration-150"
+                className="flex-1 h-11 rounded-md text-base font-medium font-body transition-colors duration-150"
                 style={{
                   backgroundColor: isSelected ? config.subtle : "transparent",
                   color: isSelected
@@ -67,7 +67,7 @@ export default function HabitForm({
       </div>
 
       <div className="flex flex-col gap-2">
-        <span className="text-xs font-body uppercase tracking-wide text-text-secondary">
+        <span className="text-sm font-body uppercase tracking-wide text-text-secondary">
           Times per week
         </span>
         <div className="flex gap-2">
@@ -78,7 +78,7 @@ export default function HabitForm({
                 key={f}
                 type="button"
                 onClick={() => onFrequencyChange(f)}
-                className="flex-1 h-11 rounded-full text-sm font-mono transition-colors duration-150"
+                className="flex-1 h-11 rounded-full text-base font-mono transition-colors duration-150"
                 style={{
                   backgroundColor: isSelected
                     ? "var(--color-text-primary)"

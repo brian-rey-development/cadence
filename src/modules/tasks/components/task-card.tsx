@@ -98,7 +98,7 @@ export default function TaskCard({
         <div className="flex-1 min-w-0 flex flex-col gap-0.5">
           <div className="flex items-center gap-2">
             <span
-              className={`font-body text-sm leading-snug truncate ${zombieAge !== null ? "text-zombie-text" : "text-text-primary"} ${isDone ? "line-through" : ""}`}
+              className={`font-body text-base leading-snug truncate ${zombieAge !== null ? "text-zombie-text" : "text-text-primary"} ${isDone ? "line-through" : ""}`}
             >
               {task.title}
             </span>
@@ -114,7 +114,7 @@ export default function TaskCard({
 
           <div className="flex items-center gap-2">
             {task.goal && (
-              <span className="font-body text-xs truncate text-text-tertiary">
+              <span className="font-body text-sm truncate text-text-tertiary">
                 {task.goal.title}
               </span>
             )}

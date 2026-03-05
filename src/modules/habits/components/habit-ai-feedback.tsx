@@ -27,13 +27,13 @@ function FeedbackCard({ icon, label, text, accentColor }: FeedbackCardProps) {
       <div className="flex items-center gap-1.5">
         <span style={{ color: accentColor }}>{icon}</span>
         <span
-          className="text-xs font-medium font-body uppercase tracking-wide"
+          className="text-sm font-medium font-body uppercase tracking-wide"
           style={{ color: accentColor }}
         >
           {label}
         </span>
       </div>
-      <p className="text-sm font-body leading-relaxed text-text-primary">
+      <p className="text-base font-body leading-relaxed text-text-primary">
         {text}
       </p>
     </div>
@@ -80,7 +80,7 @@ export default function HabitAiFeedback({
           type="button"
           onClick={onBack}
           disabled={isSaving}
-          className="h-11 rounded-md text-sm font-body transition-opacity active:opacity-70 disabled:opacity-40 text-text-secondary"
+          className="h-11 rounded-md text-base font-body transition-opacity active:opacity-70 disabled:opacity-40 text-text-secondary"
         >
           Back
         </button>

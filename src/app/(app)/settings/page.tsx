@@ -12,21 +12,21 @@ export default async function SettingsPage() {
   return (
     <div className="flex flex-col gap-8 px-4 py-6 max-w-lg mx-auto">
       <header>
-        <h1 className="font-display text-2xl text-text-primary">Settings</h1>
+        <h1 className="font-display text-3xl text-text-primary">Settings</h1>
       </header>
 
       <div className="flex flex-col gap-1">
-        <p className="text-xs font-medium uppercase tracking-widest font-body text-text-tertiary">
+        <p className="text-sm font-medium uppercase tracking-widest font-body text-text-tertiary">
           Account
         </p>
         <div className="mt-2 overflow-hidden rounded-2xl bg-[var(--color-bg-elevated)]">
           <div className="flex items-center gap-3 px-4 py-3.5">
             <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-bg-surface">
-              <span className="text-sm font-medium font-body text-text-secondary">
+              <span className="text-base font-medium font-body text-text-secondary">
                 {initial}
               </span>
             </div>
-            <span className="text-sm font-body text-text-secondary">
+            <span className="text-base font-body text-text-secondary">
               {user.email}
             </span>
           </div>
@@ -34,7 +34,7 @@ export default async function SettingsPage() {
           <form action={signOut}>
             <button
               type="submit"
-              className="w-full px-4 py-3.5 text-left text-sm font-body transition-opacity active:opacity-70"
+              className="w-full px-4 py-3.5 text-left text-base font-body transition-opacity active:opacity-70"
               style={{ color: "var(--color-destructive-text)" }}
             >
               Sign out

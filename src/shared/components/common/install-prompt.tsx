@@ -45,7 +45,7 @@ export default function InstallPrompt() {
     <div className="fixed right-0 bottom-20 left-0 z-40 px-4">
       <div className="rounded-xl bg-[var(--color-bg-elevated)] p-4">
         <div className="mb-1 flex items-start justify-between gap-3">
-          <p className="font-body text-sm font-medium text-text-primary">
+          <p className="font-body text-base font-medium text-text-primary">
             Install Cadence for the best experience
           </p>
           <button
@@ -57,14 +57,14 @@ export default function InstallPrompt() {
             <X size={16} strokeWidth={1.5} />
           </button>
         </div>
-        <p className="mb-3 font-body text-xs text-text-secondary">
+        <p className="mb-3 font-body text-sm text-text-secondary">
           Faster load times, offline access, and push reminders - works like a
           native app.
         </p>
         <button
           type="button"
           onClick={handleAdd}
-          className="w-full rounded-lg bg-[var(--color-interactive-primaryBg)] py-2.5 font-body text-sm font-medium text-[var(--color-interactive-primaryText)]"
+          className="w-full rounded-lg bg-[var(--color-interactive-primaryBg)] py-2.5 font-body text-base font-medium text-[var(--color-interactive-primaryText)]"
         >
           Add to Home Screen
         </button>

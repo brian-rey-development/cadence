@@ -31,8 +31,8 @@ export default async function TodayPage() {
       <div className="flex flex-col gap-6 px-4 py-6 max-w-lg mx-auto">
         <header className="flex items-start justify-between">
           <div>
-            <h1 className="font-display text-2xl text-text-primary">Today</h1>
-            <p className="text-sm font-body text-text-tertiary">
+            <h1 className="font-display text-3xl text-text-primary">Today</h1>
+            <p className="text-base font-body text-text-tertiary">
               {new Date().toLocaleDateString("en-US", {
                 weekday: "long",
                 month: "long",

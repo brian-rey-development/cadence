@@ -57,7 +57,7 @@ export default function CloseStepJournal({
         <div key={key} className="flex flex-col gap-1.5">
           <label
             htmlFor={key}
-            className="text-xs font-medium font-body uppercase tracking-widest text-text-tertiary"
+            className="text-sm font-medium font-body uppercase tracking-widest text-text-tertiary"
           >
             {label}
           </label>
@@ -67,7 +67,7 @@ export default function CloseStepJournal({
             value={values[key]}
             placeholder={placeholder}
             onChange={(e) => handleChange(key, e.target.value)}
-            className="w-full resize-none rounded-xl px-4 py-3 font-body text-sm outline-none"
+            className="w-full resize-none rounded-xl px-4 py-3 font-body text-base outline-none"
             style={{
               backgroundColor: "var(--color-bg-elevated)",
               border: "1px solid var(--color-border-subtle)",
@@ -80,7 +80,7 @@ export default function CloseStepJournal({
       <button
         type="button"
         onClick={onNext}
-        className="min-h-11 w-full rounded-xl font-body text-sm font-medium transition-opacity active:opacity-70"
+        className="min-h-11 w-full rounded-xl font-body text-base font-medium transition-opacity active:opacity-70"
         style={{
           backgroundColor: "var(--color-text-primary)",
           color: "var(--color-bg-base)",

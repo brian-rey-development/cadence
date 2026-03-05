@@ -53,7 +53,7 @@ export default function WeeklyGoalList({
     <>
       <div className="flex flex-col gap-4">
         <div className="flex items-center justify-between">
-          <span className="text-sm font-medium font-display text-text-primary">
+          <span className="text-base font-medium font-display text-text-primary">
             Weekly goals
           </span>
           <button
@@ -70,7 +70,7 @@ export default function WeeklyGoalList({
           <button
             type="button"
             onClick={() => setSheetOpen(true)}
-            className="text-sm font-body text-text-tertiary py-4 text-center w-full"
+            className="text-base font-body text-text-tertiary py-4 text-center w-full"
           >
             No weekly goals — add one
           </button>
@@ -102,11 +102,11 @@ export default function WeeklyGoalList({
                     style={{ borderLeft: `2px solid ${config.accent}` }}
                   >
                     <div className="flex-1 min-w-0 flex flex-col gap-0.5">
-                      <span className="text-sm font-body leading-snug text-text-primary">
+                      <span className="text-base font-body leading-snug text-text-primary">
                         {goal.title}
                       </span>
                       {goal.parentGoal && (
-                        <span className="text-xs font-body text-text-tertiary truncate">
+                        <span className="text-sm font-body text-text-tertiary truncate">
                           {goal.parentGoal.title}
                         </span>
                       )}

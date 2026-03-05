@@ -76,10 +76,10 @@ export default function AiProfileForm({ initialSettings }: AiProfileFormProps) {
 
   return (
     <div className="flex flex-col gap-1">
-      <p className="text-xs font-medium uppercase tracking-widest font-body text-text-tertiary">
+      <p className="text-sm font-medium uppercase tracking-widest font-body text-text-tertiary">
         AI Profile
       </p>
-      <p className="mt-1 text-sm font-body text-text-tertiary">
+      <p className="mt-1 text-base font-body text-text-tertiary">
         Helps Cadence personalize suggestions to you.
       </p>
 
@@ -89,12 +89,12 @@ export default function AiProfileForm({ initialSettings }: AiProfileFormProps) {
             <div className="flex items-center justify-between">
               <label
                 htmlFor={key}
-                className="text-sm font-medium font-body text-text-secondary"
+                className="text-base font-medium font-body text-text-secondary"
               >
                 {label}
               </label>
               {savedKey === key && (
-                <span className="text-xs font-body text-text-tertiary">
+                <span className="text-sm font-body text-text-tertiary">
                   Saved
                 </span>
               )}
@@ -107,7 +107,7 @@ export default function AiProfileForm({ initialSettings }: AiProfileFormProps) {
               placeholder={placeholder}
               onChange={(e) => handleChange(key, e.target.value)}
               onBlur={() => handleBlur(key)}
-              className="w-full resize-none rounded-xl px-4 py-3 font-body text-sm outline-none"
+              className="w-full resize-none rounded-xl px-4 py-3 font-body text-base outline-none"
               style={{
                 backgroundColor: "var(--color-bg-elevated)",
                 border: "1px solid var(--color-border-subtle)",

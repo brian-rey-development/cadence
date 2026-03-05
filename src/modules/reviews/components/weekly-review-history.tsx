@@ -15,7 +15,7 @@ export default function WeeklyReviewHistory({
 }: WeeklyReviewHistoryProps) {
   return (
     <div className="flex flex-col gap-3">
-      <p className="text-xs font-medium uppercase tracking-widest font-body text-text-tertiary">
+      <p className="text-sm font-medium uppercase tracking-widest font-body text-text-tertiary">
         Weekly Reviews
       </p>
 
@@ -31,7 +31,7 @@ export default function WeeklyReviewHistory({
               key={review.id}
               className="flex flex-col gap-3 px-4 py-4 rounded-2xl bg-bg-elevated"
             >
-              <span className="text-sm font-medium font-body text-text-primary">
+              <span className="text-base font-medium font-body text-text-primary">
                 {formatWeekLabel(review.weekStart)}
               </span>
 
@@ -65,11 +65,11 @@ function ReviewField({
 }) {
   return (
     <div className="flex flex-col gap-1">
-      <span className="text-xs font-medium font-body uppercase tracking-widest text-text-tertiary">
+      <span className="text-sm font-medium font-body uppercase tracking-widest text-text-tertiary">
         {label}
       </span>
       <p
-        className="text-sm font-body leading-relaxed"
+        className="text-base font-body leading-relaxed"
         style={{
           color: muted
             ? "var(--color-text-tertiary)"

@@ -50,7 +50,7 @@ export default function GoalList({
     <>
       <div className="flex flex-col gap-6">
         <div className="flex items-center justify-between">
-          <span className="text-sm font-medium font-display text-text-primary">
+          <span className="text-base font-medium font-display text-text-primary">
             {currentQuarterLabel}
           </span>
           <button
@@ -65,13 +65,13 @@ export default function GoalList({
 
         {!hasAny && (
           <div className="flex flex-col items-center gap-3 py-16">
-            <span className="text-sm font-body text-text-secondary">
+            <span className="text-base font-body text-text-secondary">
               No goals this quarter
             </span>
             <button
               type="button"
               onClick={() => setSheetOpen(true)}
-              className="text-sm font-medium font-body text-text-primary"
+              className="text-base font-medium font-body text-text-primary"
             >
               Add your first goal
             </button>

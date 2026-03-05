@@ -33,19 +33,19 @@ export default function GoalCard({
     >
       <div className="flex items-start gap-3">
         <div className="flex-1 min-w-0 flex flex-col gap-1">
-          <span className="text-sm font-body leading-snug text-text-primary">
+          <span className="text-base font-body leading-snug text-text-primary">
             {goal.title}
           </span>
 
           {goal.description && (
-            <span className="text-sm font-body line-clamp-2 text-text-secondary">
+            <span className="text-base font-body line-clamp-2 text-text-secondary">
               {goal.description}
             </span>
           )}
 
           {!isActive && (
             <span
-              className="text-xs font-medium font-body px-2 py-0.5 rounded-full capitalize mt-0.5 self-start"
+              className="text-sm font-medium font-body px-2 py-0.5 rounded-full capitalize mt-0.5 self-start"
               style={{
                 backgroundColor:
                   goal.status === "achieved"
@@ -71,7 +71,7 @@ export default function GoalCard({
               }
             >
               <span
-                className="font-body text-xs"
+                className="font-body text-sm"
                 style={{ color: config.text }}
               >
                 Milestones ({goal.milestones.length})
@@ -103,7 +103,7 @@ export default function GoalCard({
                 type="button"
                 onClick={() => onStatusChange(goal.id, "achieved")}
                 disabled={isUpdating}
-                className="px-2.5 py-1 rounded-full font-body text-xs font-medium transition-opacity active:opacity-70 disabled:opacity-50"
+                className="px-2.5 py-1 rounded-full font-body text-sm font-medium transition-opacity active:opacity-70 disabled:opacity-50"
                 style={{ backgroundColor: config.subtle, color: config.text }}
                 aria-label="Mark as achieved"
               >
@@ -113,7 +113,7 @@ export default function GoalCard({
                 type="button"
                 onClick={() => onStatusChange(goal.id, "abandoned")}
                 disabled={isUpdating}
-                className="px-2.5 py-1 rounded-full font-body text-xs font-medium transition-opacity active:opacity-70 disabled:opacity-50 bg-bg-elevated text-text-tertiary"
+                className="px-2.5 py-1 rounded-full font-body text-sm font-medium transition-opacity active:opacity-70 disabled:opacity-50 bg-bg-elevated text-text-tertiary"
                 aria-label="Mark as abandoned"
               >
                 Drop

@@ -63,7 +63,7 @@ export default function TaskSuggestionReview({
     <form onSubmit={handleSubmit} className="flex flex-col gap-5 pt-2">
       {suggestion.warning && (
         <div
-          className="rounded-md px-4 py-3 text-sm font-body"
+          className="rounded-md px-4 py-3 text-base font-body"
           style={{
             backgroundColor: "var(--color-warning-subtle)",
             color: "var(--color-warning-text)",
@@ -77,7 +77,7 @@ export default function TaskSuggestionReview({
       <div className="flex flex-col gap-1.5">
         <label
           htmlFor="task-title"
-          className="text-xs font-body font-medium uppercase tracking-widest text-text-tertiary"
+          className="text-sm font-body font-medium uppercase tracking-widest text-text-tertiary"
         >
           Task
         </label>
@@ -86,7 +86,7 @@ export default function TaskSuggestionReview({
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           rows={2}
-          className="w-full resize-none rounded-md px-4 py-3 text-sm font-body outline-none transition-colors duration-150"
+          className="w-full resize-none rounded-md px-4 py-3 text-base font-body outline-none transition-colors duration-150"
           style={{
             backgroundColor: "var(--color-bg-base)",
             color: "var(--color-text-primary)",
@@ -102,7 +102,7 @@ export default function TaskSuggestionReview({
       </div>
 
       <div className="flex flex-col gap-1.5">
-        <span className="text-xs font-body font-medium uppercase tracking-widest text-text-tertiary">
+        <span className="text-sm font-body font-medium uppercase tracking-widest text-text-tertiary">
           Type
         </span>
         <div className="flex gap-2">
@@ -111,7 +111,7 @@ export default function TaskSuggestionReview({
               key={t}
               type="button"
               onClick={() => setTaskType(t)}
-              className="rounded-full px-3 py-1.5 text-sm font-body font-medium transition-colors duration-150"
+              className="rounded-full px-3 py-1.5 text-base font-body font-medium transition-colors duration-150"
               style={{
                 backgroundColor:
                   taskType === t
@@ -137,7 +137,7 @@ export default function TaskSuggestionReview({
             onChange={setSelectedDate}
           />
           {suggestion.schedulingReason && (
-            <p className="text-xs font-body leading-relaxed text-text-tertiary">
+            <p className="text-sm font-body leading-relaxed text-text-tertiary">
               {suggestion.schedulingReason}
             </p>
           )}
@@ -148,7 +148,7 @@ export default function TaskSuggestionReview({
         <div className="flex flex-col gap-1.5">
           <label
             htmlFor="task-goal"
-            className="text-xs font-body font-medium uppercase tracking-widest text-text-tertiary"
+            className="text-sm font-body font-medium uppercase tracking-widest text-text-tertiary"
           >
             Goal (optional)
           </label>
@@ -156,7 +156,7 @@ export default function TaskSuggestionReview({
             id="task-goal"
             value={goalId ?? ""}
             onChange={(e) => setGoalId(e.target.value || null)}
-            className="h-12 w-full rounded-md px-4 text-sm font-body outline-none transition-colors duration-150"
+            className="h-12 w-full rounded-md px-4 text-base font-body outline-none transition-colors duration-150"
             style={{
               backgroundColor: "var(--color-bg-base)",
               color: "var(--color-text-primary)",
@@ -177,7 +177,7 @@ export default function TaskSuggestionReview({
                 strokeWidth={1.5}
                 className="text-text-tertiary"
               />
-              <span className="text-xs font-body text-text-tertiary">
+              <span className="text-sm font-body text-text-tertiary">
                 No quarter goal linked
               </span>
             </div>

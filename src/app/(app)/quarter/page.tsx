@@ -19,7 +19,7 @@ export default async function QuarterPage() {
   return (
     <main className="flex flex-col gap-6 px-4 py-6 max-w-lg mx-auto">
       <header>
-        <h1 className="font-display text-2xl text-text-primary">Goals</h1>
+        <h1 className="font-display text-3xl text-text-primary">Goals</h1>
       </header>
       <QuarterlyTasksSection initialTasks={quarterlyTasks} />
       <GoalList initialData={goals} currentQuarterLabel={quarterLabel} />

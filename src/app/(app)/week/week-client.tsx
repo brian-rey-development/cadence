@@ -65,8 +65,8 @@ export default function WeekClient({
   return (
     <div className="flex flex-col gap-5 px-5 py-6">
       <header>
-        <h1 className="font-display text-2xl text-text-primary">Week</h1>
-        <p className="text-sm font-body text-text-tertiary">
+        <h1 className="font-display text-3xl text-text-primary">Week</h1>
+        <p className="text-base font-body text-text-tertiary">
           {formatWeekRange(weekStart)}
         </p>
       </header>
@@ -75,10 +75,10 @@ export default function WeekClient({
 
       <div className="flex items-center rounded-xl px-4 py-4 bg-bg-elevated">
         <div className="flex flex-col gap-0.5 flex-1">
-          <span className="text-xs font-body text-text-tertiary">
+          <span className="text-sm font-body text-text-tertiary">
             Tasks this week
           </span>
-          <span className="font-mono text-2xl text-text-primary">
+          <span className="font-mono text-3xl text-text-primary">
             {totalCompleted}/{totalTasks}
           </span>
         </div>
@@ -89,10 +89,10 @@ export default function WeekClient({
         />
 
         <div className="flex flex-col gap-0.5 flex-1 text-right">
-          <span className="text-xs font-body text-text-tertiary">
+          <span className="text-sm font-body text-text-tertiary">
             Habit consistency
           </span>
-          <span className="font-mono text-2xl text-text-primary">
+          <span className="font-mono text-3xl text-text-primary">
             {stats.habitConsistency}%
           </span>
         </div>
@@ -106,7 +106,7 @@ export default function WeekClient({
             return (
               <span
                 key={area}
-                className="text-xs font-medium font-body px-2.5 py-1 rounded-full"
+                className="text-sm font-medium font-body px-2.5 py-1 rounded-full"
                 style={{
                   backgroundColor: config.subtle,
                   color: config.text,
@@ -129,7 +129,7 @@ export default function WeekClient({
       <button
         type="button"
         onClick={() => setIsReviewOpen(true)}
-        className="w-full rounded-xl py-3.5 text-sm font-medium transition-opacity active:opacity-70"
+        className="w-full rounded-xl py-3.5 text-base font-medium transition-opacity active:opacity-70"
         style={{
           backgroundColor: "var(--color-text-primary)",
           color: "var(--color-bg-base)",

@@ -4,7 +4,7 @@ import { cn } from "@/shared/utils/cn";
 import { today, toISODate } from "@/shared/utils/date";
 
 const LEGEND_CLASS =
-  "text-xs font-body font-medium uppercase tracking-widest mb-1.5";
+  "text-sm font-body font-medium uppercase tracking-widest mb-1.5";
 const LEGEND_STYLE = { color: "var(--color-text-tertiary)" };
 
 const DATE_OPTIONS = [
@@ -57,7 +57,7 @@ export default function DateSelector({
               aria-pressed={isSelected}
               onClick={() => onChange(val)}
               className={cn(
-                "flex-1 rounded-md py-2.5 text-sm font-body font-medium transition-colors duration-150 min-h-11",
+                "flex-1 rounded-md py-2.5 text-base font-body font-medium transition-colors duration-150 min-h-11",
               )}
               style={{
                 backgroundColor: isSelected

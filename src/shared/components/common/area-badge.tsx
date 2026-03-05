@@ -10,7 +10,7 @@ export default function AreaBadge({ area }: AreaBadgeProps) {
 
   return (
     <span
-      className="inline-flex items-center px-2 py-[3px] rounded-sm text-xs font-medium font-body"
+      className="inline-flex items-center px-2 py-[3px] rounded-sm text-sm font-medium font-body"
       style={{
         backgroundColor: config.subtle,
         color: config.text,

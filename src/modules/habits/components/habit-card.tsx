@@ -23,12 +23,12 @@ export default function HabitCard({
     <div className="flex flex-col gap-2.5 py-3">
       <div className="flex items-center justify-between">
         <div className="flex flex-col gap-0.5">
-          <span className="text-sm font-medium font-body text-text-primary">
+          <span className="text-base font-medium font-body text-text-primary">
             {habit.name}
           </span>
           <div className="flex items-center gap-2">
             <AreaBadge area={habit.area} />
-            <span className="text-xs font-mono text-text-tertiary">
+            <span className="text-sm font-mono text-text-tertiary">
               🔥 {habit.streak.current}
               <span className="ml-1.5 opacity-60">
                 / {habit.streak.longest} best

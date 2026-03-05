@@ -48,11 +48,11 @@ export default function HabitList({ initialData }: HabitListProps) {
       <div className="flex flex-col gap-6">
         <div className="flex items-start justify-between">
           <div className="flex flex-col gap-0.5">
-            <span className="text-sm font-body text-text-secondary">
+            <span className="text-base font-body text-text-secondary">
               {enriched.length} {enriched.length === 1 ? "habit" : "habits"}
             </span>
             {enriched.length > 0 && (
-              <span className="text-xs font-mono text-text-tertiary">
+              <span className="text-sm font-mono text-text-tertiary">
                 {completedToday} of {enriched.length} done today
               </span>
             )}
@@ -69,13 +69,13 @@ export default function HabitList({ initialData }: HabitListProps) {
 
         {!hasAny && (
           <div className="flex flex-col items-center gap-3 py-16">
-            <span className="text-sm font-body text-text-secondary">
+            <span className="text-base font-body text-text-secondary">
               No habits yet
             </span>
             <button
               type="button"
               onClick={() => setSheetOpen(true)}
-              className="text-sm font-medium font-body text-text-primary"
+              className="text-base font-medium font-body text-text-primary"
             >
               Add your first habit
             </button>

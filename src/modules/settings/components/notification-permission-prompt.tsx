@@ -32,7 +32,7 @@ export default function NotificationPermissionPrompt({
     >
       <div className="flex flex-col gap-3 rounded-2xl bg-[var(--color-bg-elevated)] p-5">
         <div className="flex items-start justify-between gap-3">
-          <p className="font-[family-name:var(--font-body)] text-sm text-text-secondary">
+          <p className="font-[family-name:var(--font-body)] text-base text-text-secondary">
             Get reminded to close your day and start fresh
           </p>
           <button
@@ -47,7 +47,7 @@ export default function NotificationPermissionPrompt({
         <button
           type="button"
           onClick={handleEnable}
-          className="flex h-11 items-center justify-center rounded-xl bg-[var(--color-primary-bg)] font-[family-name:var(--font-body)] text-sm font-medium text-primary-text transition-opacity active:opacity-80"
+          className="flex h-11 items-center justify-center rounded-xl bg-[var(--color-primary-bg)] font-[family-name:var(--font-body)] text-base font-medium text-primary-text transition-opacity active:opacity-80"
         >
           Enable Notifications
         </button>

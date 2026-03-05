@@ -56,7 +56,7 @@ export default function ReviewStepSuggestions({
 
   return (
     <div className="flex flex-col gap-6">
-      <h3 className="font-display text-lg text-text-primary">Next week</h3>
+      <h3 className="font-display text-xl text-text-primary">Next week</h3>
 
       {isLoading && (
         <div className="flex flex-col gap-2">
@@ -70,18 +70,18 @@ export default function ReviewStepSuggestions({
         </div>
       )}
 
-      {error && <p className="text-sm text-text-tertiary">{error}</p>}
+      {error && <p className="text-base text-text-tertiary">{error}</p>}
 
       {result && !isLoading && (
         <div className="flex flex-col gap-2">
-          <p className="text-xs uppercase tracking-wide text-text-tertiary">
+          <p className="text-sm uppercase tracking-wide text-text-tertiary">
             Suggestions
           </p>
           <ul className="flex flex-col gap-2">
             {result.suggestions.map((s) => (
               <li
                 key={s}
-                className="rounded-lg px-4 py-3 text-sm"
+                className="rounded-lg px-4 py-3 text-base"
                 style={{
                   backgroundColor: "var(--color-bg-subtle)",
                   color: "var(--color-text-secondary)",
@@ -95,14 +95,14 @@ export default function ReviewStepSuggestions({
       )}
 
       <div className="flex flex-col gap-2">
-        <p className="text-xs uppercase tracking-wide text-text-tertiary">
+        <p className="text-sm uppercase tracking-wide text-text-tertiary">
           Intentions
         </p>
         <textarea
           value={intentions}
           onChange={(e) => setIntentions(e.target.value)}
           rows={3}
-          className="w-full resize-none rounded-xl px-4 py-3 text-sm outline-none"
+          className="w-full resize-none rounded-xl px-4 py-3 text-base outline-none"
           style={{
             backgroundColor: "var(--color-bg-subtle)",
             color: "var(--color-text-primary)",
@@ -115,7 +115,7 @@ export default function ReviewStepSuggestions({
         type="button"
         onClick={() => onSave(intentions, aiSuggestions)}
         disabled={isLoading}
-        className="w-full rounded-xl py-3.5 text-sm font-medium transition-opacity active:opacity-70 disabled:opacity-40"
+        className="w-full rounded-xl py-3.5 text-base font-medium transition-opacity active:opacity-70 disabled:opacity-40"
         style={{
           backgroundColor: "var(--color-text-primary)",
           color: "var(--color-bg-base)",

@@ -187,14 +187,14 @@ export default function CreateGoalSheet({
             )}
 
             {refineError && (
-              <span className="text-sm font-body text-text-secondary">
+              <span className="text-base font-body text-text-secondary">
                 {refineError}
               </span>
             )}
 
             {saveError && (
               <span
-                className="text-sm font-body"
+                className="text-base font-body"
                 style={{ color: "var(--color-destructive-text)" }}
               >
                 {saveError.message}
@@ -213,7 +213,7 @@ export default function CreateGoalSheet({
           <form onSubmit={handleSaveRefined} className="flex flex-col gap-5">
             {refinement?.feedback && (
               <div
-                className="rounded-md px-4 py-3 text-sm font-body leading-relaxed"
+                className="rounded-md px-4 py-3 text-base font-body leading-relaxed"
                 style={{
                   backgroundColor: "var(--color-bg-elevated)",
                   color: "var(--color-text-secondary)",
@@ -225,14 +225,14 @@ export default function CreateGoalSheet({
 
             {refinement?.questions && refinement.questions.length > 0 && (
               <div className="flex flex-col gap-1.5">
-                <span className="text-xs font-body uppercase tracking-wide text-text-tertiary">
+                <span className="text-sm font-body uppercase tracking-wide text-text-tertiary">
                   Clarifying questions
                 </span>
                 <ul className="flex flex-col gap-1">
                   {refinement.questions.map((q) => (
                     <li
                       key={q}
-                      className="text-sm font-body leading-snug text-text-secondary"
+                      className="text-base font-body leading-snug text-text-secondary"
                     >
                       · {q}
                     </li>
@@ -242,7 +242,7 @@ export default function CreateGoalSheet({
             )}
 
             <div className="flex flex-col gap-2">
-              <span className="text-xs font-body uppercase tracking-wide text-text-tertiary">
+              <span className="text-sm font-body uppercase tracking-wide text-text-tertiary">
                 Refined goal
               </span>
               <Input
@@ -263,7 +263,7 @@ export default function CreateGoalSheet({
 
             {saveError && (
               <span
-                className="text-sm font-body"
+                className="text-base font-body"
                 style={{ color: "var(--color-destructive-text)" }}
               >
                 {saveError.message}
@@ -275,7 +275,7 @@ export default function CreateGoalSheet({
                 type="button"
                 onClick={() => setStep("input")}
                 disabled={isPending}
-                className="h-11 px-4 rounded-md text-sm font-medium font-body transition-colors duration-150"
+                className="h-11 px-4 rounded-md text-base font-medium font-body transition-colors duration-150"
                 style={{
                   color: "var(--color-text-secondary)",
                   border: "1.5px solid var(--color-border-subtle)",
@@ -319,7 +319,7 @@ function ScopeToggle({ scope, onChange, disabled }: ScopeToggleProps) {
             type="button"
             disabled={disabled}
             onClick={() => onChange(s)}
-            className="flex-1 h-9 rounded-md text-sm font-medium font-body transition-colors duration-150 capitalize disabled:opacity-50"
+            className="flex-1 h-9 rounded-md text-base font-medium font-body transition-colors duration-150 capitalize disabled:opacity-50"
             style={{
               backgroundColor: isActive
                 ? "var(--color-bg-surface)"
@@ -359,7 +359,7 @@ function Textarea({
       onChange={(e) => onChange(e.target.value)}
       rows={rows}
       disabled={disabled}
-      className="w-full resize-none rounded-md px-4 py-3 text-sm font-body outline-none transition-colors duration-150"
+      className="w-full resize-none rounded-md px-4 py-3 text-base font-body outline-none transition-colors duration-150"
       style={TEXTAREA_STYLE}
       onFocus={(e) => {
         e.currentTarget.style.borderColor = "var(--color-border-default)";
@@ -386,7 +386,7 @@ function AreaSelector({
 }: AreaSelectorProps) {
   return (
     <div className="flex flex-col gap-2">
-      <span className="text-xs font-body uppercase tracking-wide text-text-secondary">
+      <span className="text-sm font-body uppercase tracking-wide text-text-secondary">
         Area
       </span>
       <div className="flex gap-2">
@@ -401,7 +401,7 @@ function AreaSelector({
               type="button"
               onClick={() => !isDisabled && setArea(a)}
               disabled={isDisabled}
-              className="flex-1 h-11 rounded-md text-sm font-medium font-body transition-colors duration-150 disabled:cursor-not-allowed"
+              className="flex-1 h-11 rounded-md text-base font-medium font-body transition-colors duration-150 disabled:cursor-not-allowed"
               style={{
                 backgroundColor: isSelected ? config.subtle : "transparent",
                 color: isDisabled
@@ -437,14 +437,14 @@ function ParentGoalSelector({
 }: ParentGoalSelectorProps) {
   return (
     <div className="flex flex-col gap-2">
-      <span className="text-xs font-body uppercase tracking-wide text-text-secondary">
+      <span className="text-sm font-body uppercase tracking-wide text-text-secondary">
         Link to quarterly goal (optional)
       </span>
       <select
         value={value}
         onChange={(e) => onChange(e.target.value)}
         disabled={disabled}
-        className="w-full rounded-md px-4 py-3 text-sm font-body outline-none"
+        className="w-full rounded-md px-4 py-3 text-base font-body outline-none"
         style={{
           backgroundColor: "var(--color-bg-base)",
           color: value

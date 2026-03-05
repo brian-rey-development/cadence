@@ -33,13 +33,13 @@ export default function WeeklyTaskItem({
       </button>
 
       <span
-        className={`flex-1 text-sm font-body leading-snug ${isDone ? "text-text-tertiary line-through" : "text-text-primary"}`}
+        className={`flex-1 text-base font-body leading-snug ${isDone ? "text-text-tertiary line-through" : "text-text-primary"}`}
       >
         {task.title}
       </span>
 
       {task.goal && (
-        <span className="text-xs font-body shrink-0 text-text-tertiary">
+        <span className="text-sm font-body shrink-0 text-text-tertiary">
           {task.goal.title.slice(0, 20)}
         </span>
       )}

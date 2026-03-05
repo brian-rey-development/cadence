@@ -42,13 +42,13 @@ export default function NotificationSettings({
 
   return (
     <div className="flex flex-col gap-1">
-      <p className="font-[family-name:var(--font-body)] text-xs font-medium uppercase tracking-widest text-text-tertiary">
+      <p className="font-[family-name:var(--font-body)] text-sm font-medium uppercase tracking-widest text-text-tertiary">
         Notifications
       </p>
 
       <div className="mt-2 flex flex-col gap-px overflow-hidden rounded-2xl bg-[var(--color-bg-elevated)]">
         <div className="flex items-center justify-between gap-4 px-4 py-3">
-          <span className="font-[family-name:var(--font-body)] text-sm text-text-primary">
+          <span className="font-[family-name:var(--font-body)] text-base text-text-primary">
             Morning reminder
           </span>
           <div className="flex items-center gap-3">
@@ -60,7 +60,7 @@ export default function NotificationSettings({
                 onChange={(e) =>
                   handleChange({ morningNotificationTime: e.target.value })
                 }
-                className="rounded-lg bg-[var(--color-bg-base)] px-2 py-1 font-mono text-sm text-text-secondary outline-none"
+                className="rounded-lg bg-[var(--color-bg-base)] px-2 py-1 font-mono text-base text-text-secondary outline-none"
               />
             )}
             <button
@@ -87,7 +87,7 @@ export default function NotificationSettings({
         </div>
 
         <div className="flex items-center justify-between gap-4 px-4 py-3">
-          <span className="font-[family-name:var(--font-body)] text-sm text-text-primary">
+          <span className="font-[family-name:var(--font-body)] text-base text-text-primary">
             Evening reminder
           </span>
           <div className="flex items-center gap-3">
@@ -99,7 +99,7 @@ export default function NotificationSettings({
                 onChange={(e) =>
                   handleChange({ eveningNotificationTime: e.target.value })
                 }
-                className="rounded-lg bg-[var(--color-bg-base)] px-2 py-1 font-mono text-sm text-text-secondary outline-none"
+                className="rounded-lg bg-[var(--color-bg-base)] px-2 py-1 font-mono text-base text-text-secondary outline-none"
               />
             )}
             <button

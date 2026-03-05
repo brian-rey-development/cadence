@@ -49,7 +49,7 @@ export default function CloseStepSummary({
   return (
     <div className="flex flex-col gap-5">
       <div className="flex flex-col gap-2">
-        <span className="text-xs font-medium font-body uppercase tracking-widest text-text-tertiary">
+        <span className="text-sm font-medium font-body uppercase tracking-widest text-text-tertiary">
           How did today feel?
         </span>
         <div className="flex gap-2">
@@ -58,7 +58,7 @@ export default function CloseStepSummary({
               key={value}
               type="button"
               onClick={() => onMoodChange(value)}
-              className="flex-1 rounded-xl py-2.5 text-sm font-body font-medium transition-colors duration-150"
+              className="flex-1 rounded-xl py-2.5 text-base font-body font-medium transition-colors duration-150"
               style={{
                 backgroundColor:
                   mood === value
@@ -78,7 +78,7 @@ export default function CloseStepSummary({
 
       {completed.length > 0 && (
         <div className="flex flex-col gap-2">
-          <span className="text-xs font-medium font-body uppercase tracking-widest text-text-tertiary">
+          <span className="text-sm font-medium font-body uppercase tracking-widest text-text-tertiary">
             Completed ({completed.length})
           </span>
           <ul className="flex flex-col gap-1.5">
@@ -91,7 +91,7 @@ export default function CloseStepSummary({
                   className="absolute left-0 inset-y-2 w-[3px] rounded-full"
                   style={{ backgroundColor: AREA_CONFIG[task.area].accent }}
                 />
-                <span className="font-body text-sm ml-2 text-text-secondary">
+                <span className="font-body text-base ml-2 text-text-secondary">
                   {task.title}
                 </span>
               </li>
@@ -102,7 +102,7 @@ export default function CloseStepSummary({
 
       {incomplete.length > 0 && (
         <div className="flex flex-col gap-2">
-          <span className="text-xs font-medium font-body uppercase tracking-widest text-text-tertiary">
+          <span className="text-sm font-medium font-body uppercase tracking-widest text-text-tertiary">
             To handle ({incomplete.length})
           </span>
           <ul className="flex flex-col gap-1.5">
@@ -111,14 +111,14 @@ export default function CloseStepSummary({
                 key={task.id}
                 className="flex flex-col gap-2 rounded-xl px-4 py-3 bg-bg-elevated"
               >
-                <span className="font-body text-sm text-text-primary">
+                <span className="font-body text-base text-text-primary">
                   {task.title}
                 </span>
                 <div className="flex gap-2">
                   <button
                     type="button"
                     onClick={() => handlePostpone(task.id, tomorrowISO)}
-                    className="flex-1 min-h-9 rounded-lg font-body text-xs"
+                    className="flex-1 min-h-9 rounded-lg font-body text-sm"
                     style={{
                       backgroundColor: "var(--color-bg-surface)",
                       color: "var(--color-text-secondary)",
@@ -129,7 +129,7 @@ export default function CloseStepSummary({
                   <button
                     type="button"
                     onClick={() => handleArchive(task.id)}
-                    className="flex-1 min-h-9 rounded-lg font-body text-xs"
+                    className="flex-1 min-h-9 rounded-lg font-body text-sm"
                     style={{
                       backgroundColor: "var(--color-bg-surface)",
                       color: "var(--color-text-tertiary)",
@@ -147,7 +147,7 @@ export default function CloseStepSummary({
       <button
         type="button"
         onClick={onNext}
-        className="min-h-11 w-full rounded-xl font-body text-sm font-medium transition-opacity active:opacity-70"
+        className="min-h-11 w-full rounded-xl font-body text-base font-medium transition-opacity active:opacity-70"
         style={{
           backgroundColor: "var(--color-text-primary)",
           color: "var(--color-bg-base)",

@@ -37,7 +37,7 @@ export default function Sheet({ open, onClose, title, children }: SheetProps) {
               style={{ backgroundColor: "var(--color-border-subtle)" }}
             />
             {title && (
-              <h2 className="mb-5 text-base font-medium font-body text-text-primary">
+              <h2 className="mb-5 text-lg font-medium font-body text-text-primary">
                 {title}
               </h2>
             )}

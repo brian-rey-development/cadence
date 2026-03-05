@@ -37,17 +37,17 @@ export default function ZombieResolutionCard({
     >
       <div className="flex items-center gap-2 flex-wrap">
         <span
-          className={`font-body text-sm flex-1 ${zombie ? "text-zombie-text" : "text-text-primary"}`}
+          className={`font-body text-base flex-1 ${zombie ? "text-zombie-text" : "text-text-primary"}`}
         >
           {task.title}
         </span>
         {task.postponeCount > 0 && (
-          <span className="font-mono text-xs text-text-tertiary">
+          <span className="font-mono text-sm text-text-tertiary">
             ×{task.postponeCount}
           </span>
         )}
         {zombie && (
-          <span className="font-mono text-xs text-zombie-text opacity-80">
+          <span className="font-mono text-sm text-zombie-text opacity-80">
             {age}d stale
           </span>
         )}
@@ -58,7 +58,7 @@ export default function ZombieResolutionCard({
           <button
             type="button"
             onClick={onReformulate}
-            className="font-body text-xs font-medium transition-opacity active:opacity-50 min-h-9"
+            className="font-body text-sm font-medium transition-opacity active:opacity-50 min-h-9"
             style={{ color: config.text }}
           >
             Reformulate
@@ -67,14 +67,14 @@ export default function ZombieResolutionCard({
         <button
           type="button"
           onClick={() => onPostpone(tomorrow())}
-          className="font-body text-xs font-medium transition-opacity active:opacity-50 min-h-9 text-text-secondary"
+          className="font-body text-sm font-medium transition-opacity active:opacity-50 min-h-9 text-text-secondary"
         >
           Tomorrow
         </button>
         <button
           type="button"
           onClick={onArchive}
-          className="font-body text-xs font-medium transition-opacity active:opacity-50 min-h-9 text-destructive"
+          className="font-body text-sm font-medium transition-opacity active:opacity-50 min-h-9 text-destructive"
         >
           Archive
         </button>

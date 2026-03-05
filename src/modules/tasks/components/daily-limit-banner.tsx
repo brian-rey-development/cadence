@@ -18,7 +18,7 @@ export default function DailyLimitBanner({ tasks }: DailyLimitBannerProps) {
 
   return (
     <span
-      className="font-mono text-sm tabular-nums"
+      className="font-mono text-base tabular-nums"
       style={{ color: STATE_COLORS[state] }}
     >
       {count}/{DAILY_TASK_LIMIT}

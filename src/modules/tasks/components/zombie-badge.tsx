@@ -8,7 +8,7 @@ type ZombieBadgeProps = {
 export default function ZombieBadge({ daysOld }: ZombieBadgeProps) {
   return (
     <motion.span
-      className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-xs font-mono"
+      className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-sm font-mono"
       style={{
         color: "var(--color-zombie-text)",
         backgroundColor: "var(--color-zombie-pulse)",

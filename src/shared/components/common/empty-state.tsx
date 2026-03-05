@@ -11,11 +11,11 @@ export default function EmptyState({
 }: EmptyStateProps) {
   return (
     <div className="flex flex-col items-center justify-center gap-3 py-16 px-5 text-center">
-      <p className="text-lg font-body font-medium text-text-primary leading-[26px]">
+      <p className="text-xl font-body font-medium text-text-primary leading-[26px]">
         {title}
       </p>
       {description && (
-        <p className="text-sm font-body text-text-secondary leading-5 max-w-60">
+        <p className="text-base font-body text-text-secondary leading-5 max-w-60">
           {description}
         </p>
       )}

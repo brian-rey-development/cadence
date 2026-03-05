@@ -11,7 +11,7 @@ export default function Input({ error, className = "", ...props }: InputProps) {
     <div className="flex flex-col gap-1">
       <input
         className={`
-          h-12 w-full px-4 rounded-md text-sm font-body
+          h-12 w-full px-4 rounded-md text-base font-body
           bg-[var(--color-bg-surface)] text-text-primary placeholder:text-text-tertiary
           border ${borderClass}
           outline-none transition-colors duration-150
@@ -21,7 +21,7 @@ export default function Input({ error, className = "", ...props }: InputProps) {
         {...props}
       />
       {error && (
-        <p className="text-xs font-body text-destructive-text px-1">{error}</p>
+        <p className="text-sm font-body text-destructive-text px-1">{error}</p>
       )}
     </div>
   );

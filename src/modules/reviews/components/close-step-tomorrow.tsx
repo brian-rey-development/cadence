@@ -18,11 +18,11 @@ export default function CloseStepTomorrow({
       <div className="flex flex-col gap-1.5">
         <label
           htmlFor="tomorrow-focus"
-          className="text-xs font-medium font-body uppercase tracking-widest text-text-tertiary"
+          className="text-sm font-medium font-body uppercase tracking-widest text-text-tertiary"
         >
           Tomorrow&rsquo;s focus
         </label>
-        <p className="text-sm font-body text-text-tertiary">
+        <p className="text-base font-body text-text-tertiary">
           What&rsquo;s the one thing that would make tomorrow a success?
         </p>
         <textarea
@@ -31,7 +31,7 @@ export default function CloseStepTomorrow({
           value={tomorrowFocus}
           placeholder="I want to..."
           onChange={(e) => onChange(e.target.value)}
-          className="w-full resize-none rounded-xl px-4 py-3 font-body text-sm outline-none"
+          className="w-full resize-none rounded-xl px-4 py-3 font-body text-base outline-none"
           style={{
             backgroundColor: "var(--color-bg-elevated)",
             border: "1px solid var(--color-border-subtle)",
@@ -44,7 +44,7 @@ export default function CloseStepTomorrow({
         type="button"
         onClick={onGenerate}
         disabled={isGenerating}
-        className="min-h-11 w-full rounded-xl font-body text-sm font-medium transition-opacity disabled:opacity-50 active:opacity-70"
+        className="min-h-11 w-full rounded-xl font-body text-base font-medium transition-opacity disabled:opacity-50 active:opacity-70"
         style={{
           backgroundColor: "var(--color-text-primary)",
           color: "var(--color-bg-base)",

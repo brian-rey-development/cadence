@@ -51,7 +51,7 @@ function TaskRow({
 
       <div className="flex flex-col gap-0.5 flex-1 min-w-0">
         <span
-          className="text-sm font-body leading-snug"
+          className="text-base font-body leading-snug"
           style={{
             color: isDone
               ? "var(--color-text-tertiary)"
@@ -62,7 +62,7 @@ function TaskRow({
           {task.title}
         </span>
         {task.goal && (
-          <span className="text-xs font-body truncate text-text-tertiary">
+          <span className="text-sm font-body truncate text-text-tertiary">
             {task.goal.title}
           </span>
         )}
@@ -111,7 +111,7 @@ export default function QuarterlyTasksSection({
 
   return (
     <div className="flex flex-col gap-2">
-      <span className="text-xs font-medium font-body uppercase tracking-widest text-text-tertiary">
+      <span className="text-sm font-medium font-body uppercase tracking-widest text-text-tertiary">
         Milestones
       </span>
       <div className="flex flex-col gap-2">

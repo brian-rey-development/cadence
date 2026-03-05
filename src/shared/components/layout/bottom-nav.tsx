@@ -43,7 +43,7 @@ function TabItem({ tab, isActive }: TabItemProps) {
       />
       <span
         className={cn(
-          "font-[family-name:var(--font-body)] text-xs font-[500] tracking-xs transition-colors duration-150",
+          "font-[family-name:var(--font-body)] text-sm font-[500] tracking-xs transition-colors duration-150",
           isActive ? "text-text-primary" : "text-text-tertiary",
         )}
       >

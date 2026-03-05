@@ -125,11 +125,11 @@ export default function GoalMilestones({
                     if (e.key === "Escape") setEditingId(null);
                   }}
                   disabled={isUpdating}
-                  className="flex-1 text-sm font-body bg-transparent outline-none border-b text-text-primary"
+                  className="flex-1 text-base font-body bg-transparent outline-none border-b text-text-primary"
                   style={{ borderColor: accentColor }}
                 />
               ) : (
-                <span className="flex-1 font-body text-sm font-medium leading-snug text-text-primary">
+                <span className="flex-1 font-body text-base font-medium leading-snug text-text-primary">
                   {m.title}
                 </span>
               )}
@@ -203,7 +203,7 @@ export default function GoalMilestones({
             placeholder="Milestone title"
             value={newTitle}
             onChange={(e) => setNewTitle(e.target.value)}
-            className="text-sm font-body bg-transparent outline-none border-b pb-1 text-text-primary"
+            className="text-base font-body bg-transparent outline-none border-b pb-1 text-text-primary"
             style={{ borderColor: "var(--color-border-subtle)" }}
             onKeyDown={(e) => {
               if (e.key === "Enter") handleAdd();
@@ -214,14 +214,14 @@ export default function GoalMilestones({
             type="date"
             value={newDate}
             onChange={(e) => setNewDate(e.target.value)}
-            className="text-xs font-mono bg-transparent outline-none text-text-tertiary"
+            className="text-sm font-mono bg-transparent outline-none text-text-tertiary"
           />
           <div className="flex gap-2">
             <button
               type="button"
               onClick={handleAdd}
               disabled={!newTitle.trim() || !newDate || isCreating}
-              className="text-xs font-medium font-body px-3 py-1.5 rounded-md disabled:opacity-50"
+              className="text-sm font-medium font-body px-3 py-1.5 rounded-md disabled:opacity-50"
               style={{
                 backgroundColor: accentColor,
                 color: "var(--color-bg-base)",
@@ -232,7 +232,7 @@ export default function GoalMilestones({
             <button
               type="button"
               onClick={() => setIsAdding(false)}
-              className="text-xs font-body text-text-tertiary px-3 py-1.5"
+              className="text-sm font-body text-text-tertiary px-3 py-1.5"
             >
               Cancel
             </button>
@@ -245,7 +245,7 @@ export default function GoalMilestones({
           className="flex items-center gap-1.5 mt-1 w-fit transition-opacity active:opacity-70"
         >
           <Plus size={12} strokeWidth={1.5} style={{ color: accentColor }} />
-          <span className="font-body text-xs" style={{ color: accentColor }}>
+          <span className="font-body text-sm" style={{ color: accentColor }}>
             Add milestone
           </span>
         </button>
