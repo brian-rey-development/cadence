@@ -3,18 +3,19 @@
 import { env } from "@/shared/config/env";
 import { createClient } from "@/shared/lib/supabase/server";
 
-type SendMagicLinkResult =
-  | { success: true }
-  | { success: false; error: string };
+type SignUpResult = { success: true } | { success: false; error: string };
 
-export async function sendMagicLink(
+export async function signUp(
   email: string,
-): Promise<SendMagicLinkResult> {
+  password: string,
+  name: string,
+): Promise<SignUpResult> {
   const supabase = await createClient();
-
-  const { error } = await supabase.auth.signInWithOtp({
+  const { error } = await supabase.auth.signUp({
     email,
+    password,
     options: {
+      data: { name },
       emailRedirectTo: `${env.appUrl}/auth/callback`,
     },
   });

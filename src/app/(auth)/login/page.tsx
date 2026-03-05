@@ -1,4 +1,4 @@
-import LoginForm from "@/modules/auth/components/login-form";
+import AuthForm from "@/modules/auth/components/auth-form";
 
 export default function LoginPage() {
   return (
@@ -12,12 +12,7 @@ export default function LoginPage() {
             fewer things, done better
           </p>
         </div>
-        <div className="flex w-full flex-col gap-2">
-          <p className="text-center text-base font-body text-text-secondary">
-            Enter your email to continue
-          </p>
-          <LoginForm />
-        </div>
+        <AuthForm />
       </div>
     </main>
   );
