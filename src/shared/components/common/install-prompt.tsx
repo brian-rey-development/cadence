@@ -3,8 +3,7 @@
 import { X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
-const STORAGE_KEY = "install-prompt-seen";
-const VISIT_COUNT_KEY = "install-prompt-visits";
+const SESSION_KEY = "install-prompt-shown";
 
 type BeforeInstallPromptEvent = Event & {
   prompt: () => Promise<void>;
@@ -16,16 +15,12 @@ export default function InstallPrompt() {
   const promptRef = useRef<BeforeInstallPromptEvent | null>(null);
 
   useEffect(() => {
-    if (localStorage.getItem(STORAGE_KEY)) return;
-
-    const visits = parseInt(localStorage.getItem(VISIT_COUNT_KEY) ?? "0", 10);
-    localStorage.setItem(VISIT_COUNT_KEY, String(visits + 1));
-
-    if (visits < 1) return;
+    if (sessionStorage.getItem(SESSION_KEY)) return;
 
     const handler = (e: Event) => {
       e.preventDefault();
       promptRef.current = e as BeforeInstallPromptEvent;
+      sessionStorage.setItem(SESSION_KEY, "1");
       setVisible(true);
     };
 
@@ -41,7 +36,6 @@ export default function InstallPrompt() {
   };
 
   const dismiss = () => {
-    localStorage.setItem(STORAGE_KEY, "1");
     setVisible(false);
   };
 
@@ -50,18 +44,22 @@ export default function InstallPrompt() {
   return (
     <div className="fixed right-0 bottom-20 left-0 z-40 px-4">
       <div className="rounded-xl bg-[var(--color-bg-elevated)] p-4">
-        <div className="mb-3 flex items-start justify-between gap-3">
-          <p className="font-body text-sm text-text-primary">
-            Add Cadence to your home screen
+        <div className="mb-1 flex items-start justify-between gap-3">
+          <p className="font-body text-sm font-medium text-text-primary">
+            Install Cadence for the best experience
           </p>
           <button
             type="button"
             onClick={dismiss}
-            className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-text-secondary"
+            aria-label="Dismiss"
+            className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-text-secondary"
           >
             <X size={16} strokeWidth={1.5} />
           </button>
         </div>
+        <p className="mb-3 font-body text-xs text-text-secondary">
+          Faster load times, offline access, and push reminders - works like a native app.
+        </p>
         <button
           type="button"
           onClick={handleAdd}

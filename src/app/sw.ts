@@ -22,3 +22,22 @@ const serwist = new Serwist({
 });
 
 serwist.addEventListeners();
+
+self.addEventListener("push", (event) => {
+  let data: { title: string; body: string } | undefined;
+
+  try {
+    data = event.data?.json() as { title: string; body: string } | undefined;
+  } catch {
+    return;
+  }
+
+  if (!data?.title) return;
+
+  event.waitUntil(
+    self.registration.showNotification(data.title, {
+      body: data.body,
+      icon: "/icons/icon-192x192.png",
+    })
+  );
+});
