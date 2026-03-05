@@ -123,6 +123,13 @@ CREATE POLICY "milestones: users manage own rows"
   USING (auth.uid() = user_id)
   WITH CHECK (auth.uid() = user_id);
 
+-- ─── reminder_logs ───────────────────────────────────────────────────────────
+
+ALTER TABLE reminder_logs ADD CONSTRAINT reminder_logs_user_id_fk
+  FOREIGN KEY (user_id) REFERENCES auth.users(id) ON DELETE CASCADE;
+
+-- Note: CREATE POLICY is in migration 0007_reminder_logs_rls.sql
+
 -- ─── pgvector setup (run once) ───────────────────────────────────────────────
 -- CREATE EXTENSION IF NOT EXISTS vector;
 -- After migration, add IVFFlat index for fast similarity search:
