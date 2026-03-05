@@ -7,7 +7,7 @@ import { useTaskScoreMap } from "@/modules/ai-engine/hooks/use-task-scores";
 import EmptyState from "@/shared/components/common/empty-state";
 import { AREA_CONFIG } from "@/shared/config/areas";
 import { AREAS } from "@/shared/config/constants";
-import { useArchiveTask } from "../hooks/use-archive-task";
+import { useDeleteTask } from "../hooks/use-delete-task";
 import { useCompleteTask } from "../hooks/use-complete-task";
 import { useTasksForDay } from "../hooks/use-tasks-for-day";
 import type { TaskWithGoal } from "../queries/get-tasks-for-day";
@@ -32,7 +32,7 @@ export default function TaskList({
 
   const { data: tasks = [] } = useTasksForDay(date, initialTasks);
   const { mutate: complete } = useCompleteTask(date);
-  const { mutate: archive } = useArchiveTask(date);
+  const { mutate: deleteTask } = useDeleteTask(date);
   const scoreMap = useTaskScoreMap(date, initialScores);
 
   const grouped = AREAS.map((area) => ({
@@ -67,7 +67,7 @@ export default function TaskList({
                 task={task}
                 score={scoreMap[task.id]}
                 onComplete={complete}
-                onArchive={archive}
+                onDelete={deleteTask}
               />
             </div>
           ))}

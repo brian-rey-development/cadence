@@ -1,7 +1,8 @@
 "use client";
 
-import { X } from "lucide-react";
+import { Smartphone } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
+import BottomSheet from "@/shared/components/ui/bottom-sheet";
 
 const SESSION_KEY = "install-prompt-shown";
 
@@ -11,7 +12,7 @@ type BeforeInstallPromptEvent = Event & {
 };
 
 export default function InstallPrompt() {
-  const [visible, setVisible] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const promptRef = useRef<BeforeInstallPromptEvent | null>(null);
 
   useEffect(() => {
@@ -21,7 +22,7 @@ export default function InstallPrompt() {
       e.preventDefault();
       promptRef.current = e as BeforeInstallPromptEvent;
       sessionStorage.setItem(SESSION_KEY, "1");
-      setVisible(true);
+      setIsOpen(true);
     };
 
     window.addEventListener("beforeinstallprompt", handler);
@@ -32,43 +33,51 @@ export default function InstallPrompt() {
     if (!promptRef.current) return;
     await promptRef.current.prompt();
     await promptRef.current.userChoice;
-    dismiss();
+    setIsOpen(false);
   };
-
-  const dismiss = () => {
-    setVisible(false);
-  };
-
-  if (!visible) return null;
 
   return (
-    <div className="fixed right-0 bottom-20 left-0 z-40 px-4">
-      <div className="rounded-xl bg-[var(--color-bg-elevated)] p-4">
-        <div className="mb-1 flex items-start justify-between gap-3">
-          <p className="font-body text-base font-medium text-text-primary">
-            Install Cadence for the best experience
+    <BottomSheet isOpen={isOpen} onClose={() => setIsOpen(false)}>
+      <div className="flex flex-col items-center gap-5 py-2">
+        <div
+          className="flex h-16 w-16 items-center justify-center rounded-2xl"
+          style={{ backgroundColor: "var(--color-bg-subtle)" }}
+        >
+          <Smartphone size={28} strokeWidth={1.5} className="text-text-secondary" />
+        </div>
+
+        <div className="text-center">
+          <h2 className="font-display text-xl text-text-primary mb-1">
+            Install Cadence
+          </h2>
+          <p className="font-body text-sm text-text-secondary leading-relaxed">
+            Add to your home screen for faster load times, offline access, and
+            push reminders - works like a native app.
           </p>
+        </div>
+
+        <div className="flex w-full flex-col gap-3 pt-1">
           <button
             type="button"
-            onClick={dismiss}
-            aria-label="Dismiss"
-            className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-text-secondary"
+            onClick={handleAdd}
+            className="w-full rounded-xl py-3.5 font-body text-base font-medium transition-opacity active:opacity-80"
+            style={{
+              backgroundColor: "var(--color-interactive-primaryBg)",
+              color: "var(--color-interactive-primaryText)",
+            }}
           >
-            <X size={16} strokeWidth={1.5} />
+            Add to Home Screen
+          </button>
+          <button
+            type="button"
+            onClick={() => setIsOpen(false)}
+            className="w-full rounded-xl py-3.5 font-body text-base text-text-secondary transition-opacity active:opacity-80"
+            style={{ backgroundColor: "var(--color-bg-subtle)" }}
+          >
+            Not now
           </button>
         </div>
-        <p className="mb-3 font-body text-sm text-text-secondary">
-          Faster load times, offline access, and push reminders - works like a
-          native app.
-        </p>
-        <button
-          type="button"
-          onClick={handleAdd}
-          className="w-full rounded-lg bg-[var(--color-interactive-primaryBg)] py-2.5 font-body text-base font-medium text-[var(--color-interactive-primaryText)]"
-        >
-          Add to Home Screen
-        </button>
       </div>
-    </div>
+    </BottomSheet>
   );
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, Trash2 } from "lucide-react";
 import { useState } from "react";
 import ProgressRing from "@/shared/components/ui/progress-ring";
 import { AREA_CONFIG } from "@/shared/config/areas";
@@ -10,12 +10,14 @@ import GoalMilestones from "./goal-milestones";
 type GoalCardProps = {
   goal: GoalWithProgress;
   onStatusChange: (goalId: string, status: "achieved" | "abandoned") => void;
+  onDelete: (goalId: string) => void;
   isUpdating: boolean;
 };
 
 export default function GoalCard({
   goal,
   onStatusChange,
+  onDelete,
   isUpdating,
 }: GoalCardProps) {
   const config = AREA_CONFIG[goal.area];
@@ -44,21 +46,32 @@ export default function GoalCard({
           )}
 
           {!isActive && (
-            <span
-              className="text-sm font-medium font-body px-2 py-0.5 rounded-full capitalize mt-0.5 self-start"
-              style={{
-                backgroundColor:
-                  goal.status === "achieved"
-                    ? config.subtle
-                    : "var(--color-bg-elevated)",
-                color:
-                  goal.status === "achieved"
-                    ? config.text
-                    : "var(--color-text-tertiary)",
-              }}
-            >
-              {goal.status}
-            </span>
+            <div className="flex items-center gap-2 mt-0.5">
+              <span
+                className="text-sm font-medium font-body px-2 py-0.5 rounded-full capitalize"
+                style={{
+                  backgroundColor:
+                    goal.status === "achieved"
+                      ? config.subtle
+                      : "var(--color-bg-elevated)",
+                  color:
+                    goal.status === "achieved"
+                      ? config.text
+                      : "var(--color-text-tertiary)",
+                }}
+              >
+                {goal.status}
+              </span>
+              <button
+                type="button"
+                onClick={() => onDelete(goal.id)}
+                disabled={isUpdating}
+                className="flex items-center justify-center h-6 w-6 rounded-full transition-opacity active:opacity-60 disabled:opacity-30"
+                aria-label="Delete goal"
+              >
+                <Trash2 size={12} strokeWidth={1.5} className="text-text-tertiary" />
+              </button>
+            </div>
           )}
 
           {isActive && (

@@ -2,7 +2,7 @@
 
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
-import { archiveTask } from "@/modules/tasks/mutations/archive-task";
+import { deleteTask } from "@/modules/tasks/mutations/delete-task";
 import { postponeTask } from "@/modules/tasks/mutations/postpone-task";
 import { saveDailyReview } from "../mutations/save-daily-review";
 
@@ -34,7 +34,7 @@ export function useDailyClose() {
   });
 
   const archive = useMutation({
-    mutationFn: (taskId: string) => archiveTask(taskId),
+    mutationFn: (taskId: string) => deleteTask(taskId),
     onSettled: () => router.refresh(),
   });
 
@@ -45,7 +45,7 @@ export function useDailyClose() {
 
   return {
     postponeTask: postpone.mutateAsync,
-    archiveTask: archive.mutateAsync,
+    deleteTask: archive.mutateAsync,
     saveDailyReview: saveReview.mutateAsync,
     isLoading: postpone.isPending || archive.isPending || saveReview.isPending,
   };

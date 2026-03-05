@@ -30,15 +30,15 @@ export default function CloseStepSummary({
 }: CloseStepSummaryProps) {
   const completed = tasks.filter((t) => t.status === "completed");
   const incomplete = tasks.filter((t) => t.status === "pending");
-  const { postponeTask, archiveTask } = useDailyClose();
+  const { postponeTask, deleteTask } = useDailyClose();
 
   async function handlePostpone(taskId: string, toDate: string) {
     await postponeTask({ taskId, toDate });
     onTasksChange(tasks.filter((t) => t.id !== taskId));
   }
 
-  async function handleArchive(taskId: string) {
-    await archiveTask(taskId);
+  async function handleDelete(taskId: string) {
+    await deleteTask(taskId);
     onTasksChange(tasks.filter((t) => t.id !== taskId));
   }
 
@@ -118,10 +118,10 @@ export default function CloseStepSummary({
                   </button>
                   <button
                     type="button"
-                    onClick={() => handleArchive(task.id)}
+                    onClick={() => handleDelete(task.id)}
                     className="flex-1 min-h-9 rounded-lg font-body text-sm bg-bg-surface text-text-tertiary"
                   >
-                    Archive
+                    Delete
                   </button>
                 </div>
               </li>

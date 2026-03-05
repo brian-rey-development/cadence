@@ -1,8 +1,8 @@
 import { Settings } from "lucide-react";
 import Link from "next/link";
-import { getGreeting } from "@/shared/utils/greeting";
 import type { TaskWithGoal } from "../tasks.types";
 import DailyLimitBanner from "./daily-limit-banner";
+import GreetingText from "./greeting-text";
 
 type TodayHeaderProps = {
   displayName: string;
@@ -15,8 +15,6 @@ export default function TodayHeader({
   date,
   tasks,
 }: TodayHeaderProps) {
-  const hour = new Date().getHours();
-  const greeting = getGreeting(hour);
   const formattedDate = new Date(`${date}T12:00:00`).toLocaleDateString(
     "en-US",
     {
@@ -29,9 +27,7 @@ export default function TodayHeader({
   return (
     <header className="flex items-start justify-between">
       <div>
-        <h1 className="font-display text-3xl text-text-primary">
-          {greeting}, {displayName}
-        </h1>
+        <GreetingText displayName={displayName} />
         <p className="text-base font-body text-text-tertiary">
           {formattedDate}
         </p>

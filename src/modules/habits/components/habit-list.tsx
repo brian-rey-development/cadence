@@ -7,6 +7,7 @@ import { AREAS, type Area } from "@/shared/config/constants";
 import { today } from "@/shared/utils/date";
 import type { HabitWithLogs, HabitWithStats } from "../habits.types";
 import { useHabits } from "../hooks/use-habits";
+import { useDeleteHabit } from "../hooks/use-delete-habit";
 import { useLogHabit } from "../hooks/use-log-habit";
 import { enrichHabit, sortByLogStatus } from "../utils/enrich";
 import CreateHabitSheet from "./create-habit-sheet";
@@ -19,6 +20,7 @@ type HabitListProps = {
 export default function HabitList({ initialData }: HabitListProps) {
   const { data: habits } = useHabits(initialData);
   const { mutate: toggleLog, isPending } = useLogHabit();
+  const { mutate: deleteHabit } = useDeleteHabit();
   const [sheetOpen, setSheetOpen] = useState(false);
   const todayStr = today();
 
@@ -108,6 +110,7 @@ export default function HabitList({ initialData }: HabitListProps) {
                       onToggle={(id, logged) =>
                         toggleLog({ habitId: id, isLogged: logged })
                       }
+                      onDelete={deleteHabit}
                       isPending={isPending}
                     />
                   </div>

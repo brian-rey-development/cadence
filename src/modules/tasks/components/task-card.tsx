@@ -19,7 +19,7 @@ type TaskCardProps = {
   task: TaskWithGoal;
   score?: AiTaskScore;
   onComplete: (id: string) => void;
-  onArchive: (id: string) => void;
+  onDelete: (id: string) => void;
 };
 
 const SEGMENT_KEYS = ["a", "b", "c", "d"] as const;
@@ -49,7 +49,7 @@ export default function TaskCard({
   task,
   score,
   onComplete,
-  onArchive,
+  onDelete,
 }: TaskCardProps) {
   const isDone = task.status === "completed";
   const zombieAge = !isDone && isZombie(task) ? getZombieAge(task) : null;
@@ -61,7 +61,7 @@ export default function TaskCard({
   function handleDragEnd() {
     if (x.get() < ARCHIVE_THRESHOLD) {
       animate(x, -300, { duration: ARCHIVE_ANIM_DURATION, ease: EASING });
-      setTimeout(() => onArchive(task.id), ARCHIVE_ANIM_DURATION * 1000 * 0.8);
+      setTimeout(() => onDelete(task.id), ARCHIVE_ANIM_DURATION * 1000 * 0.8);
     } else {
       animate(x, 0, { duration: 0.3, ease: EASING });
     }
