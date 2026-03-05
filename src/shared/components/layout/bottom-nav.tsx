@@ -31,8 +31,14 @@ function TabItem({ tab, isActive }: TabItemProps) {
     <Link
       href={tab.href}
       aria-current={isActive ? "page" : undefined}
-      className="flex min-h-11 flex-1 flex-col items-center justify-center gap-0.5 transition-colors duration-150 ease-[cubic-bezier(0.25,0,0,1)]"
+      className="relative flex min-h-11 flex-1 flex-col items-center justify-center gap-0.5 transition-colors duration-150 ease-[cubic-bezier(0.25,0,0,1)]"
     >
+      <span
+        className={cn(
+          "absolute top-0 left-1/2 -translate-x-1/2 h-0.5 w-4 rounded-full bg-text-primary transition-opacity duration-150",
+          isActive ? "opacity-100" : "opacity-0",
+        )}
+      />
       <tab.Icon
         size={20}
         strokeWidth={1.5}

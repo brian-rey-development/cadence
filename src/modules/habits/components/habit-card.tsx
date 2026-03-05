@@ -1,3 +1,4 @@
+import { Flame } from "lucide-react";
 import AreaBadge from "@/shared/components/common/area-badge";
 import { AREA_CONFIG } from "@/shared/config/areas";
 import { today } from "@/shared/utils/date";
@@ -28,9 +29,14 @@ export default function HabitCard({
           </span>
           <div className="flex items-center gap-2">
             <AreaBadge area={habit.area} />
-            <span className="text-sm font-mono text-text-tertiary">
-              🔥 {habit.streak.current}
-              <span className="ml-1.5 opacity-60">
+            <span className="flex items-center gap-1 text-sm font-mono text-text-tertiary">
+              <Flame
+                size={12}
+                strokeWidth={1.5}
+                style={{ color: config.accent }}
+              />
+              {habit.streak.current}
+              <span className="ml-0.5 opacity-60">
                 / {habit.streak.longest} best
               </span>
             </span>
@@ -41,7 +47,7 @@ export default function HabitCard({
           type="button"
           onClick={() => onToggle(habit.id, isLoggedToday)}
           disabled={isPending}
-          className="flex items-center justify-center h-10 w-10 rounded-full transition-colors duration-150 disabled:opacity-50"
+          className="flex items-center justify-center min-h-11 min-w-11 rounded-full transition-colors duration-150 disabled:opacity-50"
           style={{
             backgroundColor: isLoggedToday ? config.accent : "transparent",
             border: `1.5px solid ${isLoggedToday ? config.accent : config.border}`,

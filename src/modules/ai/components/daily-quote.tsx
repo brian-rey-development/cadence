@@ -20,12 +20,12 @@ export default function DailyQuote() {
   if (isError || !data) return null;
 
   return (
-    <div className="flex items-start gap-2.5">
-      <p className="flex-1 font-display text-base italic leading-relaxed text-text-tertiary">
+    <div className="flex flex-col gap-1.5">
+      <p className="font-display text-base italic leading-relaxed text-text-tertiary">
         {data.quote}
       </p>
       <span
-        className="mt-0.5 shrink-0 rounded-full px-2 py-0.5 text-2xs font-body font-medium uppercase tracking-widest"
+        className="self-start rounded-full px-2 py-0.5 text-2xs font-body font-medium uppercase tracking-widest"
         style={{
           backgroundColor: "var(--color-bg-elevated)",
           color: "var(--color-text-tertiary)",

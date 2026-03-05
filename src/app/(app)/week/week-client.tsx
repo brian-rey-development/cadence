@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 import type { GoalModel } from "@/db/schema/goals";
 import type { WeeklyReviewModel } from "@/db/schema/reviews";
@@ -64,11 +65,19 @@ export default function WeekClient({
 
   return (
     <div className="flex flex-col gap-5 px-5 py-6">
-      <header>
-        <h1 className="font-display text-3xl text-text-primary">Week</h1>
-        <p className="text-base font-body text-text-tertiary">
-          {formatWeekRange(weekStart)}
-        </p>
+      <header className="flex items-start justify-between">
+        <div>
+          <h1 className="font-display text-3xl text-text-primary">Week</h1>
+          <p className="text-base font-body text-text-tertiary">
+            {formatWeekRange(weekStart)}
+          </p>
+        </div>
+        <Link
+          href="/review"
+          className="mt-1 text-sm font-body text-text-tertiary hover:text-text-secondary transition-colors duration-150"
+        >
+          History
+        </Link>
       </header>
 
       <WeekIntentionsBanner intentions={intentions?.intentions ?? null} />
@@ -83,10 +92,7 @@ export default function WeekClient({
           </span>
         </div>
 
-        <div
-          className="self-stretch w-px mx-4"
-          style={{ backgroundColor: "var(--color-border-subtle)" }}
-        />
+        <div className="self-stretch w-px mx-4 bg-border-subtle" />
 
         <div className="flex flex-col gap-0.5 flex-1 text-right">
           <span className="text-sm font-body text-text-tertiary">
@@ -129,12 +135,7 @@ export default function WeekClient({
       <button
         type="button"
         onClick={() => setIsReviewOpen(true)}
-        className="w-full rounded-xl py-3.5 text-base font-medium transition-opacity active:opacity-70"
-        style={{
-          backgroundColor: "var(--color-text-primary)",
-          color: "var(--color-bg-base)",
-          minHeight: 44,
-        }}
+        className="w-full min-h-11 rounded-xl py-3.5 text-base font-medium transition-opacity active:opacity-70 bg-[var(--color-text-primary)] text-[var(--color-bg-base)]"
       >
         Start Weekly Review
       </button>

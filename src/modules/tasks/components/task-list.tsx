@@ -53,19 +53,23 @@ export default function TaskList({
       {grouped.map(({ area, tasks: areaTasks }) => (
         <section key={area} className="flex flex-col">
           <h2
-            className="text-2xs font-body font-semibold uppercase tracking-label mb-1"
+            className="text-2xs font-body font-semibold uppercase tracking-label mb-2"
             style={{ color: AREA_CONFIG[area].accent }}
           >
             {AREA_CONFIG[area].label}
           </h2>
-          {areaTasks.map((task) => (
-            <TaskCard
+          {areaTasks.map((task, i) => (
+            <div
               key={task.id}
-              task={task}
-              score={scoreMap[task.id]}
-              onComplete={complete}
-              onArchive={archive}
-            />
+              className={i > 0 ? "border-t border-border-subtle" : undefined}
+            >
+              <TaskCard
+                task={task}
+                score={scoreMap[task.id]}
+                onComplete={complete}
+                onArchive={archive}
+              />
+            </div>
           ))}
         </section>
       ))}

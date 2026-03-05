@@ -42,7 +42,7 @@ export default async function TodayPage() {
 
         <TaskList initialTasks={tasks} initialScores={scores} date={date} />
 
-        <div style={{ borderTop: "1px solid var(--color-border-subtle)" }} />
+        <div className="border-t border-border-subtle" />
 
         <HabitList initialData={habits} />
       </div>

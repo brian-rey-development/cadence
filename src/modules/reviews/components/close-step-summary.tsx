@@ -58,17 +58,11 @@ export default function CloseStepSummary({
               key={value}
               type="button"
               onClick={() => onMoodChange(value)}
-              className="flex-1 rounded-xl py-2.5 text-base font-body font-medium transition-colors duration-150"
-              style={{
-                backgroundColor:
-                  mood === value
-                    ? "var(--color-text-primary)"
-                    : "var(--color-bg-elevated)",
-                color:
-                  mood === value
-                    ? "var(--color-bg-base)"
-                    : "var(--color-text-secondary)",
-              }}
+              className={`flex-1 rounded-xl py-2.5 text-base font-body font-medium transition-colors duration-150 ${
+                mood === value
+                  ? "bg-[var(--color-text-primary)] text-[var(--color-bg-base)]"
+                  : "bg-bg-elevated text-text-secondary"
+              }`}
             >
               {label}
             </button>
@@ -118,22 +112,14 @@ export default function CloseStepSummary({
                   <button
                     type="button"
                     onClick={() => handlePostpone(task.id, tomorrowISO)}
-                    className="flex-1 min-h-9 rounded-lg font-body text-sm"
-                    style={{
-                      backgroundColor: "var(--color-bg-surface)",
-                      color: "var(--color-text-secondary)",
-                    }}
+                    className="flex-1 min-h-9 rounded-lg font-body text-sm bg-bg-surface text-text-secondary"
                   >
                     Tomorrow
                   </button>
                   <button
                     type="button"
                     onClick={() => handleArchive(task.id)}
-                    className="flex-1 min-h-9 rounded-lg font-body text-sm"
-                    style={{
-                      backgroundColor: "var(--color-bg-surface)",
-                      color: "var(--color-text-tertiary)",
-                    }}
+                    className="flex-1 min-h-9 rounded-lg font-body text-sm bg-bg-surface text-text-tertiary"
                   >
                     Archive
                   </button>
@@ -147,11 +133,7 @@ export default function CloseStepSummary({
       <button
         type="button"
         onClick={onNext}
-        className="min-h-11 w-full rounded-xl font-body text-base font-medium transition-opacity active:opacity-70"
-        style={{
-          backgroundColor: "var(--color-text-primary)",
-          color: "var(--color-bg-base)",
-        }}
+        className="min-h-11 w-full rounded-xl font-body text-base font-medium transition-opacity active:opacity-70 bg-[var(--color-text-primary)] text-[var(--color-bg-base)]"
       >
         Continue
       </button>

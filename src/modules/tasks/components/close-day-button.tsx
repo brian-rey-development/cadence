@@ -42,15 +42,14 @@ export default function CloseDayButton({
     <button
       type="button"
       onClick={onClick}
-      className="flex items-center gap-2 min-h-11 px-6 rounded-full font-body text-base font-medium transition-all active:opacity-80"
+      className="flex items-center gap-2 min-h-11 px-6 rounded-full border-2 font-body text-base font-medium transition-all active:opacity-80"
       style={{
         backgroundColor: "var(--color-bg-surface)",
         color: "var(--color-text-primary)",
-        border: "1px solid var(--color-border-subtle)",
-        boxShadow: `0 0 12px 0 ${accentColor}4D`,
+        borderColor: accentColor,
       }}
     >
-      <MoonStar size={14} strokeWidth={1.5} />
+      <MoonStar size={18} strokeWidth={1.5} />
       Close Day
     </button>
   );

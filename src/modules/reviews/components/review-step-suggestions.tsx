@@ -63,8 +63,7 @@ export default function ReviewStepSuggestions({
           {[1, 2, 3].map((i) => (
             <div
               key={i}
-              className="h-10 w-full animate-pulse rounded-lg"
-              style={{ backgroundColor: "var(--color-bg-subtle)" }}
+              className="h-10 w-full animate-pulse rounded-lg bg-bg-elevated"
             />
           ))}
         </div>
@@ -74,18 +73,14 @@ export default function ReviewStepSuggestions({
 
       {result && !isLoading && (
         <div className="flex flex-col gap-2">
-          <p className="text-sm uppercase tracking-wide text-text-tertiary">
+          <p className="text-sm uppercase tracking-label text-text-tertiary">
             Suggestions
           </p>
           <ul className="flex flex-col gap-2">
             {result.suggestions.map((s) => (
               <li
                 key={s}
-                className="rounded-lg px-4 py-3 text-base"
-                style={{
-                  backgroundColor: "var(--color-bg-subtle)",
-                  color: "var(--color-text-secondary)",
-                }}
+                className="rounded-lg px-4 py-3 text-base bg-bg-elevated text-text-secondary"
               >
                 {s}
               </li>
@@ -95,19 +90,14 @@ export default function ReviewStepSuggestions({
       )}
 
       <div className="flex flex-col gap-2">
-        <p className="text-sm uppercase tracking-wide text-text-tertiary">
+        <p className="text-sm uppercase tracking-label text-text-tertiary">
           Intentions
         </p>
         <textarea
           value={intentions}
           onChange={(e) => setIntentions(e.target.value)}
           rows={3}
-          className="w-full resize-none rounded-xl px-4 py-3 text-base outline-none"
-          style={{
-            backgroundColor: "var(--color-bg-subtle)",
-            color: "var(--color-text-primary)",
-            border: "1px solid var(--color-border-subtle)",
-          }}
+          className="w-full resize-none rounded-xl px-4 py-3 text-base outline-none bg-bg-elevated text-text-primary border border-border-default"
         />
       </div>
 
@@ -115,12 +105,7 @@ export default function ReviewStepSuggestions({
         type="button"
         onClick={() => onSave(intentions, aiSuggestions)}
         disabled={isLoading}
-        className="w-full rounded-xl py-3.5 text-base font-medium transition-opacity active:opacity-70 disabled:opacity-40"
-        style={{
-          backgroundColor: "var(--color-text-primary)",
-          color: "var(--color-bg-base)",
-          minHeight: 44,
-        }}
+        className="w-full min-h-11 rounded-xl py-3.5 text-base font-medium transition-opacity active:opacity-70 disabled:opacity-40 bg-[var(--color-text-primary)] text-[var(--color-bg-base)]"
       >
         Save Review
       </button>

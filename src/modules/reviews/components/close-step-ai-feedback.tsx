@@ -66,11 +66,7 @@ export default function CloseStepAiFeedback({
         type="button"
         onClick={onSave}
         disabled={isSaving}
-        className="min-h-11 w-full rounded-xl font-body text-base font-medium transition-opacity disabled:opacity-50 active:opacity-70"
-        style={{
-          backgroundColor: "var(--color-text-primary)",
-          color: "var(--color-bg-base)",
-        }}
+        className="min-h-11 w-full rounded-xl font-body text-base font-medium transition-opacity disabled:opacity-50 active:opacity-70 bg-[var(--color-text-primary)] text-[var(--color-bg-base)]"
       >
         {isSaving ? "Saving..." : "Save & Close"}
       </button>

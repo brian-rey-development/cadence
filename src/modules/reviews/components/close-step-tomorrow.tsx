@@ -31,26 +31,29 @@ export default function CloseStepTomorrow({
           value={tomorrowFocus}
           placeholder="I want to..."
           onChange={(e) => onChange(e.target.value)}
-          className="w-full resize-none rounded-xl px-4 py-3 font-body text-base outline-none"
-          style={{
-            backgroundColor: "var(--color-bg-elevated)",
-            border: "1px solid var(--color-border-subtle)",
-            color: "var(--color-text-primary)",
-          }}
+          className="w-full resize-none rounded-xl px-4 py-3 font-body text-base outline-none bg-bg-elevated border border-border-default text-text-primary"
         />
+        {isGenerating && (
+          <p className="text-sm font-body text-text-tertiary animate-pulse">
+            Claude is reviewing your day...
+          </p>
+        )}
       </div>
 
       <button
         type="button"
         onClick={onGenerate}
         disabled={isGenerating}
-        className="min-h-11 w-full rounded-xl font-body text-base font-medium transition-opacity disabled:opacity-50 active:opacity-70"
-        style={{
-          backgroundColor: "var(--color-text-primary)",
-          color: "var(--color-bg-base)",
-        }}
+        className="min-h-11 w-full rounded-xl font-body text-base font-medium transition-opacity disabled:opacity-50 active:opacity-70 bg-[var(--color-text-primary)] text-[var(--color-bg-base)]"
       >
-        {isGenerating ? "Generating review..." : "Generate review"}
+        {isGenerating ? (
+          <span className="flex items-center justify-center gap-2">
+            <span className="h-4 w-4 rounded-full border-2 border-white/20 border-t-white animate-spin" />
+            Generating...
+          </span>
+        ) : (
+          "Generate review"
+        )}
       </button>
     </div>
   );

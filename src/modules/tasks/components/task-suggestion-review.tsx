@@ -1,6 +1,5 @@
 "use client";
 
-import { Link } from "lucide-react";
 import { useState } from "react";
 import type { GoalModel } from "@/db/schema/goals";
 import type { CreateTaskResponse } from "@/modules/ai/prompts/create-task";
@@ -77,7 +76,7 @@ export default function TaskSuggestionReview({
       <div className="flex flex-col gap-1.5">
         <label
           htmlFor="task-title"
-          className="text-sm font-body font-medium uppercase tracking-widest text-text-tertiary"
+          className="text-sm font-body font-medium uppercase tracking-label text-text-secondary"
         >
           Task
         </label>
@@ -86,23 +85,17 @@ export default function TaskSuggestionReview({
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           rows={2}
-          className="w-full resize-none rounded-md px-4 py-3 text-base font-body outline-none transition-colors duration-150"
+          className="w-full resize-none rounded-md px-4 py-3 text-base font-body outline-none transition-colors duration-150 focus:border-border-default"
           style={{
             backgroundColor: "var(--color-bg-base)",
             color: "var(--color-text-primary)",
-            border: "1px solid var(--color-border-subtle)",
-          }}
-          onFocus={(e) => {
-            e.currentTarget.style.borderColor = "var(--color-border-default)";
-          }}
-          onBlur={(e) => {
-            e.currentTarget.style.borderColor = "var(--color-border-subtle)";
+            border: "1px solid var(--color-border-default)",
           }}
         />
       </div>
 
       <div className="flex flex-col gap-1.5">
-        <span className="text-sm font-body font-medium uppercase tracking-widest text-text-tertiary">
+        <span className="text-sm font-body font-medium uppercase tracking-label text-text-secondary">
           Type
         </span>
         <div className="flex gap-2">
@@ -137,7 +130,7 @@ export default function TaskSuggestionReview({
             onChange={setSelectedDate}
           />
           {suggestion.schedulingReason && (
-            <p className="text-sm font-body leading-relaxed text-text-tertiary">
+            <p className="text-sm font-body leading-relaxed text-text-secondary">
               {suggestion.schedulingReason}
             </p>
           )}
@@ -146,42 +139,52 @@ export default function TaskSuggestionReview({
 
       {goals.length > 0 && (
         <div className="flex flex-col gap-1.5">
-          <label
-            htmlFor="task-goal"
-            className="text-sm font-body font-medium uppercase tracking-widest text-text-tertiary"
-          >
+          <span className="text-sm font-body font-medium uppercase tracking-label text-text-secondary">
             Goal (optional)
-          </label>
-          <select
-            id="task-goal"
-            value={goalId ?? ""}
-            onChange={(e) => setGoalId(e.target.value || null)}
-            className="h-12 w-full rounded-md px-4 text-base font-body outline-none transition-colors duration-150"
-            style={{
-              backgroundColor: "var(--color-bg-base)",
-              color: "var(--color-text-primary)",
-              border: "1px solid var(--color-border-subtle)",
-            }}
-          >
-            <option value="">No goal</option>
+          </span>
+          <div className="flex flex-col gap-1.5 max-h-48 overflow-y-auto">
+            <button
+              type="button"
+              onClick={() => setGoalId(null)}
+              className="flex items-center gap-2 rounded-lg px-3 py-2.5 text-left text-base font-body transition-colors duration-150"
+              style={{
+                backgroundColor:
+                  goalId === null
+                    ? "var(--color-text-primary)"
+                    : "var(--color-bg-elevated)",
+                color:
+                  goalId === null
+                    ? "var(--color-bg-base)"
+                    : "var(--color-text-secondary)",
+              }}
+            >
+              No goal
+            </button>
             {goals.map((g) => (
-              <option key={g.id} value={g.id}>
+              <button
+                key={g.id}
+                type="button"
+                onClick={() => setGoalId(g.id)}
+                className="flex items-center gap-2 rounded-lg px-3 py-2.5 text-left text-base font-body transition-colors duration-150"
+                style={{
+                  backgroundColor:
+                    goalId === g.id
+                      ? "var(--color-text-primary)"
+                      : "var(--color-bg-elevated)",
+                  color:
+                    goalId === g.id
+                      ? "var(--color-bg-base)"
+                      : "var(--color-text-secondary)",
+                }}
+              >
+                <span
+                  className="h-2 w-2 shrink-0 rounded-full"
+                  style={{ backgroundColor: `var(--color-${g.area}-accent)` }}
+                />
                 {g.title}
-              </option>
+              </button>
             ))}
-          </select>
-          {goalId === null && (
-            <div className="flex items-center gap-1.5 mt-1">
-              <Link
-                size={12}
-                strokeWidth={1.5}
-                className="text-text-tertiary"
-              />
-              <span className="text-sm font-body text-text-tertiary">
-                No quarter goal linked
-              </span>
-            </div>
-          )}
+          </div>
         </div>
       )}
 
