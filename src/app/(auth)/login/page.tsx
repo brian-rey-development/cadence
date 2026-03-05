@@ -12,6 +12,7 @@ export default function LoginPage() {
             width={56}
             height={56}
             className="rounded-2xl"
+            priority
           />
           <div className="flex flex-col items-center gap-1">
             <h1 className="font-display text-4xl font-light tracking-tight lowercase text-text-primary">

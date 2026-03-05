@@ -37,7 +37,7 @@ self.addEventListener("push", (event) => {
   event.waitUntil(
     self.registration.showNotification(data.title, {
       body: data.body,
-      icon: "/icons/icon-192x192.png",
+      icon: "/icons/android-chrome-192x192.png",
     }),
   );
 });
