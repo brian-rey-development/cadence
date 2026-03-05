@@ -14,7 +14,8 @@ export function useDeleteHabit() {
     mutationFn: deleteHabit,
     onMutate: async (habitId: string) => {
       await queryClient.cancelQueries({ queryKey: HABITS_QUERY_KEY });
-      const previous = queryClient.getQueryData<HabitWithLogs[]>(HABITS_QUERY_KEY);
+      const previous =
+        queryClient.getQueryData<HabitWithLogs[]>(HABITS_QUERY_KEY);
 
       queryClient.setQueryData<HabitWithLogs[]>(HABITS_QUERY_KEY, (prev = []) =>
         prev.filter((h) => h.id !== habitId),
@@ -23,7 +24,8 @@ export function useDeleteHabit() {
       return { previous };
     },
     onError: (_err, _id, ctx) => {
-      if (ctx?.previous) queryClient.setQueryData(HABITS_QUERY_KEY, ctx.previous);
+      if (ctx?.previous)
+        queryClient.setQueryData(HABITS_QUERY_KEY, ctx.previous);
     },
     onSuccess: () => router.refresh(),
   });

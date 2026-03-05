@@ -15,7 +15,10 @@ export default function GreetingText({ displayName }: GreetingTextProps) {
   const words = `${greeting}, ${displayName}`.split(" ");
 
   return (
-    <h1 className="font-display text-3xl text-text-primary" aria-label={`${greeting}, ${displayName}`}>
+    <h1
+      className="font-display text-3xl text-text-primary"
+      aria-label={`${greeting}, ${displayName}`}
+    >
       {words.map((word, i) => (
         <motion.span
           key={i}

@@ -34,10 +34,7 @@ export default function HabitCard({
   function handleDragEnd() {
     if (x.get() < DELETE_THRESHOLD) {
       animate(x, -300, { duration: DELETE_ANIM_DURATION, ease: EASING });
-      setTimeout(
-        () => onDelete(habit.id),
-        DELETE_ANIM_DURATION * 1000 * 0.8,
-      );
+      setTimeout(() => onDelete(habit.id), DELETE_ANIM_DURATION * 1000 * 0.8);
     } else {
       animate(x, 0, { duration: 0.3, ease: EASING });
     }

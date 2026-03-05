@@ -14,16 +14,19 @@ export function useDeleteGoal() {
     mutationFn: deleteGoal,
     onMutate: async (goalId: string) => {
       await queryClient.cancelQueries({ queryKey: GOALS_QUERY_KEY });
-      const previous = queryClient.getQueryData<GoalWithMilestones[]>(GOALS_QUERY_KEY);
+      const previous =
+        queryClient.getQueryData<GoalWithMilestones[]>(GOALS_QUERY_KEY);
 
-      queryClient.setQueryData<GoalWithMilestones[]>(GOALS_QUERY_KEY, (prev = []) =>
-        prev.filter((g) => g.id !== goalId),
+      queryClient.setQueryData<GoalWithMilestones[]>(
+        GOALS_QUERY_KEY,
+        (prev = []) => prev.filter((g) => g.id !== goalId),
       );
 
       return { previous };
     },
     onError: (_err, _id, ctx) => {
-      if (ctx?.previous) queryClient.setQueryData(GOALS_QUERY_KEY, ctx.previous);
+      if (ctx?.previous)
+        queryClient.setQueryData(GOALS_QUERY_KEY, ctx.previous);
     },
     onSuccess: () => router.refresh(),
   });

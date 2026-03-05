@@ -43,7 +43,11 @@ export default function InstallPrompt() {
           className="flex h-16 w-16 items-center justify-center rounded-2xl"
           style={{ backgroundColor: "var(--color-bg-subtle)" }}
         >
-          <Smartphone size={28} strokeWidth={1.5} className="text-text-secondary" />
+          <Smartphone
+            size={28}
+            strokeWidth={1.5}
+            className="text-text-secondary"
+          />
         </div>
 
         <div className="text-center">

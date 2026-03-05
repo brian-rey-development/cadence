@@ -69,7 +69,11 @@ export default function GoalCard({
                 className="flex items-center justify-center h-6 w-6 rounded-full transition-opacity active:opacity-60 disabled:opacity-30"
                 aria-label="Delete goal"
               >
-                <Trash2 size={12} strokeWidth={1.5} className="text-text-tertiary" />
+                <Trash2
+                  size={12}
+                  strokeWidth={1.5}
+                  className="text-text-tertiary"
+                />
               </button>
             </div>
           )}
