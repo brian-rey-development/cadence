@@ -7,12 +7,14 @@ import type { UserSettings } from "../settings.types";
 export const USER_SETTINGS_QUERY_KEY = ["user-settings"] as const;
 
 type SaveSettingsInput = {
-  morningEnabled: boolean;
-  eveningEnabled: boolean;
-  morningNotificationTime: string | null;
-  eveningNotificationTime: string | null;
-  timezone: string;
+  morningEnabled?: boolean;
+  eveningEnabled?: boolean;
+  morningNotificationTime?: string | null;
+  eveningNotificationTime?: string | null;
+  timezone?: string;
   closeDayAfterHour?: number;
+  dailyTaskLimit?: number;
+  weeklyGoalLimit?: number;
 };
 
 export function useUserSettings(initialData?: UserSettings) {

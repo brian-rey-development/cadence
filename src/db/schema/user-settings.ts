@@ -16,6 +16,8 @@ export const userSettings = pgTable("user_settings", {
   eveningEnabled: boolean("evening_enabled").notNull().default(false),
   pushSubscription: text("push_subscription"), // JSON-stringified PushSubscriptionJSON
   closeDayAfterHour: integer("close_day_after_hour").notNull().default(18),
+  dailyTaskLimit: integer("daily_task_limit").notNull().default(7),
+  weeklyGoalLimit: integer("weekly_goal_limit").notNull().default(3),
   lastMorningSentDate: text("last_morning_sent_date"), // "YYYY-MM-DD"
   lastEveningSentDate: text("last_evening_sent_date"), // "YYYY-MM-DD"
   // AI profile fields

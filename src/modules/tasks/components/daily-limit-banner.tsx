@@ -10,18 +10,22 @@ const STATE_COLORS: Record<string, string> = {
 
 type DailyLimitBannerProps = {
   tasks: TaskModel[];
+  dailyTaskLimit?: number;
 };
 
-export default function DailyLimitBanner({ tasks }: DailyLimitBannerProps) {
+export default function DailyLimitBanner({
+  tasks,
+  dailyTaskLimit = DAILY_TASK_LIMIT,
+}: DailyLimitBannerProps) {
   const count = getActiveCount(tasks);
-  const state = getLimitState(count);
+  const state = getLimitState(count, dailyTaskLimit);
 
   return (
     <span
       className="font-mono text-base tabular-nums"
       style={{ color: STATE_COLORS[state] }}
     >
-      {count}/{DAILY_TASK_LIMIT}
+      {count}/{dailyTaskLimit}
     </span>
   );
 }

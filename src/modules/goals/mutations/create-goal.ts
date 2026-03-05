@@ -6,6 +6,7 @@ import { after } from "next/server";
 import { db } from "@/db";
 import { goals } from "@/db/schema/goals";
 import { requireAuth } from "@/modules/auth/utils";
+import { getUserSettings } from "@/modules/settings/queries/get-user-settings";
 import { MAX_GOALS_PER_AREA } from "@/shared/config/constants";
 import { env } from "@/shared/config/env";
 import { currentQuarter } from "../utils/goal-utils";
@@ -50,14 +51,18 @@ export async function createGoal(data: CreateGoalInput): Promise<void> {
         eq(goals.status, "active"),
       );
 
-  const [{ value: activeCount }] = await db
-    .select({ value: count() })
-    .from(goals)
-    .where(limitWhere);
+  const [[{ value: activeCount }], settings] = await Promise.all([
+    db.select({ value: count() }).from(goals).where(limitWhere),
+    getUserSettings(userId),
+  ]);
 
-  if (activeCount >= MAX_GOALS_PER_AREA) {
+  const limit = isWeekly
+    ? (settings?.weeklyGoalLimit ?? MAX_GOALS_PER_AREA)
+    : MAX_GOALS_PER_AREA;
+
+  if (activeCount >= limit) {
     throw new Error(
-      `You can have at most ${MAX_GOALS_PER_AREA} active goals per area.`,
+      `You can have at most ${limit} active ${isWeekly ? "weekly" : "quarterly"} goals per area.`,
     );
   }
 

@@ -22,6 +22,7 @@ type CreateGoalSheetProps = {
   goalsByArea: Record<Area, number>;
   quarterlyGoals?: GoalModel[];
   defaultScope?: "quarterly" | "weekly";
+  weeklyGoalLimit?: number;
 };
 
 type Step = "input" | "refine";
@@ -52,6 +53,7 @@ export default function CreateGoalSheet({
   goalsByArea,
   quarterlyGoals = [],
   defaultScope = "quarterly",
+  weeklyGoalLimit = MAX_GOALS_PER_AREA,
 }: CreateGoalSheetProps) {
   const [scope, setScope] = useState<"quarterly" | "weekly">(defaultScope);
   const [step, setStep] = useState<Step>("input");
@@ -175,6 +177,9 @@ export default function CreateGoalSheet({
               setArea={setArea}
               goalsByArea={goalsByArea}
               disabled={isRefining}
+              goalLimit={
+                scope === "weekly" ? weeklyGoalLimit : MAX_GOALS_PER_AREA
+              }
             />
 
             {scope === "weekly" && quarterlyGoals.length > 0 && (
@@ -376,6 +381,7 @@ type AreaSelectorProps = {
   setArea: (a: Area) => void;
   goalsByArea: Record<Area, number>;
   disabled: boolean;
+  goalLimit: number;
 };
 
 function AreaSelector({
@@ -383,6 +389,7 @@ function AreaSelector({
   setArea,
   goalsByArea,
   disabled,
+  goalLimit,
 }: AreaSelectorProps) {
   return (
     <div className="flex flex-col gap-2">
@@ -393,7 +400,7 @@ function AreaSelector({
         {AREAS.map((a) => {
           const config = AREA_CONFIG[a];
           const isSelected = area === a;
-          const isDisabled = disabled || goalsByArea[a] >= MAX_GOALS_PER_AREA;
+          const isDisabled = disabled || goalsByArea[a] >= goalLimit;
 
           return (
             <button

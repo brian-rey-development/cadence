@@ -21,6 +21,7 @@ type WeekClientProps = {
   weekStart: string;
   weeklyTasks: TaskWithGoal[];
   weeklyGoals: GoalWithTasksAndParent[];
+  weeklyGoalLimit: number;
 };
 
 function formatWeekRange(startStr: string): string {
@@ -44,8 +45,10 @@ export default function WeekClient({
   weekStart,
   weeklyTasks,
   weeklyGoals,
+  weeklyGoalLimit,
 }: WeekClientProps) {
   const [isReviewOpen, setIsReviewOpen] = useState(false);
+  const isSunday = new Date().getDay() === 0;
 
   const goalItems = goals.map((g) => ({ title: g.title, area: g.area }));
   const totalCompleted = Object.values(stats.tasksByArea).reduce(
@@ -128,17 +131,26 @@ export default function WeekClient({
       <WeeklyGoalList
         initialGoals={weeklyGoals}
         quarterlyGoals={quarterlyGoals}
+        weeklyGoalLimit={weeklyGoalLimit}
       />
 
       <WeeklyTasksSection initialTasks={weeklyTasks} weekStart={weekStart} />
 
-      <button
-        type="button"
-        onClick={() => setIsReviewOpen(true)}
-        className="w-full min-h-11 rounded-xl py-3.5 text-base font-medium transition-opacity active:opacity-70 bg-[var(--color-text-primary)] text-[var(--color-bg-base)]"
-      >
-        Start Weekly Review
-      </button>
+      <div className="flex flex-col gap-1.5">
+        <button
+          type="button"
+          onClick={() => setIsReviewOpen(true)}
+          disabled={!isSunday}
+          className="w-full min-h-11 rounded-xl py-3.5 text-base font-medium transition-opacity active:opacity-70 disabled:opacity-40 bg-[var(--color-text-primary)] text-[var(--color-bg-base)]"
+        >
+          Start Weekly Review
+        </button>
+        {!isSunday && (
+          <p className="text-center text-sm font-body text-text-tertiary">
+            Available on Sundays
+          </p>
+        )}
+      </div>
 
       <WeeklyReviewSheet
         isOpen={isReviewOpen}

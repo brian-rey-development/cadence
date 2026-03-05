@@ -6,8 +6,11 @@ import {
 
 export type LimitState = "low" | "warning" | "full";
 
-export function getLimitState(count: number): LimitState {
-  if (count >= DAILY_TASK_LIMIT) return "full";
+export function getLimitState(
+  count: number,
+  limit = DAILY_TASK_LIMIT,
+): LimitState {
+  if (count >= limit) return "full";
   if (count >= DAILY_TASK_SOFT_WARNING) return "warning";
   return "low";
 }

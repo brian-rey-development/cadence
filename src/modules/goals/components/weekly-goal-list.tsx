@@ -13,11 +13,13 @@ import CreateGoalSheet from "./create-goal-sheet";
 type WeeklyGoalListProps = {
   initialGoals: GoalWithTasksAndParent[];
   quarterlyGoals: GoalModel[];
+  weeklyGoalLimit: number;
 };
 
 export default function WeeklyGoalList({
   initialGoals,
   quarterlyGoals,
+  weeklyGoalLimit,
 }: WeeklyGoalListProps) {
   const [sheetOpen, setSheetOpen] = useState(false);
 
@@ -136,6 +138,7 @@ export default function WeeklyGoalList({
         goalsByArea={activeCountByArea}
         quarterlyGoals={quarterlyGoals}
         defaultScope="weekly"
+        weeklyGoalLimit={weeklyGoalLimit}
       />
     </>
   );

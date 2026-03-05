@@ -7,7 +7,10 @@ import { getUserSettings } from "@/modules/settings/queries/get-user-settings";
 import TaskList from "@/modules/tasks/components/task-list";
 import TodayHeader from "@/modules/tasks/components/today-header";
 import { getTasksForDay } from "@/modules/tasks/queries/get-tasks-for-day";
-import { CLOSE_DAY_AFTER_HOUR } from "@/shared/config/constants";
+import {
+  CLOSE_DAY_AFTER_HOUR,
+  DAILY_TASK_LIMIT,
+} from "@/shared/config/constants";
 import { today } from "@/shared/utils/date";
 import TodayClient from "./today-client";
 
@@ -35,6 +38,7 @@ export default async function TodayPage() {
     "there";
 
   const closeDayAfterHour = settings?.closeDayAfterHour ?? CLOSE_DAY_AFTER_HOUR;
+  const dailyTaskLimit = settings?.dailyTaskLimit ?? DAILY_TASK_LIMIT;
 
   return (
     <TodayClient
@@ -43,7 +47,12 @@ export default async function TodayPage() {
       closeDayAfterHour={closeDayAfterHour}
     >
       <div className="flex flex-col gap-6 px-4 py-6 max-w-lg mx-auto">
-        <TodayHeader displayName={displayName} date={date} tasks={tasks} />
+        <TodayHeader
+          displayName={displayName}
+          date={date}
+          tasks={tasks}
+          dailyTaskLimit={dailyTaskLimit}
+        />
 
         <DailyQuote />
 

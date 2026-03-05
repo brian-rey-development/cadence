@@ -5,12 +5,14 @@ import { userSettings } from "@/db/schema";
 import { requireAuth } from "@/modules/auth/utils";
 
 type UpsertSettingsInput = {
-  morningEnabled: boolean;
-  eveningEnabled: boolean;
-  morningNotificationTime: string | null;
-  eveningNotificationTime: string | null;
-  timezone: string;
+  morningEnabled?: boolean;
+  eveningEnabled?: boolean;
+  morningNotificationTime?: string | null;
+  eveningNotificationTime?: string | null;
+  timezone?: string;
   closeDayAfterHour?: number;
+  dailyTaskLimit?: number;
+  weeklyGoalLimit?: number;
   aiDisplayName?: string | null;
   aiRole?: string | null;
   aiAbout?: string | null;

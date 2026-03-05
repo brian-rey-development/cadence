@@ -2,6 +2,7 @@ import { signOut } from "@/modules/auth/mutations/sign-out";
 import { requireAuth } from "@/modules/auth/utils";
 import AiProfileForm from "@/modules/settings/components/ai-profile-form";
 import NotificationSettings from "@/modules/settings/components/notification-settings";
+import ProductivitySettings from "@/modules/settings/components/productivity-settings";
 import { getUserSettings } from "@/modules/settings/queries/get-user-settings";
 
 export default async function SettingsPage() {
@@ -44,6 +45,8 @@ export default async function SettingsPage() {
       </div>
 
       <NotificationSettings initialSettings={settings} />
+
+      <ProductivitySettings initialSettings={settings} />
 
       <AiProfileForm initialSettings={settings} />
     </div>

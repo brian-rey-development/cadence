@@ -8,12 +8,14 @@ type TodayHeaderProps = {
   displayName: string;
   date: string;
   tasks: TaskWithGoal[];
+  dailyTaskLimit?: number;
 };
 
 export default function TodayHeader({
   displayName,
   date,
   tasks,
+  dailyTaskLimit,
 }: TodayHeaderProps) {
   const formattedDate = new Date(`${date}T12:00:00`).toLocaleDateString(
     "en-US",
@@ -33,7 +35,7 @@ export default function TodayHeader({
         </p>
       </div>
       <div className="flex items-center gap-1">
-        <DailyLimitBanner tasks={tasks} />
+        <DailyLimitBanner tasks={tasks} dailyTaskLimit={dailyTaskLimit} />
         <Link
           href="/settings"
           aria-label="Settings"
