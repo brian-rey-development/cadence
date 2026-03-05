@@ -13,6 +13,7 @@ export async function createHabit(data: NewHabit): Promise<void> {
     name: data.name,
     area: data.area,
     weeklyFrequency: data.weeklyFrequency,
+    scheduledTime: data.scheduledTime ?? null,
     userId: session.id,
   });
 

@@ -12,6 +12,7 @@ type SaveSettingsInput = {
   morningNotificationTime: string | null;
   eveningNotificationTime: string | null;
   timezone: string;
+  closeDayAfterHour?: number;
 };
 
 export function useUserSettings(initialData?: UserSettings) {

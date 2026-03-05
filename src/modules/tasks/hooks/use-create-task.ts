@@ -29,6 +29,7 @@ export function useCreateTask(date: string) {
         status: "pending",
         goalId: newTask.goalId ?? null,
         milestoneId: newTask.milestoneId ?? null,
+        scheduledTime: newTask.scheduledTime ?? null,
         postponeCount: 0,
         completedAt: null,
         createdAt: new Date(),

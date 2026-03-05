@@ -2,11 +2,12 @@
 
 import { MoonStar } from "lucide-react";
 import { AREA_CONFIG } from "@/shared/config/areas";
-import { AREAS, CLOSE_DAY_AFTER_HOUR } from "@/shared/config/constants";
+import { AREAS } from "@/shared/config/constants";
 import type { TaskWithGoal } from "../tasks.types";
 
 type CloseDayButtonProps = {
   tasks: TaskWithGoal[];
+  closeDayAfterHour: number;
   onClick: () => void;
 };
 
@@ -22,19 +23,20 @@ function getDominantAreaColor(tasks: TaskWithGoal[]): string {
   return AREA_CONFIG[dominant].accent;
 }
 
-function isVisible(tasks: TaskWithGoal[]): boolean {
+function isVisible(tasks: TaskWithGoal[], closeDayAfterHour: number): boolean {
   const hour = new Date().getHours();
-  const allDone = tasks.every(
-    (t) => t.status === "completed" || t.status === "archived",
-  );
-  return hour >= CLOSE_DAY_AFTER_HOUR || allDone;
+  const allDone =
+    tasks.length > 0 &&
+    tasks.every((t) => t.status === "completed" || t.status === "archived");
+  return hour >= closeDayAfterHour || allDone;
 }
 
 export default function CloseDayButton({
   tasks,
+  closeDayAfterHour,
   onClick,
 }: CloseDayButtonProps) {
-  if (!isVisible(tasks)) return null;
+  if (!isVisible(tasks, closeDayAfterHour)) return null;
 
   const accentColor = getDominantAreaColor(tasks);
 

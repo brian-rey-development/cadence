@@ -27,6 +27,7 @@ type TaskSuggestionReviewProps = {
     date: string | null;
     weekStart: string | null;
     goalId: string | null;
+    scheduledTime: string | null;
   }) => void;
   isSubmitting: boolean;
 };
@@ -45,6 +46,7 @@ export default function TaskSuggestionReview({
   );
   const [selectedDate, setSelectedDate] = useState(suggestion.date ?? date);
   const [goalId, setGoalId] = useState<string | null>(suggestion.goalId);
+  const [scheduledTime, setScheduledTime] = useState<string | null>(null);
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -55,6 +57,7 @@ export default function TaskSuggestionReview({
       date: taskType === "daily" ? selectedDate : null,
       weekStart: taskType === "weekly" ? suggestion.weekStart : null,
       goalId,
+      scheduledTime,
     });
   }
 
@@ -187,6 +190,47 @@ export default function TaskSuggestionReview({
           </div>
         </div>
       )}
+
+      <div className="flex flex-col gap-2">
+        <div className="flex items-center justify-between">
+          <span className="text-sm font-body font-medium uppercase tracking-label text-text-secondary">
+            Set a time
+          </span>
+          <button
+            type="button"
+            role="switch"
+            aria-checked={scheduledTime !== null}
+            onClick={() =>
+              setScheduledTime(scheduledTime !== null ? null : "09:00")
+            }
+            className={`relative h-6 w-11 rounded-full transition-colors duration-200 ${
+              scheduledTime !== null
+                ? "bg-[var(--color-text-primary)]"
+                : "bg-[var(--color-border-default)]"
+            }`}
+          >
+            <span
+              className={`absolute top-0.5 h-5 w-5 rounded-full bg-white shadow transition-transform duration-200 ${
+                scheduledTime !== null ? "translate-x-5" : "translate-x-0.5"
+              }`}
+            />
+          </button>
+        </div>
+        {scheduledTime !== null && (
+          <input
+            type="time"
+            aria-label="Scheduled time"
+            value={scheduledTime}
+            onChange={(e) => setScheduledTime(e.target.value)}
+            className="w-full h-11 rounded-md px-4 font-mono text-base outline-none"
+            style={{
+              backgroundColor: "var(--color-bg-base)",
+              border: "1px solid var(--color-border-default)",
+              color: "var(--color-text-primary)",
+            }}
+          />
+        )}
+      </div>
 
       <Button
         type="submit"

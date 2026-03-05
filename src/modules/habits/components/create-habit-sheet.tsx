@@ -37,6 +37,7 @@ export default function CreateHabitSheet({
   const [name, setName] = useState("");
   const [area, setArea] = useState<Area>("work");
   const [frequency, setFrequency] = useState(7);
+  const [scheduledTime, setScheduledTime] = useState<string | null>(null);
   const [step, setStep] = useState<Step>("form");
   const [feedback, setFeedback] = useState<HabitFeedback | null>(null);
   const [isFetching, setIsFetching] = useState(false);
@@ -65,12 +66,13 @@ export default function CreateHabitSheet({
 
   function handleSave() {
     mutate(
-      { name: name.trim(), area, weeklyFrequency: frequency },
+      { name: name.trim(), area, weeklyFrequency: frequency, scheduledTime },
       {
         onSuccess: () => {
           setName("");
           setArea("work");
           setFrequency(7);
+          setScheduledTime(null);
           setStep("form");
           setFeedback(null);
           onClose();
@@ -91,10 +93,12 @@ export default function CreateHabitSheet({
             name={name}
             area={area}
             frequency={frequency}
+            scheduledTime={scheduledTime}
             isLoading={isFetching || isPending}
             onNameChange={setName}
             onAreaChange={setArea}
             onFrequencyChange={setFrequency}
+            onScheduledTimeChange={setScheduledTime}
             onSubmit={handleContinue}
           />
         )}

@@ -1,4 +1,11 @@
-import { boolean, pgTable, text, timestamp, uuid } from "drizzle-orm/pg-core";
+import {
+  boolean,
+  integer,
+  pgTable,
+  text,
+  timestamp,
+  uuid,
+} from "drizzle-orm/pg-core";
 
 export const userSettings = pgTable("user_settings", {
   userId: uuid("user_id").primaryKey(),
@@ -8,6 +15,7 @@ export const userSettings = pgTable("user_settings", {
   morningEnabled: boolean("morning_enabled").notNull().default(false),
   eveningEnabled: boolean("evening_enabled").notNull().default(false),
   pushSubscription: text("push_subscription"), // JSON-stringified PushSubscriptionJSON
+  closeDayAfterHour: integer("close_day_after_hour").notNull().default(18),
   lastMorningSentDate: text("last_morning_sent_date"), // "YYYY-MM-DD"
   lastEveningSentDate: text("last_evening_sent_date"), // "YYYY-MM-DD"
   // AI profile fields

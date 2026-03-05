@@ -8,12 +8,14 @@ import type { TaskWithGoal } from "@/modules/tasks/tasks.types";
 type TodayClientProps = {
   tasks: TaskWithGoal[];
   date: string;
+  closeDayAfterHour: number;
   children: React.ReactNode;
 };
 
 export default function TodayClient({
   tasks,
   date,
+  closeDayAfterHour,
   children,
 }: TodayClientProps) {
   const [isCloseOpen, setIsCloseOpen] = useState(false);
@@ -22,7 +24,11 @@ export default function TodayClient({
     <>
       {children}
       <div className="fixed bottom-[76px] left-1/2 -translate-x-1/2 z-30">
-        <CloseDayButton tasks={tasks} onClick={() => setIsCloseOpen(true)} />
+        <CloseDayButton
+          tasks={tasks}
+          closeDayAfterHour={closeDayAfterHour}
+          onClick={() => setIsCloseOpen(true)}
+        />
       </div>
       <DailyCloseSheet
         isOpen={isCloseOpen}

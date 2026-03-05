@@ -7,6 +7,7 @@ export const habits = pgTable("habits", {
   name: text("name").notNull(),
   area: areaEnum("area").notNull(),
   weeklyFrequency: integer("weekly_frequency").notNull().default(7),
+  scheduledTime: text("scheduled_time"), // "HH:MM" local time; nullable
   archivedAt: timestamp("archived_at", { withTimezone: true }),
   createdAt: timestamp("created_at", { withTimezone: true })
     .notNull()

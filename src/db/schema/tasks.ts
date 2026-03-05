@@ -16,6 +16,7 @@ export const tasks = pgTable("tasks", {
   milestoneId: uuid("milestone_id").references(() => milestones.id, {
     onDelete: "set null",
   }),
+  scheduledTime: text("scheduled_time"), // "HH:MM" local time; nullable
   postponeCount: integer("postpone_count").notNull().default(0),
   completedAt: timestamp("completed_at", { withTimezone: true }),
   createdAt: timestamp("created_at", { withTimezone: true })

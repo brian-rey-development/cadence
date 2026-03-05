@@ -10,6 +10,7 @@ type UpsertSettingsInput = {
   morningNotificationTime: string | null;
   eveningNotificationTime: string | null;
   timezone: string;
+  closeDayAfterHour?: number;
   aiDisplayName?: string | null;
   aiRole?: string | null;
   aiAbout?: string | null;

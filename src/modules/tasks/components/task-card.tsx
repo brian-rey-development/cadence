@@ -11,6 +11,13 @@ import OpportunityCostBadge from "./opportunity-cost-badge";
 import ZombieBadge from "./zombie-badge";
 
 const EASING = [0.25, 0, 0, 1] as const;
+
+function formatTime(time: string): string {
+  const [h, m] = time.split(":").map(Number);
+  const period = h >= 12 ? "pm" : "am";
+  const hour = h % 12 || 12;
+  return `${hour}:${m.toString().padStart(2, "0")}${period}`;
+}
 const ARCHIVE_THRESHOLD = -80;
 const ARCHIVE_ANIM_DURATION = 0.25;
 const IMPACT_SEGMENTS = 4;
@@ -113,6 +120,11 @@ export default function TaskCard({
           </div>
 
           <div className="flex items-center gap-2">
+            {task.scheduledTime && !isDone && (
+              <span className="font-mono text-sm text-text-tertiary shrink-0">
+                {formatTime(task.scheduledTime)}
+              </span>
+            )}
             {task.goal && (
               <span className="font-body text-sm truncate text-text-tertiary">
                 {task.goal.title}

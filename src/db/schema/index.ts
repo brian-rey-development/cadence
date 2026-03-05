@@ -4,6 +4,7 @@ export * from "./goals";
 export * from "./habits";
 export * from "./milestones";
 export * from "./relations";
+export * from "./reminder-logs";
 export * from "./reviews";
 export * from "./tasks";
 export * from "./user-settings";

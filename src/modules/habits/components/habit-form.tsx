@@ -11,10 +11,12 @@ type HabitFormProps = {
   name: string;
   area: Area;
   frequency: number;
+  scheduledTime: string | null;
   isLoading: boolean;
   onNameChange: (value: string) => void;
   onAreaChange: (area: Area) => void;
   onFrequencyChange: (freq: number) => void;
+  onScheduledTimeChange: (time: string | null) => void;
   onSubmit: (e: React.FormEvent) => void;
 };
 
@@ -22,10 +24,12 @@ export default function HabitForm({
   name,
   area,
   frequency,
+  scheduledTime,
   isLoading,
   onNameChange,
   onAreaChange,
   onFrequencyChange,
+  onScheduledTimeChange,
   onSubmit,
 }: HabitFormProps) {
   return (
@@ -94,6 +98,47 @@ export default function HabitForm({
             );
           })}
         </div>
+      </div>
+
+      <div className="flex flex-col gap-2">
+        <div className="flex items-center justify-between">
+          <span className="text-sm font-body uppercase tracking-wide text-text-secondary">
+            Reminder time
+          </span>
+          <button
+            type="button"
+            role="switch"
+            aria-checked={scheduledTime !== null}
+            onClick={() =>
+              onScheduledTimeChange(scheduledTime !== null ? null : "09:00")
+            }
+            className={`relative h-6 w-11 rounded-full transition-colors duration-200 ${
+              scheduledTime !== null
+                ? "bg-[var(--color-text-primary)]"
+                : "bg-[var(--color-border-default)]"
+            }`}
+          >
+            <span
+              className={`absolute top-0.5 h-5 w-5 rounded-full bg-white shadow transition-transform duration-200 ${
+                scheduledTime !== null ? "translate-x-5" : "translate-x-0.5"
+              }`}
+            />
+          </button>
+        </div>
+        {scheduledTime !== null && (
+          <input
+            type="time"
+            aria-label="Reminder time"
+            value={scheduledTime}
+            onChange={(e) => onScheduledTimeChange(e.target.value)}
+            className="w-full h-11 rounded-md px-4 font-mono text-base text-text-secondary outline-none"
+            style={{
+              backgroundColor: "var(--color-bg-base)",
+              border: "1.5px solid var(--color-border-default)",
+              color: "var(--color-text-primary)",
+            }}
+          />
+        )}
       </div>
 
       <Button type="submit" disabled={!name.trim()} isLoading={isLoading}>

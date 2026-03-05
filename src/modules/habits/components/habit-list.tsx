@@ -6,12 +6,12 @@ import { AREA_CONFIG } from "@/shared/config/areas";
 import { AREAS, type Area } from "@/shared/config/constants";
 import { today } from "@/shared/utils/date";
 import type { HabitWithLogs, HabitWithStats } from "../habits.types";
-import { useHabits } from "../hooks/use-habits";
 import { useDeleteHabit } from "../hooks/use-delete-habit";
+import { useHabits } from "../hooks/use-habits";
 import { useLogHabit } from "../hooks/use-log-habit";
 import { enrichHabit, sortByLogStatus } from "../utils/enrich";
 import CreateHabitSheet from "./create-habit-sheet";
-import HabitCard from "./habit-card";
+import HabitRow from "./habit-row";
 
 type HabitListProps = {
   initialData: HabitWithLogs[];
@@ -105,8 +105,9 @@ export default function HabitList({ initialData }: HabitListProps) {
                     key={habit.id}
                     className={`transition-opacity duration-normal ease-default ${isLoggedToday ? "opacity-50" : "opacity-100"} ${i > 0 ? "border-t border-border-subtle" : ""}`}
                   >
-                    <HabitCard
+                    <HabitRow
                       habit={habit}
+                      isLoggedToday={isLoggedToday}
                       onToggle={(id, logged) =>
                         toggleLog({ habitId: id, isLogged: logged })
                       }

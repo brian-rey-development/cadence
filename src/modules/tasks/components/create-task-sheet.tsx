@@ -61,6 +61,7 @@ export default function CreateTaskSheet({
     date: string | null;
     weekStart: string | null;
     goalId: string | null;
+    scheduledTime: string | null;
   }) {
     createTask(
       {
@@ -75,6 +76,7 @@ export default function CreateTaskSheet({
         status: "pending",
         postponeCount: 0,
         completedAt: null,
+        scheduledTime: data.scheduledTime,
       },
       {
         onSuccess: () => handleClose(),

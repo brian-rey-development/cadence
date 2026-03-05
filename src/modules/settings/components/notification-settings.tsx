@@ -1,5 +1,6 @@
 "use client";
 
+import { CLOSE_DAY_AFTER_HOUR } from "@/shared/config/constants";
 import { useSaveSettings, useUserSettings } from "../hooks/use-user-settings";
 import type { UserSettings } from "../settings.types";
 
@@ -13,6 +14,7 @@ type SettingsSnapshot = {
   morningNotificationTime: string | null;
   eveningNotificationTime: string | null;
   timezone: string;
+  closeDayAfterHour: number;
 };
 
 function toSnapshot(
@@ -25,7 +27,16 @@ function toSnapshot(
     eveningNotificationTime: settings?.eveningNotificationTime ?? null,
     timezone:
       settings?.timezone ?? Intl.DateTimeFormat().resolvedOptions().timeZone,
+    closeDayAfterHour: settings?.closeDayAfterHour ?? CLOSE_DAY_AFTER_HOUR,
   };
+}
+
+function hourToTimeValue(hour: number): string {
+  return `${hour.toString().padStart(2, "0")}:00`;
+}
+
+function timeValueToHour(time: string): number {
+  return Number(time.split(":")[0]);
 }
 
 export default function NotificationSettings({
@@ -84,6 +95,23 @@ export default function NotificationSettings({
               />
             </button>
           </div>
+        </div>
+
+        <div className="flex items-center justify-between gap-4 px-4 py-3">
+          <span className="font-[family-name:var(--font-body)] text-base text-text-primary">
+            Close day after
+          </span>
+          <input
+            type="time"
+            aria-label="Close day after hour"
+            value={hourToTimeValue(snapshot.closeDayAfterHour)}
+            onChange={(e) =>
+              handleChange({
+                closeDayAfterHour: timeValueToHour(e.target.value),
+              })
+            }
+            className="rounded-lg bg-[var(--color-bg-base)] px-2 py-1 font-mono text-base text-text-secondary outline-none"
+          />
         </div>
 
         <div className="flex items-center justify-between gap-4 px-4 py-3">

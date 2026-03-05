@@ -7,6 +7,7 @@ import { getUserSettings } from "@/modules/settings/queries/get-user-settings";
 import TaskList from "@/modules/tasks/components/task-list";
 import TodayHeader from "@/modules/tasks/components/today-header";
 import { getTasksForDay } from "@/modules/tasks/queries/get-tasks-for-day";
+import { CLOSE_DAY_AFTER_HOUR } from "@/shared/config/constants";
 import { today } from "@/shared/utils/date";
 import TodayClient from "./today-client";
 
@@ -33,8 +34,14 @@ export default async function TodayPage() {
     user.email?.split("@")[0] ??
     "there";
 
+  const closeDayAfterHour = settings?.closeDayAfterHour ?? CLOSE_DAY_AFTER_HOUR;
+
   return (
-    <TodayClient tasks={tasks} date={date}>
+    <TodayClient
+      tasks={tasks}
+      date={date}
+      closeDayAfterHour={closeDayAfterHour}
+    >
       <div className="flex flex-col gap-6 px-4 py-6 max-w-lg mx-auto">
         <TodayHeader displayName={displayName} date={date} tasks={tasks} />
 

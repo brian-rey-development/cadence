@@ -95,6 +95,7 @@ export default function GoalMilestones({
       goalId,
       milestoneId,
       status: "pending",
+      scheduledTime: null,
       postponeCount: 0,
       completedAt: null,
     });
